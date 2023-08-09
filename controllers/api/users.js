@@ -11,10 +11,11 @@ const dataController = {
   async create (req, res, next) {
     try {
       const user = await User.create(req.body)
-      console.log(req.body)
       // token will be a string
       const token = createJWT(user)
+  
       // send back the token as a string
+
       // which we need to account for
       // in the client
       res.locals.data.user = user
