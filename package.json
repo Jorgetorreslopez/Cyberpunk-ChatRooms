@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": ">=12.16.3"
+    "node": ">=18"
   },
   "name": "big-poppa-code-react-starter-kit",
   "version": "0.1.0",
@@ -14,7 +14,7 @@
     "dev": "gulp",
     "styles": "gulp styles",
     "start": "nodemon server.js",
-    "seed": "node seed.js"
+    "seed": "node ./config/seed.js"
   },
   "author": "",
   "license": "ISC",

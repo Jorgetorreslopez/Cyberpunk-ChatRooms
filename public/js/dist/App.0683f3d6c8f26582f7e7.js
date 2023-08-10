@@ -1,36 +1,5 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/components/NavBar.js":
-/*!**********************************!*\
-  !*** ./src/components/NavBar.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-const NavBar = props => {
-  return /*#__PURE__*/React.createElement("nav", {
-    className: "NavBar"
-  }, props.routes.map(_ref => {
-    let {
-      key,
-      path
-    } = _ref;
-    return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
-      key: key,
-      to: path
-    }, key);
-  }));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NavBar);
-
-/***/ }),
 
 /***/ "./src/index.js":
 /*!**********************!*\
@@ -38,87 +7,28 @@ const NavBar = props => {
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
+"use strict";
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ "./src/router/index.js");
+/* harmony import */ var _pages_App_App_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/App/App.js */ "./src/pages/App/App.js");
+/* harmony import */ var _pages_App_App_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_pages_App_App_js__WEBPACK_IMPORTED_MODULE_2__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
 
 const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById("app"));
-root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, null, /*#__PURE__*/React.createElement(_router__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, null, /*#__PURE__*/React.createElement((_pages_App_App_js__WEBPACK_IMPORTED_MODULE_2___default()), null)));
 
 /***/ }),
 
-/***/ "./src/router/index.js":
-/*!*****************************!*\
-  !*** ./src/router/index.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _components_NavBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/NavBar */ "./src/components/NavBar.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes */ "./src/router/routes.js");
-/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-
-const AppRouter = () => {
-  return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.BrowserRouter, null, /*#__PURE__*/React.createElement(_components_NavBar__WEBPACK_IMPORTED_MODULE_0__["default"], {
-    routes: _routes__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Routes, null, _routes__WEBPACK_IMPORTED_MODULE_1__["default"].map(_ref => {
-    let {
-      Component,
-      key,
-      path
-    } = _ref;
-    return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
-      key: key,
-      path: path,
-      element: /*#__PURE__*/React.createElement(Component, {
-        page: key
-      })
-    });
-  })));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AppRouter);
-
-/***/ }),
-
-/***/ "./src/router/routes.js":
+/***/ "./src/pages/App/App.js":
 /*!******************************!*\
-  !*** ./src/router/routes.js ***!
+  !*** ./src/pages/App/App.js ***!
   \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/About'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/Home'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/Contact'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/***/ (() => {
 
 
-
-const routes = [{
-  Component: Object(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/Contact'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-  key: 'Contact',
-  path: '/contact'
-}, {
-  Component: Object(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/Home'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-  key: 'Home',
-  path: '/'
-}, {
-  Component: Object(function webpackMissingModule() { var e = new Error("Cannot find module '../pages/About'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-  key: 'About',
-  path: '/about'
-}];
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
 /***/ })
 
@@ -283,9 +193,9 @@ const routes = [{
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_react-dom_client_js-node_modules_react-router-dom_dist_index_js"], () => (__webpack_require__("./src/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_react-dom_client_js"], () => (__webpack_require__("./src/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.aedd6fe9e6d4a84cc31ae7ab9095a13c.js.map
+//# sourceMappingURL=App.734067e4b73d9273923386876e606f57.js.map

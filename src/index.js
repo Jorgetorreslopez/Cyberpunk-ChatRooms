@@ -1,5 +1,5 @@
 import {StrictMode} from "react";
 import { createRoot } from "react-dom/client";
-import App from './router';
+import App from './pages/App/App.js';
 const root = createRoot(document.getElementById("app"))
 root.render(<StrictMode><App/></StrictMode>)

@@ -1,11 +1,13 @@
 require('dotenv').config();
-require('./config/database');
+const mongoose = require('mongoose')
+require('./database');
 
-const Category = require('./models/category');
-const Item = require('./models/item');
+const Category = require('../models/category');
+const Item = require('../models/item');
 
 (async function () {
-	// await Category.deleteMany({});
+	await mongoose.connect(process.env.MONGO_URI)
+	await Category.deleteMany({});
 	const categories = await Category.create([
 		{ name: 'Sandwiches', sortOrder: 10 },
 		{ name: 'Seafood', sortOrder: 20 },
