@@ -5,8 +5,12 @@ const Category = require('../models/category');
 const Item = require('../models/item');
 
 (async function() {
-
+  try {
+    try {
   await Category.deleteMany({});
+    } catch (err) {
+      console.log(err);
+    }
   const categories = await Category.create([
     {name: 'Sandwiches', sortOrder: 10},
     {name: 'Seafood', sortOrder: 20},
@@ -42,9 +46,9 @@ const Item = require('../models/item');
     {name: 'Beer', emoji: '🍺', category: categories[6], price: 3.95},
     {name: 'Wine', emoji: '🍷', category: categories[6], price: 7.95},
   ]);
-
-  console.log(items)
-
+} catch (err) {
+console.error(err);
+} finally {
   process.exit();
-
+}
 })();

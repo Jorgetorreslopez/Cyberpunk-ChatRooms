@@ -14,7 +14,7 @@
     "dev": "gulp",
     "styles": "gulp styles",
     "start": "nodemon server.js",
-    "seed": "node ./config/seed.js"
+    "seed": "node ./config/database.js && ./config/seed.js"
   },
   "author": "",
   "license": "ISC",
