@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
+//importing styles from loginform.module.scss
+import styles from './LoginForm.module.scss';
+
 
 export default function LoginForm({ setUser }) {
 const [credentials, setCredentials] = useState({
@@ -29,7 +32,8 @@ async function handleSubmit(evt) {
 
 return (
   <div>
-    <div className="form-container">
+  {/* start putting styles in here, note {styles.X} once the scss is written*/}
+    <div className={styles[`form-container`]}>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <label>Email</label>
         <input type="text" name="email" value={credentials.email} onChange={handleChange} required />

@@ -18,12 +18,12 @@ export default function NewOrderPage({ user, setUser }) {
 
   useEffect(function() {
     async function getItems() {
-      const itemsData = await itemsAPI.getAll();
-      categoriesRef.current = itemsData.reduce((cats, item) => {
+      const items = await itemsAPI.getAll();
+      categoriesRef.current = items.reduce((cats, item) => {
         const cat = item.category.name;
         return cats.includes(cat) ? cats : [...cats, cat];
       }, []);
-      setMenuItems(itemsData);
+      setMenuItems(items);
       setActiveCat(categoriesRef.current[0]);
     }
     getItems();
