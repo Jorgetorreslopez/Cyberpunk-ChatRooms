@@ -849,41 +849,18 @@ function OrderHistoryPage(_ref) {
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* unused harmony exports getCart, addItemToCart, setItemQtyInCart, checkout, getOrderHistory */
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getAll: () => (/* binding */ getAll)
+/* harmony export */ });
+/* unused harmony export getById */
 /* harmony import */ var _send_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./send-request */ "./src/utilities/send-request.js");
 
-const BASE_URL = '/api/orders';
-
-// Retrieve an unpaid order for the logged in user
-function getCart() {
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart"));
+const BASE_URL = '/api/items';
+function getAll() {
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])(BASE_URL);
 }
-
-// Add an item to the cart
-function addItemToCart(itemId) {
-  // Just send itemId for best security (no pricing)
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/items/").concat(itemId), 'POST');
-}
-
-// Update the item's qty in the cart
-// Will add the item to the order if not currently in the cart
-// Sending info via the data payload instead of a long URL
-function setItemQtyInCart(itemId, newQty) {
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/qty"), 'PUT', {
-    itemId,
-    newQty
-  });
-}
-
-// Updates the order's (cart's) isPaid property to true
-function checkout() {
-  // Changing data on the server, so make it a POST request
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/checkout"), 'POST');
-}
-
-// Return all paid orders for the logged in user
-function getOrderHistory() {
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/history"));
+function getById(id) {
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/").concat(id));
 }
 
 /***/ }),
@@ -2665,4 +2642,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.aece1a20c26ac908051a505d47205587.js.map
+//# sourceMappingURL=App.b9d54e76f5c9b80139f1bf2fe3893f81.js.map

@@ -14,6 +14,9 @@
     "@babel/preset-react"
   ],
   "plugins": [
+    ["@babel/plugin-transform-private-methods", {
+       "loose": true 
+    }],
     ["@babel/plugin-proposal-decorators", {
       "legacy": true
     }],
