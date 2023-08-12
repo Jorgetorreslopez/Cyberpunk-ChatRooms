@@ -15,15 +15,20 @@
   ],
   "plugins": [
     ["@babel/plugin-transform-private-methods", {
-       "loose": true 
+       "loose": true,
+       "legacy": true
     }],
     ["@babel/plugin-proposal-decorators", {
-      "legacy": true
+      "legacy": true,
+      "loose": false
     }],
     ["@babel/plugin-proposal-class-properties", {
-      "loose": true
+      "loose": true,
+      "legacy": true
     }],
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-transform-async-to-generator"
-  ]
+    ["@babel/plugin-syntax-dynamic-import", {
+      "legacy": true,
+      "loose": true
+    }]
+      ]
 }
