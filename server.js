@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8000;
 const http = require('http');
 const socketIO = require('socket.io');
 const setupSockets = require('./sockets');
-console.log(setupSockets);
+console.log(setupSockets); 
 
 const server = http.createServer(app);
 const io = socketIO(server);

@@ -3,15 +3,7 @@ const app = express();
 const path = require('path');
 const logger = require('morgan')
 const cors = require('cors');
-const http = require('http');
-const socketIO = require('socket.io');
-const setupSockets = require('./sockets');
-console.log(setupSockets);
 
-const server = http.createServer(app);
-const io = socketIO(server);
-
-setupSockets(io);
 
 /* Middleware */
 app.use(express.json());
@@ -25,6 +17,8 @@ app.use((req, res, next) => {
 })
 
 app.use(logger('dev'))
+
+app.use(cors());
 
 // Check if token and create req.user
 app.use(require('./config/checkToken'));

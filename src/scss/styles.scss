@@ -155,3 +155,178 @@ button[type="submit"] {
   grid-column: span 2;
   margin: 1vmin 0 0;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Main Container */
+.home__container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f0f0f; /* Dark background */
+  color: #7ec6c3; /* Teal */
+}
+
+/* Header */
+.home__header {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #66d9ef; /* Light blue */
+}
+
+/* Username Input */
+.username__input {
+  padding: 10px;
+  width: 50%;
+  background-color: #2b2b2b; /* Dark gray */
+  color: #7ec6c3; /* Teal */
+  border: 1px solid #3a3a3a; /* Slightly lighter gray */
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Call to Action Button */
+.home__cta {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #ff6ac1; /* Pink */
+  color: #0f0f0f; /* Dark background */
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Chat Container */
+.chat {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #000; /* Black */
+  color: #7ec6c3; /* Teal */
+}
+
+/* Sidebar */
+.chat__sidebar {
+  height: 100%;
+  background-color: #1b1b1b; /* Darker gray */
+  flex: 0.2;
+  padding: 20px;
+  border-right: 1px solid #3a3a3a; /* Slightly lighter gray */
+}
+
+/* Main Chat Area */
+.chat__main {
+  height: 100%;
+  flex: 0.8;
+}
+
+/* Chat Header */
+.chat__header {
+  margin: 30px 0 20px 0;
+  font-size: 24px;
+  color: #66d9ef; /* Light blue */
+}
+
+/* Footer */
+.chat__footer {
+  padding: 10px;
+  background-color: #1b1b1b; /* Darker gray */
+  height: 10vh;
+}
+
+/* Form */
+.form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Message Input */
+.message {
+  width: 80%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #3a3a3a; /* Slightly lighter gray */
+  outline: none;
+  padding: 15px;
+  font-size: 14px;
+  background-color: #000; /* Black */
+  color: #7ec6c3; /* Teal */
+}
+
+/* Send Button */
+.sendBtn {
+  width: 150px;
+  background-color: #ff6ac1; /* Pink */
+  padding: 10px;
+  border: none;
+  outline: none;
+  color: #0f0f0f; /* Dark background */
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Chat Messages Container */
+.message__container {
+  width: 100%;
+  height: 80vh;
+  background-color: #000; /* Black */
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+/* Chat Messages */
+.message__recipient {
+  background-color: #363636; /* Darker gray */
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.message__sender {
+  background-color: #7ec6c3; /* Teal */
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #0f0f0f; /* Dark background */
+}
+
+/* Chat Message Info */
+.message__chats > p {
+  font-size: 13px;
+}
+
+.sender__name {
+  text-align: right;
+  font-style: italic;
+  color: #66d9ef; /* Light blue */
+}
+
+/* Message Status */
+.message__status {
+  position: fixed;
+  bottom: 50px;
+  font-size: 13px;
+  font-style: italic;
+  color: #7ec6c3; /* Teal */
+}
