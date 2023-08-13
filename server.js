@@ -39,33 +39,3 @@ server.listen(PORT, () => {
 	console.log(`API Listening on port ${PORT}`);
 })
 
-
-
-
-// const cors = require('cors');
-// const http = require('http').createServer(app);
-
-// const socketIO = require('socket.io')(http, {
-// 	cors: {
-// 		origin: 'http://localhost:8000'
-// 	}
-// });
-
-// socketIO.on('connection', (socket) => {
-// 	console.log(`⚡: ${socket.id} user just connected!`);
-
-// 	socket.on('message', (data) => {
-// 		socketIO.emit('messageResponse', data);
-// 	});
-
-// 	socket.on('disconnect', () => {
-// 		console.log('🔥: A user disconnected');
-// 	});
-// });
-
-// app.use(cors());
-
-
-// app.listen(PORT, () => {
-// 	console.log(`API Listening on port ${PORT}`);
-// });
