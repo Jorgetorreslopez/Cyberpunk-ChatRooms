@@ -1,20 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 
 const ChatFooter = ({ socket, username, room }) => {
 	const [currentMessage, setCurrentMessage] = useState('');
 
-	// const handleSendMessage = (e) => {
-	// 	e.preventDefault();
-	// 	if (message.trim() && localStorage.getItem('userName')) {
-	// 		socket.emit('message', {
-	// 			text: message,
-	// 			name: localStorage.getItem('userName'),
-	// 			id: `${socket.id}${Math.random()}`,
-	// 			socketID: socket.id
-	// 		});
-	// 	}
-	// 	setMessage('');
-	// };
 	const handleSendMessage =  async (e) => {
 		e.preventDefault();
 		if (currentMessage !== '') {
@@ -32,6 +20,12 @@ const ChatFooter = ({ socket, username, room }) => {
       setCurrentMessage('');
 		}
 	};
+
+	useEffect(() => {
+		socket.on('receive_message', (data) => {
+			console.log(data);
+		})
+	}, [socket])
 
 	return (
 		<div className="chat__footer">

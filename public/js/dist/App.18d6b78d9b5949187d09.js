@@ -130,19 +130,6 @@ const ChatFooter = _ref => {
     room
   } = _ref;
   const [currentMessage, setCurrentMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-
-  // const handleSendMessage = (e) => {
-  // 	e.preventDefault();
-  // 	if (message.trim() && localStorage.getItem('userName')) {
-  // 		socket.emit('message', {
-  // 			text: message,
-  // 			name: localStorage.getItem('userName'),
-  // 			id: `${socket.id}${Math.random()}`,
-  // 			socketID: socket.id
-  // 		});
-  // 	}
-  // 	setMessage('');
-  // };
   const handleSendMessage = async e => {
     e.preventDefault();
     if (currentMessage !== '') {
@@ -156,6 +143,11 @@ const ChatFooter = _ref => {
       setCurrentMessage('');
     }
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    socket.on('receive_message', data => {
+      console.log(data);
+    });
+  }, [socket]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat__footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -2931,4 +2923,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.e44fd527b2219b7ff73ae9d5bc621147.js.map
+//# sourceMappingURL=App.755204e85ecf442709ce7e3cbd5f67c7.js.map
