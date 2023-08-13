@@ -6,18 +6,22 @@ import AuthPage from '../AuthPage/AuthPage';
 import NewOrderPage from '../NewOrderPage/NewOrderPage.js';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import ChatPage from '../ChatPage/ChatPage';
+import ChatSetupPage from '../ChatSetupPage/ChatSetupPage';
 
 import socketIO from 'socket.io-client'
 const socket = socketIO.connect('http://localhost:8000');
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [username, setUsername] = useState('');
+
   return (
     <main className={styles.App}>
       { user ?
         <>
           <Routes>
             {/* client-side route that renders the component instance if the path matches the url in the address bar */}
+            <Route path="/chat" element={<ChatSetupPage user={user} setUser={setUser} socket={socket} />} />
             <Route path="/chat" element={<ChatPage user={user} setUser={setUser} socket={socket} />} />
             {/* <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
             <Route path="/orders" element={<OrderHistoryPage user={user} setUser={setUser} />} /> */}
