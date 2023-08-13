@@ -8,13 +8,13 @@ import Logo from '../../components/Logo/Logo';
 import UserLogOut from '../../components/UserLogOut/UserLogOut';
 
 
-const ChatPage = ({ socket, user, setUser }) => {
+const ChatPage = ({ socket, user, setUser, username, room }) => {
 
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
-    socket.on('messageResponse', (data) => setMessages([...messages, data]));
-  }, [socket, messages]);
+  // useEffect(() => {
+  //   socket.on('messageResponse', (data) => setMessages([...messages, data]));
+  // }, [socket, messages]);
 
   return (
     <div className="chat">
@@ -22,7 +22,7 @@ const ChatPage = ({ socket, user, setUser }) => {
       <ChatBar socket={socket} />
       <div className="chat__main">
         <ChatBody messages={messages}/>
-        <ChatFooter socket={socket} />
+        <ChatFooter socket={socket} username={username} room={room} />
         <UserLogOut user={user} setUser={setUser}/>
       </div>
     </div>

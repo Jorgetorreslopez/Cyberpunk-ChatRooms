@@ -5,19 +5,29 @@ import Logo from '../../components/Logo/Logo';
 import UserLogOut from '../../components/UserLogOut/UserLogOut';
 import ChatPage from '../ChatPage/ChatPage';
 
-const ChatSetupPage = ({ user, setUser, socket, username }) => {
+const ChatSetupPage = ({ user, setUser, socket }) => {
 	const [room, setRoom] = useState('');
+	const [username, setUsername] = useState('');
+	const [inChat, setInChat] = useState(false);
+
+	useEffect(() => {
+		const isUserInRoom = localStorage.getItem('isUserInRoom');
+		if (isUserInRoom) {
+            setInChat(true);
+        }
+	}, [])
 
 	const joinRoom = () => {
 		if (username !== '' && room !== '') {
 			socket.emit('join_room', room);
+			setInChat(true);
 		}
 	};
 
 	return (
-		<div >
+		<div>
 			<Logo />
-			{username && room ? (
+			{inChat ? (
 				<ChatPage
 					socket={socket}
 					user={user}
@@ -30,9 +40,9 @@ const ChatSetupPage = ({ user, setUser, socket, username }) => {
 					<h1>Join A Room</h1>
 					<input
 						type="text"
-						placeholder="Your name"
+						placeholder="Avatar Name"
 						onChange={(e) => {
-							username = e.target.value;
+							setUsername(e.target.value);
 						}}
 					/>
 					<input

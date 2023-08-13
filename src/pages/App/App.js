@@ -13,7 +13,6 @@ const socket = socketIO.connect('http://localhost:8000');
 
 export default function App() {
   const [user, setUser] = useState(getUser());
-  const [username, setUsername] = useState('');
 
   return (
     <main className={styles.App}>

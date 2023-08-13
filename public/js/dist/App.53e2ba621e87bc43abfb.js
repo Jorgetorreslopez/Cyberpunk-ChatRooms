@@ -105,7 +105,7 @@ const ChatBody = _ref => {
     className: "message__recipient"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, message.text)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__status"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Someone is typing..."))));
+  })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChatBody);
 
@@ -125,35 +125,55 @@ const ChatBody = _ref => {
 
 const ChatFooter = _ref => {
   let {
-    socket
+    socket,
+    username,
+    room
   } = _ref;
-  const [message, setMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const handleSendMessage = e => {
+  const [currentMessage, setCurrentMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+
+  // const handleSendMessage = (e) => {
+  // 	e.preventDefault();
+  // 	if (message.trim() && localStorage.getItem('userName')) {
+  // 		socket.emit('message', {
+  // 			text: message,
+  // 			name: localStorage.getItem('userName'),
+  // 			id: `${socket.id}${Math.random()}`,
+  // 			socketID: socket.id
+  // 		});
+  // 	}
+  // 	setMessage('');
+  // };
+  const handleSendMessage = async e => {
     e.preventDefault();
-    if (message.trim() && localStorage.getItem('userName')) {
-      socket.emit('message', {
-        text: message,
-        name: localStorage.getItem('userName'),
-        id: "".concat(socket.id).concat(Math.random()),
-        socketID: socket.id
-      });
+    if (currentMessage !== '') {
+      const messageData = {
+        room: room,
+        author: username,
+        message: currentMessage,
+        time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
+      };
+      await socket.emit('send_message', messageData);
+      setCurrentMessage('');
     }
-    ;
-    setMessage('');
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    socket.on('receive_message', data => {
+      console.log(data);
+    });
+  }, [socket]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat__footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-    className: "form",
-    onSubmit: handleSendMessage
+    className: "form"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
     placeholder: "Write message",
     className: "message",
-    value: message,
-    onChange: e => setMessage(e.target.value)
+    value: currentMessage,
+    onChange: e => setCurrentMessage(e.target.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "sendBtn"
+    className: "sendBtn",
+    onClick: handleSendMessage
   }, "SEND")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChatFooter);
@@ -678,7 +698,6 @@ root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__
 const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_7__["default"].connect('http://localhost:8000');
 function App() {
   const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_8__.getUser)());
-  const [username, setUsername] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
     className: _App_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].App
   }, user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
@@ -767,12 +786,16 @@ const ChatPage = _ref => {
   let {
     socket,
     user,
-    setUser
+    setUser,
+    username,
+    room
   } = _ref;
   const [messages, setMessages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    socket.on('messageResponse', data => setMessages([...messages, data]));
-  }, [socket, messages]);
+
+  // useEffect(() => {
+  //   socket.on('messageResponse', (data) => setMessages([...messages, data]));
+  // }, [socket, messages]);
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatBar_ChatBar__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -782,7 +805,9 @@ const ChatPage = _ref => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatBody_ChatBody__WEBPACK_IMPORTED_MODULE_2__["default"], {
     messages: messages
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatFooter_ChatFooter__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    socket: socket
+    socket: socket,
+    username: username,
+    room: room
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_5__["default"], {
     user: user,
     setUser: setUser
@@ -817,16 +842,24 @@ const ChatSetupPage = _ref => {
   let {
     user,
     setUser,
-    socket,
-    username
+    socket
   } = _ref;
   const [room, setRoom] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [username, setUsername] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [inChat, setInChat] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const isUserInRoom = localStorage.getItem('isUserInRoom');
+    if (isUserInRoom) {
+      setInChat(true);
+    }
+  }, []);
   const joinRoom = () => {
     if (username !== '' && room !== '') {
       socket.emit('join_room', room);
+      setInChat(true);
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__["default"], null), username && room ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ChatPage_ChatPage__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__["default"], null), inChat ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ChatPage_ChatPage__WEBPACK_IMPORTED_MODULE_4__["default"], {
     socket: socket,
     user: user,
     setUser: setUser,
@@ -836,9 +869,9 @@ const ChatSetupPage = _ref => {
     className: _ChatSetupPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].SetupPage
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Join A Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
-    placeholder: "Your name",
+    placeholder: "Avatar Name",
     onChange: e => {
-      username = e.target.value;
+      setUsername(e.target.value);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
@@ -2909,4 +2942,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.929cb80f17c7cd6230217c458c41bab4.js.map
+//# sourceMappingURL=App.8cc15ba90004c2ab007b7e96c9e5f008.js.map

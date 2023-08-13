@@ -45,7 +45,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use(logger('dev'))
+//app.use(logger('dev'))
 
 
 // Check if token and create req.user
