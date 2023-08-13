@@ -1,7 +1,6 @@
 import React, { useState , useEffect } from 'react';
 
-const ChatFooter = ({ socket, username, room }) => {
-	const [currentMessage, setCurrentMessage] = useState('');
+const ChatFooter = ({ socket, username, room, currentMessage, setCurrentMessage }) => {
 
 	const handleSendMessage =  async (e) => {
 		e.preventDefault();

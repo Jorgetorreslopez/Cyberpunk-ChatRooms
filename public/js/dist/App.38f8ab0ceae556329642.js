@@ -127,9 +127,10 @@ const ChatFooter = _ref => {
   let {
     socket,
     username,
-    room
+    room,
+    currentMessage,
+    setCurrentMessage
   } = _ref;
-  const [currentMessage, setCurrentMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const handleSendMessage = async e => {
     e.preventDefault();
     if (currentMessage !== '') {
@@ -777,6 +778,7 @@ const ChatPage = _ref => {
     username,
     room
   } = _ref;
+  const [currentMessage, setCurrentMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [messages, setMessages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
 
   // useEffect(() => {
@@ -794,7 +796,9 @@ const ChatPage = _ref => {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatFooter_ChatFooter__WEBPACK_IMPORTED_MODULE_3__["default"], {
     socket: socket,
     username: username,
-    room: room
+    room: room,
+    currentMessage: currentMessage,
+    setCurrentMessage: setCurrentMessage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_5__["default"], {
     user: user,
     setUser: setUser
@@ -2923,4 +2927,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.755204e85ecf442709ce7e3cbd5f67c7.js.map
+//# sourceMappingURL=App.b035ee195e8b873d3b98e7e37ba792d7.js.map

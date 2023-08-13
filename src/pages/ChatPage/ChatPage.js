@@ -9,7 +9,7 @@ import UserLogOut from '../../components/UserLogOut/UserLogOut';
 
 
 const ChatPage = ({ socket, user, setUser, username, room }) => {
-
+  const [currentMessage, setCurrentMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
   // useEffect(() => {
@@ -22,7 +22,7 @@ const ChatPage = ({ socket, user, setUser, username, room }) => {
       <ChatBar socket={socket} />
       <div className="chat__main">
         <ChatBody messages={messages}/>
-        <ChatFooter socket={socket} username={username} room={room} />
+        <ChatFooter socket={socket} username={username} room={room} currentMessage={currentMessage} setCurrentMessage={setCurrentMessage} />
         <UserLogOut user={user} setUser={setUser}/>
       </div>
     </div>
