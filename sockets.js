@@ -1,11 +1,18 @@
+const http = require('http');
+
 module.exports = (io) => {
 	console.log('setting up sockets');
-	io.on('connection', (socket) => {
-		console.log('a user connected');
+	const socketIO = require('socket.io')(http, {
+		cors: {
+			origin: "http://localhost:3000"
+		}
+	})
 
-		socket.on('message', (msg) => {
-			console.log("MESSAGE", msg);
-			io.emit('message', msg);
+	socketIO.on('connection', (socket) => {
+		console.log(`⚡: ${socket.id} user just connected!`);
+
+		socket.on('message', (data) => {
+			io.emit('messageResponse', data);
 		});
 
 		socket.on('disconnect', () => {

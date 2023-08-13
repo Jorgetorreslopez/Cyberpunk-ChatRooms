@@ -3,17 +3,25 @@ import ChatBar from '../.././components/ChatBar/ChatBar';
 import ChatBody from '../.././components/ChatBody/ChatBody';
 import ChatFooter from '../.././components/ChatFooter/ChatFooter';
 import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import UserLogOut from '../../components/UserLogOut/UserLogOut';
 
 
 const ChatPage = ({ socket, user, setUser }) => {
+
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    socket.on('messageResponse', (data) => setMessages([...messages, data]));
+  }, [socket, messages]);
+
   return (
     <div className="chat">
-      <ChatBar />
+    <Logo />
+      <ChatBar socket={socket} />
       <div className="chat__main">
-        <ChatBody />
+        <ChatBody messages={messages}/>
         <ChatFooter socket={socket} />
         <UserLogOut user={user} setUser={setUser}/>
       </div>

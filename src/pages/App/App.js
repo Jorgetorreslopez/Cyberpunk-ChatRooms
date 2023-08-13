@@ -6,9 +6,9 @@ import AuthPage from '../AuthPage/AuthPage';
 import NewOrderPage from '../NewOrderPage/NewOrderPage.js';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import ChatPage from '../ChatPage/ChatPage';
-import socketIO from 'socket.io-client'
 
-const socket = socketIO('http://localhost:3000');
+import socketIO from 'socket.io-client'
+const socket = socketIO.connect('http://localhost:8000');
 
 export default function App() {
   const [user, setUser] = useState(getUser());
