@@ -689,13 +689,6 @@ function App() {
       socket: socket
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-    path: "/chat",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ChatPage_ChatPage__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      user: user,
-      setUser: setUser,
-      socket: socket
-    })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
       to: "/chat"
@@ -813,7 +806,7 @@ const ChatPage = _ref => {
 /* harmony import */ var _ChatSetupPage_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatSetupPage.module.scss */ "./src/pages/ChatSetupPage/ChatSetupPage.module.scss");
 /* harmony import */ var _components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Logo/Logo */ "./src/components/Logo/Logo.js");
 /* harmony import */ var _components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/UserLogOut/UserLogOut */ "./src/components/UserLogOut/UserLogOut.js");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
+/* harmony import */ var _ChatPage_ChatPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ChatPage/ChatPage */ "./src/pages/ChatPage/ChatPage.js");
 
 
 
@@ -833,12 +826,16 @@ const ChatSetupPage = _ref => {
       socket.emit('join_room', room);
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__["default"], null), username && room ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ChatPage_ChatPage__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    socket: socket,
+    user: user,
+    setUser: setUser,
+    username: username,
+    room: room
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: _ChatSetupPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].SetupPage
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Join A Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-    type: "text"
-    // className={styles.Input}
-    ,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Join A Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "text",
     placeholder: "Your name",
     onChange: e => {
       username = e.target.value;
@@ -854,7 +851,7 @@ const ChatSetupPage = _ref => {
   }, "Join Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_3__["default"], {
     user: user,
     setUser: setUser
-  }));
+  })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChatSetupPage);
 
@@ -2912,4 +2909,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.c22763fa7360d95a4f9b8dc6745cd3ab.js.map
+//# sourceMappingURL=App.929cb80f17c7cd6230217c458c41bab4.js.map
