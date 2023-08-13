@@ -156,11 +156,6 @@ const ChatFooter = _ref => {
       setCurrentMessage('');
     }
   };
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    socket.on('receive_message', data => {
-      console.log(data);
-    });
-  }, [socket]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat__footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -847,12 +842,6 @@ const ChatSetupPage = _ref => {
   const [room, setRoom] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [username, setUsername] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [inChat, setInChat] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const isUserInRoom = localStorage.getItem('isUserInRoom');
-    if (isUserInRoom) {
-      setInChat(true);
-    }
-  }, []);
   const joinRoom = () => {
     if (username !== '' && room !== '') {
       socket.emit('join_room', room);
@@ -2942,4 +2931,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.8cc15ba90004c2ab007b7e96c9e5f008.js.map
+//# sourceMappingURL=App.e44fd527b2219b7ff73ae9d5bc621147.js.map

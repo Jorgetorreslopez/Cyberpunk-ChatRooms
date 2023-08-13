@@ -10,13 +10,6 @@ const ChatSetupPage = ({ user, setUser, socket }) => {
 	const [username, setUsername] = useState('');
 	const [inChat, setInChat] = useState(false);
 
-	useEffect(() => {
-		const isUserInRoom = localStorage.getItem('isUserInRoom');
-		if (isUserInRoom) {
-            setInChat(true);
-        }
-	}, [])
-
 	const joinRoom = () => {
 		if (username !== '' && room !== '') {
 			socket.emit('join_room', room);
@@ -25,7 +18,7 @@ const ChatSetupPage = ({ user, setUser, socket }) => {
 	};
 
 	return (
-		<div>
+		<div >
 			<Logo />
 			{inChat ? (
 				<ChatPage

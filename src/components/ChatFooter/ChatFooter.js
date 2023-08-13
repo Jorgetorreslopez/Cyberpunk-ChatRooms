@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const ChatFooter = ({ socket, username, room }) => {
 	const [currentMessage, setCurrentMessage] = useState('');
@@ -32,12 +32,6 @@ const ChatFooter = ({ socket, username, room }) => {
       setCurrentMessage('');
 		}
 	};
-
-  useEffect(() => {
-    socket.on('receive_message', (data) => {
-      console.log(data);
-    })
-  }, [socket])
 
 	return (
 		<div className="chat__footer">
