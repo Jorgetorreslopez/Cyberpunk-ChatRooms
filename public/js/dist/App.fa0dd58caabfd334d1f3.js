@@ -76,7 +76,10 @@ const ChatBar = () => {
 
 const ChatBody = _ref => {
   let {
-    messages
+    messages,
+    messageList,
+    setMessageList,
+    socket
   } = _ref;
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
   const handleLeaveChat = () => {
@@ -84,6 +87,11 @@ const ChatBody = _ref => {
     navigate('/');
     window.location.reload();
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    socket.on('receive_message', data => {
+      setMessageList(list => [...list, data]);
+    });
+  }, [socket, setMessageList]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
     className: "chat__mainHeader"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Hangout with Colleagues"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -91,19 +99,19 @@ const ChatBody = _ref => {
     onClick: handleLeaveChat
   }, "LEAVE CHAT")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__container"
-  }, messages.map(message => message.name === localStorage.getItem('userName') ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, messageList.map((messageContent, index) => messageContent.name === localStorage.getItem('userName') ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__chats",
-    key: message.id
+    key: messageContent.id || index
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "sender__name"
   }, "You"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__sender"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, message.text))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, messageContent.text))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__chats",
-    key: message.id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, message.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    key: messageContent.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, messageContent.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__recipient"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, message.text)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, messageContent.text)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__status"
   })));
 };
@@ -144,11 +152,13 @@ const ChatFooter = _ref => {
       setCurrentMessage('');
     }
   };
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    socket.on('receive_message', data => {
-      console.log(data);
-    });
-  }, [socket]);
+
+  // useEffect(() => {
+  // 	socket.on('receive_message', (data) => {
+  // 		console.log(data);
+  // 	})
+  // }, [socket])
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat__footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -779,12 +789,8 @@ const ChatPage = _ref => {
     room
   } = _ref;
   const [currentMessage, setCurrentMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [messagelist, setMessageList] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [messages, setMessages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-
-  // useEffect(() => {
-  //   socket.on('messageResponse', (data) => setMessages([...messages, data]));
-  // }, [socket, messages]);
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatBar_ChatBar__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -792,7 +798,10 @@ const ChatPage = _ref => {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat__main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatBody_ChatBody__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    messages: messages
+    messageList: messagelist,
+    setMessageList: setMessageList,
+    messages: messages,
+    socket: socket
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatFooter_ChatFooter__WEBPACK_IMPORTED_MODULE_3__["default"], {
     socket: socket,
     username: username,
@@ -2927,4 +2936,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.b035ee195e8b873d3b98e7e37ba792d7.js.map
+//# sourceMappingURL=App.45b3ea01a1679c73a621b8f586016883.js.map
