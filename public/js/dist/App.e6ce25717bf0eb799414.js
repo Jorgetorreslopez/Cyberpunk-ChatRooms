@@ -149,7 +149,7 @@ const ChatFooter = _ref => {
         room: room,
         author: username,
         message: currentMessage,
-        id: Math.floor(Math.random() * 1000000000000, 10),
+        id: Math.floor(Math.random() * 100000, 10),
         time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
       };
       await socket.emit('send_message', messageData);
@@ -2938,4 +2938,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.582ae6199bbc2265bd110c2f7247cb80.js.map
+//# sourceMappingURL=App.8c4f8e9901646a548cd032aaf01b4cc6.js.map
