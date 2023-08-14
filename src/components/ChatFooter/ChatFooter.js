@@ -9,6 +9,7 @@ const ChatFooter = ({ socket, username, room, currentMessage, setCurrentMessage 
 				room: room,
 				author: username,
 				message: currentMessage,
+				id: Math.floor(Math.random() * 1000000000000, 10),
 				time:
 					new Date(Date.now()).getHours() +
 					':' +

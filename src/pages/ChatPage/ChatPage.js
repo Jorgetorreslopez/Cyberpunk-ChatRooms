@@ -11,7 +11,6 @@ import UserLogOut from '../../components/UserLogOut/UserLogOut';
 const ChatPage = ({ socket, user, setUser, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messagelist, setMessageList] = useState([]);
-  const [messages, setMessages] = useState([]);
 
 
   return (
@@ -19,7 +18,7 @@ const ChatPage = ({ socket, user, setUser, username, room }) => {
     <Logo />
       <ChatBar socket={socket} />
       <div className="chat__main">
-        <ChatBody messageList={messagelist} setMessageList={setMessageList} messages={messages} socket={socket}/>
+        <ChatBody messageList={messagelist} setMessageList={setMessageList} socket={socket} />
         <ChatFooter socket={socket} username={username} room={room} currentMessage={currentMessage} setCurrentMessage={setCurrentMessage} />
         <UserLogOut user={user} setUser={setUser}/>
       </div>

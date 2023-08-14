@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ChatBody = ({ messages, messageList, setMessageList, socket }) => {
+const ChatBody = ({ messageList, setMessageList, socket }) => {
 	const navigate = useNavigate();
 
 	const handleLeaveChat = () => {
@@ -12,6 +12,7 @@ const ChatBody = ({ messages, messageList, setMessageList, socket }) => {
 
   useEffect(() => {
 		socket.on('receive_message', (data) => {
+			console.log('receive_message', data);
 			setMessageList((list) => [...list, data]);
 		})
 	}, [socket, setMessageList]);
@@ -19,31 +20,32 @@ const ChatBody = ({ messages, messageList, setMessageList, socket }) => {
 	return (
 		<>
 			<header className="chat__mainHeader">
-				<p>Hangout with Colleagues</p>
+				<p>LoFi Chat</p>
 				<button className="leaveChat__btn" onClick={handleLeaveChat}>
 					LEAVE CHAT
 				</button>
 			</header>
 
 			<div className="message__container">
-				{messageList.map((messageContent, index) =>
-					messageContent.name === localStorage.getItem('userName') ? (
-						<div className="message__chats" key={messageContent.id || index}>
+				{messageList.map((messageContent) => {
+					console.log('Rendering:', messageContent.message);
+					return messageContent.author === localStorage.getItem('userName') ? (
+						<div className="message__chats" key={messageContent.id}>
 							<p className="sender__name">You</p>
 							<div className="message__sender">
-								<p>{messageContent.text}</p>
+								<p>{messageContent.message}</p>
 							</div>
 						</div>
 					) : (
 						<div className="message__chats" key={messageContent.id}>
-							<p>{messageContent.name}</p>
+							<p>{messageContent.author}</p>
 							<div className="message__recipient">
-								<p>{messageContent.text}</p>
+								<p>{messageContent.message}</p>
 							</div>
 						</div>
 					)
           
-				)}
+				})}
 
 				<div className="message__status">
 					{/* <p>Someone is typing...</p> */}
