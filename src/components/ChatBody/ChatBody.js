@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 const ChatBody = ({ messageList, setMessageList, socket }) => {
 	const navigate = useNavigate();
@@ -10,11 +11,16 @@ const ChatBody = ({ messageList, setMessageList, socket }) => {
 		window.location.reload();
 	};
 
-  useEffect(() => {
+	useEffect(() => {
 		socket.on('receive_message', (data) => {
-			console.log('receive_message', data);
+			// const duplicatelist = messageList.find((message) => message.id === data.id)
+			// console.log(duplicatelist);
+			// if (duplicatelist) return;
 			setMessageList((list) => [...list, data]);
-		})
+			// const newData = new Set(messageList);
+			// const newArray = Array.from(newData);
+			// setMessageList(newArray);
+		});
 	}, [socket, setMessageList]);
 
 	return (
@@ -27,6 +33,8 @@ const ChatBody = ({ messageList, setMessageList, socket }) => {
 			</header>
 
 			<div className="message__container">
+
+                <ScrollToBottom>
 				{messageList.map((messageContent) => {
 					console.log('Rendering:', messageContent.message);
 					return messageContent.author === localStorage.getItem('userName') ? (
@@ -43,13 +51,13 @@ const ChatBody = ({ messageList, setMessageList, socket }) => {
 								<p>{messageContent.message}</p>
 							</div>
 						</div>
-					)
-          
+					);
 				})}
 
 				<div className="message__status">
 					{/* <p>Someone is typing...</p> */}
 				</div>
+				</ScrollToBottom>
 			</div>
 		</>
 	);

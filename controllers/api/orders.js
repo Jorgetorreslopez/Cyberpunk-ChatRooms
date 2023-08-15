@@ -5,7 +5,7 @@ module.exports = {
   addToCart,
   setItemQtyInCart,
   checkout,
-  history
+  history,
 };
 
 // A cart is the unpaid order for a user
@@ -65,3 +65,4 @@ async function history(req, res) {
   }
 
 }
+

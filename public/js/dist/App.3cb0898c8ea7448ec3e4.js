@@ -71,7 +71,9 @@ const ChatBar = () => {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_scroll_to_bottom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-scroll-to-bottom */ "./node_modules/react-scroll-to-bottom/lib/esm/index.js");
+
 
 
 const ChatBody = _ref => {
@@ -80,7 +82,7 @@ const ChatBody = _ref => {
     setMessageList,
     socket
   } = _ref;
-  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
   const handleLeaveChat = () => {
     localStorage.removeItem('userName');
     navigate('/');
@@ -88,8 +90,13 @@ const ChatBody = _ref => {
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     socket.on('receive_message', data => {
-      console.log('receive_message', data);
+      // const duplicatelist = messageList.find((message) => message.id === data.id)
+      // console.log(duplicatelist);
+      // if (duplicatelist) return;
       setMessageList(list => [...list, data]);
+      // const newData = new Set(messageList);
+      // const newArray = Array.from(newData);
+      // setMessageList(newArray);
     });
   }, [socket, setMessageList]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
@@ -99,7 +106,7 @@ const ChatBody = _ref => {
     onClick: handleLeaveChat
   }, "LEAVE CHAT")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__container"
-  }, messageList.map(messageContent => {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_scroll_to_bottom__WEBPACK_IMPORTED_MODULE_1__["default"], null, messageList.map(messageContent => {
     console.log('Rendering:', messageContent.message);
     return messageContent.author === localStorage.getItem('userName') ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "message__chats",
@@ -116,7 +123,7 @@ const ChatBody = _ref => {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, messageContent.message)));
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "message__status"
-  })));
+  }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChatBody);
 
@@ -663,7 +670,7 @@ function UserLogOut(_ref) {
 
 
 const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById('app'));
-root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, /*#__PURE__*/React.createElement(_pages_App_App_js__WEBPACK_IMPORTED_MODULE_2__["default"], null))));
+root.render( /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, /*#__PURE__*/React.createElement(_pages_App_App_js__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 
 /***/ }),
 
@@ -896,7 +903,7 @@ const ChatSetupPage = _ref => {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utilities_items_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utilities/items-api */ "./src/utilities/items-api.js");
-/* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
+/* harmony import */ var _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utilities/order-api */ "./src/utilities/order-api.js");
 /* harmony import */ var _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewOrderPage.module.scss */ "./src/pages/NewOrderPage/NewOrderPage.module.scss");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
@@ -938,7 +945,7 @@ function NewOrderPage(_ref) {
     }
     getItems();
     async function getCart() {
-      const cart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.getCart();
+      const cart = await _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.getCart();
       setCart(cart);
     }
     getCart();
@@ -949,15 +956,15 @@ function NewOrderPage(_ref) {
 
   /*-- Event Handlers --*/
   async function handleAddToOrder(itemId) {
-    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.addItemToCart(itemId);
+    const updatedCart = await _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.addItemToCart(itemId);
     setCart(updatedCart);
   }
   async function handleChangeQty(itemId, newQty) {
-    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.setItemQtyInCart(itemId, newQty);
+    const updatedCart = await _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.setItemQtyInCart(itemId, newQty);
     setCart(updatedCart);
   }
   async function handleCheckout() {
-    await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.checkout();
+    await _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.checkout();
     navigate('/orders');
   }
   return /*#__PURE__*/React.createElement("main", {
@@ -995,7 +1002,7 @@ function NewOrderPage(_ref) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
+/* harmony import */ var _utilities_order_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utilities/order-api */ "./src/utilities/order-api.js");
 /* harmony import */ var _components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Logo/Logo */ "./src/components/Logo/Logo.js");
 /* harmony import */ var _components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/UserLogOut/UserLogOut */ "./src/components/UserLogOut/UserLogOut.js");
 /* harmony import */ var _components_OrderList_OrderList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/OrderList/OrderList */ "./src/components/OrderList/OrderList.js");
@@ -1022,7 +1029,7 @@ function OrderHistoryPage(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     // Load previous orders (paid)
     async function fetchOrderHistory() {
-      const orders = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_6__.getOrderHistory();
+      const orders = await _utilities_order_api__WEBPACK_IMPORTED_MODULE_6__.getOrderHistory();
       setOrders(orders);
       // If no orders, activeOrder will be set to null below
       setActiveOrder(orders[0] || null);
@@ -1079,10 +1086,10 @@ function getById(id) {
 
 /***/ }),
 
-/***/ "./src/utilities/orders-api.js":
-/*!*************************************!*\
-  !*** ./src/utilities/orders-api.js ***!
-  \*************************************/
+/***/ "./src/utilities/order-api.js":
+/*!************************************!*\
+  !*** ./src/utilities/order-api.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -2776,7 +2783,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
@@ -2843,6 +2850,18 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 				}
 /******/ 			}
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -2933,9 +2952,9 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_sour-04ba0e"], () => (__webpack_require__("./src/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_sour-269695"], () => (__webpack_require__("./src/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.8c4f8e9901646a548cd032aaf01b4cc6.js.map
+//# sourceMappingURL=App.8ebdf26142290e7df80283c3f21e6426.js.map
