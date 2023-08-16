@@ -1,6 +1,5 @@
 {
   "presets": [
-
     ["@babel/env",
       {
         "targets": {
@@ -14,21 +13,21 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    ["@babel/plugin-transform-private-methods", {
-       "loose": true,
-       "legacy": true
-    }],
     ["@babel/plugin-proposal-decorators", {
       "legacy": true,
-      "loose": false
+      "loose": true
     }],
     ["@babel/plugin-proposal-class-properties", {
-      "loose": true,
-      "legacy": true
+      "legacy": true,
+      "loose": false
     }],
     ["@babel/plugin-syntax-dynamic-import", {
       "legacy": true,
       "loose": true
+    }],
+    ["@babel/plugin-transform-async-to-generator", {
+      "legacy": true,
+      "loose": true
     }]
-      ]
+  ]
 }

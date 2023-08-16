@@ -154,6 +154,8 @@ const ChatBody = _ref => {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 const ChatFooter = _ref => {
   let {
@@ -163,20 +165,25 @@ const ChatFooter = _ref => {
     currentMessage,
     setCurrentMessage
   } = _ref;
-  const handleSendMessage = async e => {
-    e.preventDefault();
-    if (currentMessage !== '') {
-      const messageData = {
-        room: room,
-        author: username,
-        message: currentMessage,
-        id: Math.floor(Math.random() * 100000, 10),
-        time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
-      };
-      await socket.emit('send_message', messageData);
-      setCurrentMessage('');
-    }
-  };
+  const handleSendMessage = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(function* (e) {
+      e.preventDefault();
+      if (currentMessage !== '') {
+        const messageData = {
+          room,
+          author: username,
+          message: currentMessage,
+          id: Math.floor(Math.random() * 100000, 10),
+          time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
+        };
+        yield socket.emit('send_message', messageData);
+        setCurrentMessage('');
+      }
+    });
+    return function handleSendMessage(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat__footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -254,6 +261,8 @@ function LineItem(_ref) {
 /* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
 /* harmony import */ var _LoginForm_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoginForm.module.scss */ "./src/components/LoginForm/LoginForm.module.scss");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -261,7 +270,7 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typ
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
-//importing styles from loginform.module.scss
+// importing styles from loginform.module.scss
 
 function LoginForm(_ref) {
   let {
@@ -278,21 +287,27 @@ function LoginForm(_ref) {
     }));
     setError('');
   }
-  async function handleSubmit(evt) {
-    // Prevent form from being submitted to the server
-    evt.preventDefault();
-    try {
-      // The promise returned by the signUp service method
-      // will resolve to the user object included in the
-      // payload of the JSON Web Token (JWT)
-      const user = await _utilities_users_service__WEBPACK_IMPORTED_MODULE_2__.login(credentials);
-      setUser(user);
-    } catch (_unused) {
-      setError('Log In Failed - Try Again');
-    }
+  function handleSubmit(_x) {
+    return _handleSubmit.apply(this, arguments);
+  }
+  function _handleSubmit() {
+    _handleSubmit = _asyncToGenerator(function* (evt) {
+      // Prevent form from being submitted to the server
+      evt.preventDefault();
+      try {
+        // The promise returned by the signUp service method
+        // will resolve to the user object included in the
+        // payload of the JSON Web Token (JWT)
+        const user = yield _utilities_users_service__WEBPACK_IMPORTED_MODULE_2__.login(credentials);
+        setUser(user);
+      } catch (_unused) {
+        setError('Log In Failed - Try Again');
+      }
+    });
+    return _handleSubmit.apply(this, arguments);
   }
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: _LoginForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"]["form-container"]
+    className: _LoginForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"]['form-container']
   }, /*#__PURE__*/React.createElement("form", {
     autoComplete: "off",
     onSubmit: handleSubmit
@@ -539,6 +554,8 @@ function OrderListItem(_ref) {
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
@@ -546,39 +563,46 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
 
 class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   constructor() {
+    var _this;
     super(...arguments);
-    this.state = {
+    _this = this;
+    _defineProperty(this, "state", {
       name: '',
       email: '',
       password: '',
       confirm: '',
       error: ''
-    };
-    this.handleChange = evt => {
+    });
+    _defineProperty(this, "handleChange", evt => {
       this.setState({
         [evt.target.name]: evt.target.value,
         error: ''
       });
-    };
-    this.handleSubmit = async evt => {
-      evt.preventDefault();
-      try {
-        const formData = _objectSpread({}, this.state);
-        delete formData.confirm;
-        delete formData.error;
-        // The promise returned by the signUp service method
-        // will resolve to the user object included in the
-        // payload of the JSON Web Token (JWT)
-        const user = await (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_1__.signUp)(formData);
-        // Baby step
-        this.props.setUser(user);
-      } catch (_unused) {
-        // An error happened on the server
-        this.setState({
-          error: 'Sign Up Failed - Try Again'
-        });
-      }
-    };
+    });
+    _defineProperty(this, "handleSubmit", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(function* (evt) {
+        evt.preventDefault();
+        try {
+          const formData = _objectSpread({}, _this.state);
+          delete formData.confirm;
+          delete formData.error;
+          // The promise returned by the signUp service method
+          // will resolve to the user object included in the
+          // payload of the JSON Web Token (JWT)
+          const user = yield (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_1__.signUp)(formData);
+          // Baby step
+          _this.props.setUser(user);
+        } catch (_unused) {
+          // An error happened on the server
+          _this.setState({
+            error: 'Sign Up Failed - Try Again'
+          });
+        }
+      });
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
   }
   // We must override the render method
   // The render method is the equivalent to a function-based component
@@ -740,6 +764,8 @@ root.render( /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED
 /* harmony import */ var _OrderHistoryPage_OrderHistoryPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../OrderHistoryPage/OrderHistoryPage */ "./src/pages/OrderHistoryPage/OrderHistoryPage.js");
 /* harmony import */ var _ChatSetupPage_ChatSetupPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ChatSetupPage/ChatSetupPage */ "./src/pages/ChatSetupPage/ChatSetupPage.js");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -756,21 +782,27 @@ function App() {
   const SPOTIFY_CLIENT_ID = '6e5e323692834ac8bd78f79025e6a945';
   const SPOTIFY_CLIENT_ID_SECRET = '9e8514cb9afa43d3982b1960266b172a';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    async function getSpotifyToken() {
-      const response = await fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: "Basic ".concat(btoa("".concat(SPOTIFY_CLIENT_ID, ":").concat(SPOTIFY_CLIENT_ID_SECRET)))
-        },
-        body: "grant_type=client_credentials"
+    function getSpotifyToken() {
+      return _getSpotifyToken.apply(this, arguments);
+    }
+    function _getSpotifyToken() {
+      _getSpotifyToken = _asyncToGenerator(function* () {
+        const response = yield fetch('https://accounts.spotify.com/api/token', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: "Basic ".concat(btoa("".concat(SPOTIFY_CLIENT_ID, ":").concat(SPOTIFY_CLIENT_ID_SECRET)))
+          },
+          body: 'grant_type=client_credentials'
+        });
+        if (response.ok) {
+          const data = yield response.json();
+          setSpotifyToken(data.access_token);
+        } else {
+          console.error('Failed to fetch Spotify access token:', response.statusText);
+        }
       });
-      if (response.ok) {
-        const data = await response.json();
-        setSpotifyToken(data.access_token);
-      } else {
-        console.error('Failed to fetch Spotify access token:', response.statusText);
-      }
+      return _getSpotifyToken.apply(this, arguments);
     }
     getSpotifyToken();
   }, []);
@@ -785,9 +817,15 @@ function App() {
       spotifyToken: spotifyToken
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    path: "/orders/new",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_NewOrderPage_NewOrderPage_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      user: user,
+      setUser: setUser
+    })
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Navigate, {
-      to: "/chat"
+      to: "/orders/new"
     })
   }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AuthPage_AuthPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
     setUser: setUser
@@ -851,7 +889,6 @@ function AuthPage(_ref) {
 /* harmony import */ var _components_ChatFooter_ChatFooter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../.././components/ChatFooter/ChatFooter */ "./src/components/ChatFooter/ChatFooter.js");
 /* harmony import */ var _components_Logo_Logo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Logo/Logo */ "./src/components/Logo/Logo.js");
 /* harmony import */ var _components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/UserLogOut/UserLogOut */ "./src/components/UserLogOut/UserLogOut.js");
-
 
 
 
@@ -925,7 +962,6 @@ const ChatPage = _ref => {
 
 
 
-
 const ChatSetupPage = _ref => {
   let {
     user,
@@ -983,20 +1019,23 @@ const ChatSetupPage = _ref => {
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* unused harmony export default */
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ NewOrderPage)
+/* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utilities_items_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utilities/items-api */ "./src/utilities/items-api.js");
 /* harmony import */ var _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utilities/order-api */ "./src/utilities/order-api.js");
 /* harmony import */ var _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewOrderPage.module.scss */ "./src/pages/NewOrderPage/NewOrderPage.module.scss");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Logo/Logo */ "./src/components/Logo/Logo.js");
 /* harmony import */ var _components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/MenuList/MenuList */ "./src/components/MenuList/MenuList.js");
 /* harmony import */ var _components_CategoryList_CategoryList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/CategoryList/CategoryList */ "./src/components/CategoryList/CategoryList.js");
 /* harmony import */ var _components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
 /* harmony import */ var _components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/UserLogOut/UserLogOut */ "./src/components/UserLogOut/UserLogOut.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -1018,19 +1057,31 @@ function NewOrderPage(_ref) {
   const categoriesRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    async function getItems() {
-      const items = await _utilities_items_api__WEBPACK_IMPORTED_MODULE_8__.getAll();
-      categoriesRef.current = items.reduce((cats, item) => {
-        const cat = item.category.name;
-        return cats.includes(cat) ? cats : [...cats, cat];
-      }, []);
-      setMenuItems(items);
-      setActiveCat(categoriesRef.current[0]);
+    function getItems() {
+      return _getItems.apply(this, arguments);
+    }
+    function _getItems() {
+      _getItems = _asyncToGenerator(function* () {
+        const items = yield _utilities_items_api__WEBPACK_IMPORTED_MODULE_8__.getAll();
+        categoriesRef.current = items.reduce((cats, item) => {
+          const cat = item.category.name;
+          return cats.includes(cat) ? cats : [...cats, cat];
+        }, []);
+        setMenuItems(items);
+        setActiveCat(categoriesRef.current[0]);
+      });
+      return _getItems.apply(this, arguments);
     }
     getItems();
-    async function getCart() {
-      const cart = await _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.getCart();
-      setCart(cart);
+    function getCart() {
+      return _getCart.apply(this, arguments);
+    }
+    function _getCart() {
+      _getCart = _asyncToGenerator(function* () {
+        const cart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.getCart();
+        setCart(cart);
+      });
+      return _getCart.apply(this, arguments);
     }
     getCart();
   }, []);
@@ -1038,18 +1089,36 @@ function NewOrderPage(_ref) {
   // results in the effect running after
   // the FIRST render only
 
-  /*-- Event Handlers --*/
-  async function handleAddToOrder(itemId) {
-    const updatedCart = await _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.addItemToCart(itemId);
-    setCart(updatedCart);
+  /* -- Event Handlers -- */
+  function handleAddToOrder(_x) {
+    return _handleAddToOrder.apply(this, arguments);
   }
-  async function handleChangeQty(itemId, newQty) {
-    const updatedCart = await _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.setItemQtyInCart(itemId, newQty);
-    setCart(updatedCart);
+  function _handleAddToOrder() {
+    _handleAddToOrder = _asyncToGenerator(function* (itemId) {
+      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.addItemToCart(itemId);
+      setCart(updatedCart);
+    });
+    return _handleAddToOrder.apply(this, arguments);
   }
-  async function handleCheckout() {
-    await _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.checkout();
-    navigate('/orders');
+  function handleChangeQty(_x2, _x3) {
+    return _handleChangeQty.apply(this, arguments);
+  }
+  function _handleChangeQty() {
+    _handleChangeQty = _asyncToGenerator(function* (itemId, newQty) {
+      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.setItemQtyInCart(itemId, newQty);
+      setCart(updatedCart);
+    });
+    return _handleChangeQty.apply(this, arguments);
+  }
+  function handleCheckout() {
+    return _handleCheckout.apply(this, arguments);
+  }
+  function _handleCheckout() {
+    _handleCheckout = _asyncToGenerator(function* () {
+      yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.checkout();
+      navigate('/chat');
+    });
+    return _handleCheckout.apply(this, arguments);
   }
   return /*#__PURE__*/React.createElement("main", {
     className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].NewOrderPage
@@ -1057,10 +1126,7 @@ function NewOrderPage(_ref) {
     categories: categoriesRef.current,
     cart: setCart,
     setActiveCat: setActiveCat
-  }), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
-    to: "/orders",
-    className: "button btn-sm"
-  }, "PREVIOUS ORDERS"), /*#__PURE__*/React.createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), /*#__PURE__*/React.createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__["default"], {
     user: user,
     setUser: setUser
   })), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1092,6 +1158,8 @@ function NewOrderPage(_ref) {
 /* harmony import */ var _components_OrderList_OrderList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/OrderList/OrderList */ "./src/components/OrderList/OrderList.js");
 /* harmony import */ var _components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -1105,28 +1173,34 @@ function OrderHistoryPage(_ref) {
     user,
     setUser
   } = _ref;
-  /*--- State --- */
+  /* --- State --- */
   const [orders, setOrders] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [activeOrder, setActiveOrder] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
 
-  /*--- Side Effects --- */
+  /* --- Side Effects --- */
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     // Load previous orders (paid)
-    async function fetchOrderHistory() {
-      const orders = await _utilities_order_api__WEBPACK_IMPORTED_MODULE_6__.getOrderHistory();
-      setOrders(orders);
-      // If no orders, activeOrder will be set to null below
-      setActiveOrder(orders[0] || null);
+    function fetchOrderHistory() {
+      return _fetchOrderHistory.apply(this, arguments);
+    }
+    function _fetchOrderHistory() {
+      _fetchOrderHistory = _asyncToGenerator(function* () {
+        const orders = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_6__.getOrderHistory();
+        setOrders(orders);
+        // If no orders, activeOrder will be set to null below
+        setActiveOrder(orders[0] || null);
+      });
+      return _fetchOrderHistory.apply(this, arguments);
     }
     fetchOrderHistory();
   }, []);
 
-  /*--- Event Handlers --- */
+  /* --- Event Handlers --- */
   function handleSelectOrder(order) {
     setActiveOrder(order);
   }
 
-  /*--- Rendered UI --- */
+  /* --- Rendered UI --- */
   return /*#__PURE__*/React.createElement("main", {
     className: _OrderHistoryPage_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderHistoryPage
   }, /*#__PURE__*/React.createElement("aside", {
@@ -1231,33 +1305,43 @@ function getOrderHistory() {
 /* harmony export */   "default": () => (/* binding */ sendRequest)
 /* harmony export */ });
 /* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users-service */ "./src/utilities/users-service.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-async function sendRequest(url) {
-  let method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';
-  let payload = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  // Fetch takes an optional options object as the 2nd argument
-  // used to include a data payload, set headers, etc.
-  const options = {
-    method
-  };
-  if (payload) {
-    options.headers = {
-      'Content-Type': 'application/json'
-    };
-    options.body = JSON.stringify(payload);
-  }
-  const token = (0,_users_service__WEBPACK_IMPORTED_MODULE_0__.getToken)();
-  if (token) {
-    // Ensure headers object exists
-    options.headers = options.headers || {};
-    // Add token to an Authorization header
-    // Prefacing with 'Bearer' is recommended in the HTTP specification
-    options.headers.Authorization = "Bearer ".concat(token);
-  }
-  const res = await fetch(url, options);
-  // res.ok will be false if the status code set to 4xx in the controller action
-  if (res.ok) return res.json();
-  throw new Error('Bad Request');
+function sendRequest(_x) {
+  return _sendRequest.apply(this, arguments);
+}
+function _sendRequest() {
+  _sendRequest = _asyncToGenerator(function (url) {
+    let method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';
+    let payload = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    return function* () {
+      // Fetch takes an optional options object as the 2nd argument
+      // used to include a data payload, set headers, etc.
+      const options = {
+        method
+      };
+      if (payload) {
+        options.headers = {
+          'Content-Type': 'application/json'
+        };
+        options.body = JSON.stringify(payload);
+      }
+      const token = (0,_users_service__WEBPACK_IMPORTED_MODULE_0__.getToken)();
+      if (token) {
+        // Ensure headers object exists
+        options.headers = options.headers || {};
+        // Add token to an Authorization header
+        // Prefacing with 'Bearer' is recommended in the HTTP specification
+        options.headers.Authorization = "Bearer ".concat(token);
+      }
+      const res = yield fetch(url, options);
+      // res.ok will be false if the status code set to 4xx in the controller action
+      if (res.ok) return res.json();
+      throw new Error('Bad Request');
+    }();
+  });
+  return _sendRequest.apply(this, arguments);
 }
 
 /***/ }),
@@ -1298,21 +1382,35 @@ function login(credentials) {
 /* harmony export */   signUp: () => (/* binding */ signUp)
 /* harmony export */ });
 /* harmony import */ var _users_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users-api */ "./src/utilities/users-api.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-async function signUp(userData) {
-  // Delete the network request code to the
-  // users-api.js module which will ultimately
-  // return the JWT
-  const token = await _users_api__WEBPACK_IMPORTED_MODULE_0__.signUp(userData);
-  // Persist the token to localStorage
-  localStorage.setItem('token', token);
-  return getUser();
+function signUp(_x) {
+  return _signUp.apply(this, arguments);
 }
-async function login(credentials) {
-  const token = await _users_api__WEBPACK_IMPORTED_MODULE_0__.login(credentials);
-  // Persist the token to localStorage
-  localStorage.setItem('token', token);
-  return getUser();
+function _signUp() {
+  _signUp = _asyncToGenerator(function* (userData) {
+    // Delete the network request code to the
+    // users-api.js module which will ultimately
+    // return the JWT
+    const token = yield _users_api__WEBPACK_IMPORTED_MODULE_0__.signUp(userData);
+    // Persist the token to localStorage
+    localStorage.setItem('token', token);
+    return getUser();
+  });
+  return _signUp.apply(this, arguments);
+}
+function login(_x2) {
+  return _login.apply(this, arguments);
+}
+function _login() {
+  _login = _asyncToGenerator(function* (credentials) {
+    const token = yield _users_api__WEBPACK_IMPORTED_MODULE_0__.login(credentials);
+    // Persist the token to localStorage
+    localStorage.setItem('token', token);
+    return getUser();
+  });
+  return _login.apply(this, arguments);
 }
 function getToken() {
   const token = localStorage.getItem('token');

@@ -13,7 +13,7 @@ const dataController = {
       const user = await User.create(req.body)
       // token will be a string
       const token = createJWT(user)
-  
+
       // send back the token as a string
 
       // which we need to account for
