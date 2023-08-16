@@ -25,6 +25,7 @@ const ChatPage = ({ socket, user, setUser, username, room }) => {
       <div className="chat__main">
         <ChatBody messageList={messagelist} setMessageList={setMessageList} socket={socket} lastMessageRef={lastMessageRef}/>
         <ChatFooter socket={socket} username={username} room={room} currentMessage={currentMessage} setCurrentMessage={setCurrentMessage} />
+
         <UserLogOut user={user} setUser={setUser}/>
       </div>
     </div>

@@ -46,6 +46,8 @@ function CategoryList(_ref) {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SpotifyPlayBack_SpotifyPlayback__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SpotifyPlayBack/SpotifyPlayback */ "./src/components/SpotifyPlayBack/SpotifyPlayback.js");
+
 
 const ChatBar = _ref => {
   let {
@@ -65,7 +67,7 @@ const ChatBar = _ref => {
     className: "chat__users"
   }, users.map(user => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     key: user.socketId
-  }, user.username)))));
+  }, user.username)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpotifyPlayBack_SpotifyPlayback__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChatBar);
 
@@ -623,6 +625,46 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
 /***/ }),
 
+/***/ "./src/components/SpotifyPlayBack/SpotifyPlayback.js":
+/*!***********************************************************!*\
+  !*** ./src/components/SpotifyPlayBack/SpotifyPlayback.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const SpotifyPlayback = _ref => {
+  let {
+    accessToken,
+    trackUri
+  } = _ref;
+  const [player, setPlayer] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    window.onSpotifyWebPlaybackSDKReady = () => {
+      const player = new Spotify.Player({
+        name: 'Your App Name',
+        getOAuthToken: cb => {
+          cb(accessToken);
+        }
+      });
+      player.connect().then(success => {
+        if (success) {
+          console.log('Connected to Spotify player');
+          setPlayer(player);
+        }
+      });
+    };
+  }, [accessToken]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "here is playback controls");
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SpotifyPlayback);
+
+/***/ }),
+
 /***/ "./src/components/UserLogOut/UserLogOut.js":
 /*!*************************************************!*\
   !*** ./src/components/UserLogOut/UserLogOut.js ***!
@@ -710,6 +752,28 @@ root.render( /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED
 const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_6__["default"].connect('http://localhost:8000');
 function App() {
   const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_7__.getUser)());
+  const [spotifyToken, setSpotifyToken] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const SPOTIFY_CLIENT_ID = '6e5e323692834ac8bd78f79025e6a945';
+  const SPOTIFY_CLIENT_ID_SECRET = '9e8514cb9afa43d3982b1960266b172a';
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function getSpotifyToken() {
+      const response = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: "Basic ".concat(btoa("".concat(SPOTIFY_CLIENT_ID, ":").concat(SPOTIFY_CLIENT_ID_SECRET)))
+        },
+        body: "grant_type=client_credentials"
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setSpotifyToken(data.access_token);
+      } else {
+        console.error('Failed to fetch Spotify access token:', response.statusText);
+      }
+    }
+    getSpotifyToken();
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
     className: _App_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].App
   }, user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
@@ -717,12 +781,13 @@ function App() {
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ChatSetupPage_ChatSetupPage__WEBPACK_IMPORTED_MODULE_5__["default"], {
       user: user,
       setUser: setUser,
-      socket: socket
+      socket: socket,
+      spotifyToken: spotifyToken
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Navigate, {
-      to: "/"
+      to: "/chat"
     })
   }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AuthPage_AuthPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
     setUser: setUser

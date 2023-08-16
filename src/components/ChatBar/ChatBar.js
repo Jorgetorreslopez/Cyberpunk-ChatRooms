@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import SpotifyPlayback from '../SpotifyPlayBack/SpotifyPlayback';
+
 const ChatBar = ({ socket, user, setUser }) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -18,6 +20,9 @@ const ChatBar = ({ socket, user, setUser }) => {
           ))}
         </div>
       </div>
+
+      <SpotifyPlayback  />
+      
     </div>
   );
 };
