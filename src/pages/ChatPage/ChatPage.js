@@ -12,6 +12,7 @@ const ChatPage = ({ socket, user, setUser, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messagelist, setMessageList] = useState([]);
   const lastMessageRef = useRef(null);
+  
 
   useEffect(() => {
     lastMessageRef.current?.scrollIntoView({ behavior:'smooth'})

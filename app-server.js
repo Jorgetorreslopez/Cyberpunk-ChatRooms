@@ -2,16 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const logger = require('morgan')
-// const cors = require('cors');
-// //const http = require('http').createServer(app);
-// const http = require('http')
 
-// app.use(cors());
-
-// const server = http.createServer(app);
-// server.listen(process.env.PORT || 3000, () => {
-
-// const socketIO = require('socket.io')(http, {
 // 	cors: {
 // 		origin: 'http://localhost:8000'
 // 	}

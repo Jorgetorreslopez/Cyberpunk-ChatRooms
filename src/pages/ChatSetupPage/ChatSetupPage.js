@@ -18,15 +18,6 @@ const ChatSetupPage = ({ user, setUser, socket }) => {
 			setInChat(true);
 		}
 	};
-	// const handleSubmit = () => {
-	// 	localStorage.setItem('username', username);
-	// 	socket.emit('new_user', {username, socketId: socket.id});
-	// }
-
-	// const handleCombinedClick = () => {
-	// 	handleSubmit();
-	// 	joinRoom();
-	// }
 
 	return (
 		<div>

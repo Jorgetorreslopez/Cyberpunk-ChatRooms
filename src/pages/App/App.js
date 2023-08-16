@@ -5,10 +5,10 @@ import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import NewOrderPage from '../NewOrderPage/NewOrderPage.js';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
-import ChatPage from '../ChatPage/ChatPage';
-import ChatSetupPage from '../ChatSetupPage/ChatSetupPage';
 
+import ChatSetupPage from '../ChatSetupPage/ChatSetupPage';
 import socketIO from 'socket.io-client'
+
 const socket = socketIO.connect('http://localhost:8000');
 
 export default function App() {
@@ -28,9 +28,9 @@ export default function App() {
 
             {/* redirect to /orders/new if path in address bar hasn't matched a <Route> above */}
 
-            {/* <Route path="/*" element={<Navigate to="/chat" />} /> */}
+            {/* <Route path="/*" element={<Navigate to="/orders/new" />} /> */}
 
-            <Route path="/*" element={<Navigate to="/chat" />} />
+            <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
         </>
         :

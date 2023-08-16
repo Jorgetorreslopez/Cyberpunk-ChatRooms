@@ -21,12 +21,6 @@ const ChatFooter = ({ socket, username, room, currentMessage, setCurrentMessage 
 		}
 	};
 
-	// useEffect(() => {
-	// 	socket.on('receive_message', (data) => {
-	// 		console.log(data);
-	// 	})
-	// }, [socket])
-
 	return (
 		<div className="chat__footer">
 			<form className="form" >
