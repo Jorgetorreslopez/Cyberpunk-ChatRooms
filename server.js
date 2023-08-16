@@ -9,6 +9,8 @@ const { Server } = require('socket.io');
 
 app.use(cors());
 
+let users = [];
+
 const server = http.createServer(app);
 const io = new Server(server, {
 	cors: {
@@ -19,6 +21,12 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
 	console.log(`⚡: ${socket.id} user just connected!`);
+
+	socket.on('new_user', (data) => {
+        users.push(data);
+		console.log(users)
+        socket.emit('newUserResponse', users);
+    })
 
 	socket.on('join_room', (data) => {
 		socket.join(data);
@@ -33,6 +41,9 @@ io.on('connection', (socket) => {
 
 	socket.on('disconnect', () => {
 		console.log(`🔥: User ${socket.id} disconnected`);
+		users = users.filter((user) => user.socketId !== socket.id);
+		socket.emit('newUserResponse', users);
+		socket.disconnect();
 	})
 })
 

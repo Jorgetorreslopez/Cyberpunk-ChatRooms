@@ -11,14 +11,18 @@ import UserLogOut from '../../components/UserLogOut/UserLogOut';
 const ChatPage = ({ socket, user, setUser, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messagelist, setMessageList] = useState([]);
+  const lastMessageRef = useRef(null);
 
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behavior:'smooth'})
+  }, [messagelist])
 
   return (
     <div className="chat">
     <Logo />
-      <ChatBar socket={socket} />
+      <ChatBar socket={socket} user={user} setUser={setUser} set/>
       <div className="chat__main">
-        <ChatBody messageList={messagelist} setMessageList={setMessageList} socket={socket} />
+        <ChatBody messageList={messagelist} setMessageList={setMessageList} socket={socket} lastMessageRef={lastMessageRef}/>
         <ChatFooter socket={socket} username={username} room={room} currentMessage={currentMessage} setCurrentMessage={setCurrentMessage} />
         <UserLogOut user={user} setUser={setUser}/>
       </div>

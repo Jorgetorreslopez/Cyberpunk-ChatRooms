@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-const ChatBody = ({ messageList, setMessageList, socket }) => {
+const ChatBody = ({ messageList, setMessageList, socket, lastMessageRef }) => {
 	const navigate = useNavigate();
 
 	const handleLeaveChat = () => {
@@ -33,31 +33,28 @@ const ChatBody = ({ messageList, setMessageList, socket }) => {
 			</header>
 
 			<div className="message__container">
-
-                <ScrollToBottom>
-				{messageList.map((messageContent) => {
-					console.log('Rendering:', messageContent.message);
-					return messageContent.author === localStorage.getItem('userName') ? (
-						<div className="message__chats" key={messageContent.id}>
-							<p className="sender__name">You</p>
-							<div className="message__sender">
-								<p>{messageContent.message}</p>
+				<ScrollToBottom>
+					{messageList.map((messageContent) => {
+						console.log('Rendering:', messageContent.message);
+						return messageContent.author ===
+							localStorage.getItem('userName') ? (
+							<div className="message__chats" key={messageContent.id}>
+								<p className="sender__name">You</p>
+								<div className="message__sender">
+									<p>{messageContent.message}</p>
+								</div>
 							</div>
-						</div>
-					) : (
-						<div className="message__chats" key={messageContent.id}>
-							<p>{messageContent.author}</p>
-							<div className="message__recipient">
-								<p>{messageContent.message}</p>
+						) : (
+							<div className="message__chats" key={messageContent.id}>
+								<p>{messageContent.author}</p>
+								<div className="message__recipient">
+									<p>{messageContent.message}</p>
+								</div>
 							</div>
-						</div>
-					);
-				})}
-
-				<div className="message__status">
-					{/* <p>Someone is typing...</p> */}
-				</div>
+						);
+					})}
 				</ScrollToBottom>
+				<div ref={lastMessageRef} />
 			</div>
 		</>
 	);
