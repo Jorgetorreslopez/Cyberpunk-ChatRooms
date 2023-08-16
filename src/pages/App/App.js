@@ -1,3 +1,4 @@
+require('dotenv').config()
 import React, { useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import styles from './App.module.scss'
@@ -15,8 +16,8 @@ export default function App () {
   const [user, setUser] = useState(getUser())
   const [spotifyToken, setSpotifyToken] = useState(null)
 
-  const SPOTIFY_CLIENT_ID = '6e5e323692834ac8bd78f79025e6a945'
-  const SPOTIFY_CLIENT_ID_SECRET = '9e8514cb9afa43d3982b1960266b172a'
+  const SPOTIFY_CLIENT_ID = process.env.SPOTIFYID
+  const SPOTIFY_CLIENT_ID_SECRET = process.env.SPOTIFYCLIENTSECRET
 
   useEffect(() => {
     async function getSpotifyToken () {
