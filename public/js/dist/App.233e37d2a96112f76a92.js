@@ -369,16 +369,49 @@ function Logo() {
 function MenuList(_ref) {
   let {
     menuItems,
-    handleAddToOrder
+    handleAddToOrder,
+    handleAddAlbumToCart,
+    handleSearchSubmit,
+    searchResults,
+    searchInput,
+    setSearchInput
   } = _ref;
-  const items = menuItems.map(item => /*#__PURE__*/React.createElement(_MenuListItem_MenuListItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    key: item._id,
-    handleAddToOrder: handleAddToOrder,
-    menuItem: item
-  }));
+  // const items = menuItems.map((item) => (
+  // 	<MenuListItem
+  // 		key={item._id}
+  // 		handleAddToOrder={handleAddToOrder}
+  // 		menuItem={item}
+  // 	/>
+  // ));
   return /*#__PURE__*/React.createElement("main", {
     className: _MenuList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].MenuList
-  }, items);
+  }, /*#__PURE__*/React.createElement("div", {
+    className: _MenuList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].Search
+  }, /*#__PURE__*/React.createElement("h2", null, "Search for Albums"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSearchSubmit
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    placeholder: "Enter album name",
+    value: searchInput,
+    onChange: e => setSearchInput(e.target.value)
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Search")), /*#__PURE__*/React.createElement("ul", null, searchResults.map(album => {
+    var _album$images$;
+    return /*#__PURE__*/React.createElement("li", {
+      key: album.id
+    }, /*#__PURE__*/React.createElement("div", {
+      className: _MenuList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].Album
+    }, /*#__PURE__*/React.createElement("img", {
+      className: _MenuList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].AlbumArtwork,
+      src: (_album$images$ = album.images[0]) === null || _album$images$ === void 0 ? void 0 : _album$images$.url,
+      alt: "".concat(album.name, " Album Cover")
+    }), /*#__PURE__*/React.createElement("div", {
+      className: _MenuList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].AlbumDetails
+    }, /*#__PURE__*/React.createElement("h3", null, album.name), /*#__PURE__*/React.createElement("p", null, album.artists[0].name), /*#__PURE__*/React.createElement("button", {
+      onClick: () => handleAddAlbumToCart(album.id)
+    }, "Add to Cart"))));
+  }))));
 }
 
 /***/ }),
@@ -389,9 +422,7 @@ function MenuList(_ref) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ MenuListItem)
-/* harmony export */ });
+/* unused harmony export default */
 /* harmony import */ var _MenuListItem_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MenuListItem.module.scss */ "./src/components/MenuListItem/MenuListItem.module.scss");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -694,8 +725,6 @@ root.render( /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED
 /* harmony import */ var _NewOrderPage_NewOrderPage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../NewOrderPage/NewOrderPage.js */ "./src/pages/NewOrderPage/NewOrderPage.js");
 /* harmony import */ var _ChatSetupPage_ChatSetupPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ChatSetupPage/ChatSetupPage */ "./src/pages/ChatSetupPage/ChatSetupPage.js");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/esm/index.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -708,33 +737,35 @@ const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_5__["default"].connect(
 function App() {
   const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_6__.getUser)());
   const [spotifyToken, setSpotifyToken] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const SPOTIFY_CLIENT_ID = "6e5e323692834ac8bd78f79025e6a945";
-  const SPOTIFY_CLIENT_ID_SECRET = "9e8514cb9afa43d3982b1960266b172a";
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    function getSpotifyToken() {
-      return _getSpotifyToken.apply(this, arguments);
-    }
-    function _getSpotifyToken() {
-      _getSpotifyToken = _asyncToGenerator(function* () {
-        const response = yield fetch('https://accounts.spotify.com/api/token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization: "Basic ".concat(btoa("".concat(SPOTIFY_CLIENT_ID, ":").concat(SPOTIFY_CLIENT_ID_SECRET)))
-          },
-          body: 'grant_type=client_credentials'
-        });
-        if (response.ok) {
-          const data = yield response.json();
-          setSpotifyToken(data.access_token);
-        } else {
-          console.error('Failed to fetch Spotify access token:', response.statusText);
-        }
-      });
-      return _getSpotifyToken.apply(this, arguments);
-    }
-    getSpotifyToken();
-  }, []);
+
+  // const SPOTIFY_CLIENT_ID = process.env.SPOTIFYID;
+  // const SPOTIFY_CLIENT_ID_SECRET = process.env.SPOTIFYCLIENTSECRET;
+
+  // useEffect(() => {
+  // 	async function getSpotifyToken() {
+  // 		const response = await fetch('https://accounts.spotify.com/api/token', {
+  // 			method: 'POST',
+  // 			headers: {
+  // 				'Content-Type': 'application/x-www-form-urlencoded',
+  // 				Authorization: `Basic ${btoa(
+  // 					`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_ID_SECRET}`
+  // 				)}`
+  // 			},
+  // 			body: 'grant_type=client_credentials'
+  // 		});
+  // 		if (response.ok) {
+  // 			const data = await response.json();
+  // 			setSpotifyToken(data.access_token);
+  // 		} else {
+  // 			console.error(
+  // 				'Failed to fetch Spotify access token:',
+  // 				response.statusText
+  // 			);
+  // 		}
+  // 	}
+  // 	getSpotifyToken();
+  // }, []);
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
     className: _App_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].App
   }, user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
@@ -750,7 +781,8 @@ function App() {
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_NewOrderPage_NewOrderPage_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
       user: user,
       setUser: setUser,
-      spotifyToken: spotifyToken
+      spotifyToken: spotifyToken,
+      setSpotifyToken: setSpotifyToken
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/*",
@@ -954,8 +986,7 @@ const ChatSetupPage = _ref => {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utilities_items_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utilities/items-api */ "./src/utilities/items-api.js");
-/* harmony import */ var _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utilities/order-api */ "./src/utilities/order-api.js");
+/* harmony import */ var _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utilities/order-api */ "./src/utilities/order-api.js");
 /* harmony import */ var _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewOrderPage.module.scss */ "./src/pages/NewOrderPage/NewOrderPage.module.scss");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Logo/Logo */ "./src/components/Logo/Logo.js");
@@ -980,77 +1011,192 @@ function NewOrderPage(_ref) {
   let {
     user,
     setUser,
-    spotifyToken
+    spotifyToken,
+    setSpotifyToken
   } = _ref;
   const [menuItems, setMenuItems] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [activeCat, setActiveCat] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [cart, setCart] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const categoriesRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    function getItems() {
-      return _getItems.apply(this, arguments);
+  const [searchInput, setSearchInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [searchResults, setSearchResults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+
+  // useEffect(function () {
+  //   async function getItems () {
+  //     const items = await itemsAPI.getAll()
+  //     categoriesRef.current = items.reduce((cats, item) => {
+  //       const cat = item.category.name
+  //       return cats.includes(cat) ? cats : [...cats, cat]
+  //     }, [])
+  //     setMenuItems(items)
+  //     setActiveCat(categoriesRef.current[0])
+  //   }
+  //   getItems()
+  //   async function getCart () {
+  //     const cart = await ordersAPI.getCart()
+  //     setCart(cart)
+  //   }
+  //   getCart()
+  // }, [])
+
+  ////////////////////////////////////////////////////////////////////////////////////start
+  const SPOTIFY_CLIENT_ID = "6e5e323692834ac8bd78f79025e6a945";
+  const SPOTIFY_CLIENT_ID_SECRET = "9e8514cb9afa43d3982b1960266b172a";
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    function getSpotifyToken() {
+      return _getSpotifyToken.apply(this, arguments);
     }
-    function _getItems() {
-      _getItems = _asyncToGenerator(function* () {
-        const items = yield _utilities_items_api__WEBPACK_IMPORTED_MODULE_8__.getAll();
-        categoriesRef.current = items.reduce((cats, item) => {
-          const cat = item.category.name;
-          return cats.includes(cat) ? cats : [...cats, cat];
-        }, []);
-        setMenuItems(items);
-        setActiveCat(categoriesRef.current[0]);
+    function _getSpotifyToken() {
+      _getSpotifyToken = _asyncToGenerator(function* () {
+        const response = yield fetch('https://accounts.spotify.com/api/token', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: "Basic ".concat(btoa("".concat(SPOTIFY_CLIENT_ID, ":").concat(SPOTIFY_CLIENT_ID_SECRET)))
+          },
+          body: 'grant_type=client_credentials'
+        });
+        if (response.ok) {
+          const data = yield response.json();
+          // console.log(data)
+          setSpotifyToken(data.access_token);
+        } else {
+          console.error('Failed to fetch Spotify access token:', response.statusText);
+        }
       });
-      return _getItems.apply(this, arguments);
+      return _getSpotifyToken.apply(this, arguments);
     }
-    getItems();
-    function getCart() {
-      return _getCart.apply(this, arguments);
-    }
-    function _getCart() {
-      _getCart = _asyncToGenerator(function* () {
-        const cart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.getCart();
-        setCart(cart);
-      });
-      return _getCart.apply(this, arguments);
-    }
-    getCart();
+    getSpotifyToken();
   }, []);
 
+  // useEffect(() => {
+  //   console.log('Updated spotifyToken:', spotifyToken);
+  // }, [spotifyToken]);
+
+  // useEffect(function () {
+  //   async function fetchCategories () {
+  //     const categories = await getCategories(spotifyToken)
+  //     setMenuItems(categories)
+  //     setActiveCat(categories[0]?.id)
+  //   }
+
+  //   async function getCart () {
+  //     const cart = await ordersAPI.getCart()
+  //     setCart(cart)
+  //   }
+
+  //   fetchCategories()
+  //   getCart()
+  // }, [spotifyToken])
+  function searchAlbums(_x) {
+    return _searchAlbums.apply(this, arguments);
+  } // async function getCategories() {
+  //     console.log(spotifyToken)
+  //     try {
+  //       const response = await fetch('https://api.spotify.com/v1/browse/categories', {
+  //         headers: {
+  //           Authorization: `Bearer ${spotifyToken}`,
+  //         },
+  //       });
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         const categories = data.categories.items;
+  //         console.log(categories);
+  //         if (categories.length > 0) {
+  //           return categories;
+  //         } else {
+  //           console.warn('Spotify returned an empty list of categories.');
+  //           return [];
+  //         }
+  //       } else {
+  //         console.error('Failed to fetch Spotify categories:', response.statusText);
+  //         return [];
+  //       }
+  //     } catch (error) {
+  //       console.error('An error occurred:', error);
+  //       return [];
+  //     }
+  //   }
+  ////////////////////////////////////////////////////////////////////////////////////////////////End
   // Providing an empty 'dependency array'
   // results in the effect running after
   // the FIRST render only
-
   /* -- Event Handlers -- */
-  function handleAddToOrder(_x) {
-    return _handleAddToOrder.apply(this, arguments);
-  }
-  function _handleAddToOrder() {
-    _handleAddToOrder = _asyncToGenerator(function* (itemId) {
-      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.addItemToCart(itemId);
-      setCart(updatedCart);
+  // async function handleAddToOrder(itemId) {
+  // 	const updatedCart = await ordersAPI.addItemToCart(itemId);
+  // 	setCart(updatedCart);
+  // }
+  // async function handleChangeQty(itemId, newQty) {
+  // 	const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
+  // 	setCart(updatedCart);
+  // }
+  function _searchAlbums() {
+    _searchAlbums = _asyncToGenerator(function* (query) {
+      try {
+        const response = yield fetch("https://api.spotify.com/v1/search?q=".concat(encodeURIComponent(query), "&type=album"), {
+          headers: {
+            Authorization: "Bearer ".concat(spotifyToken)
+          }
+        });
+        if (response.ok) {
+          const data = yield response.json();
+          return data.albums.items;
+        } else {
+          console.error('Failed to fetch Spotify search results:', response.statusText);
+          return [];
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+        return [];
+      }
     });
-    return _handleAddToOrder.apply(this, arguments);
-  }
-  function handleChangeQty(_x2, _x3) {
-    return _handleChangeQty.apply(this, arguments);
-  }
-  function _handleChangeQty() {
-    _handleChangeQty = _asyncToGenerator(function* (itemId, newQty) {
-      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.setItemQtyInCart(itemId, newQty);
-      setCart(updatedCart);
-    });
-    return _handleChangeQty.apply(this, arguments);
+    return _searchAlbums.apply(this, arguments);
   }
   function handleCheckout() {
     return _handleCheckout.apply(this, arguments);
-  }
+  } /////////////////////////////////////////////////////////////////////////////////start
   function _handleCheckout() {
     _handleCheckout = _asyncToGenerator(function* () {
-      yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_9__.checkout();
+      yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.checkout();
       navigate('/chat');
     });
     return _handleCheckout.apply(this, arguments);
+  }
+  function handleSearchSubmit(_x2) {
+    return _handleSearchSubmit.apply(this, arguments);
+  }
+  function _handleSearchSubmit() {
+    _handleSearchSubmit = _asyncToGenerator(function* (event) {
+      event.preventDefault();
+      if (searchInput.trim()) {
+        const results = yield searchAlbums(searchInput);
+        setSearchResults(results);
+      } else {
+        setSearchResults([]);
+      }
+    });
+    return _handleSearchSubmit.apply(this, arguments);
+  }
+  function handleAddAlbumToCart(_x3) {
+    return _handleAddAlbumToCart.apply(this, arguments);
+  }
+  function _handleAddAlbumToCart() {
+    _handleAddAlbumToCart = _asyncToGenerator(function* (albumId) {
+      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.addItemToCart(albumId);
+      setCart(updatedCart);
+    });
+    return _handleAddAlbumToCart.apply(this, arguments);
+  }
+  function handleChangeQty(_x4, _x5) {
+    return _handleChangeQty.apply(this, arguments);
+  } /////////////////////////////////////////////////////////////////////////////////end
+  function _handleChangeQty() {
+    _handleChangeQty = _asyncToGenerator(function* (itemId, newQty) {
+      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.setItemQtyInCart(itemId, newQty);
+      setCart(updatedCart);
+    });
+    return _handleChangeQty.apply(this, arguments);
   }
   return /*#__PURE__*/React.createElement("main", {
     className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].NewOrderPage
@@ -1062,35 +1208,18 @@ function NewOrderPage(_ref) {
     user: user,
     setUser: setUser
   })), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    menuItems: menuItems.filter(item => item.category.name === activeCat),
-    handleAddToOrder: handleAddToOrder
+    menuItems: menuItems.filter(item => item.category.name === activeCat)
+    // handleAddToOrder={handleAddToOrder}
+    ,
+    handleSearchSubmit: handleSearchSubmit,
+    searchResults: searchResults,
+    setSearchInput: setSearchInput,
+    handleAddAlbumToCart: handleAddAlbumToCart
   }), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__["default"], {
     order: cart,
     handleChangeQty: handleChangeQty,
     handleCheckout: handleCheckout
   }));
-}
-
-/***/ }),
-
-/***/ "./src/utilities/items-api.js":
-/*!************************************!*\
-  !*** ./src/utilities/items-api.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getAll: () => (/* binding */ getAll)
-/* harmony export */ });
-/* unused harmony export getById */
-/* harmony import */ var _send_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./send-request */ "./src/utilities/send-request.js");
-
-const BASE_URL = '/api/items';
-function getAll() {
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])(BASE_URL);
-}
-function getById(id) {
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/").concat(id));
 }
 
 /***/ }),
@@ -1104,10 +1233,9 @@ function getById(id) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   addItemToCart: () => (/* binding */ addItemToCart),
 /* harmony export */   checkout: () => (/* binding */ checkout),
-/* harmony export */   getCart: () => (/* binding */ getCart),
 /* harmony export */   setItemQtyInCart: () => (/* binding */ setItemQtyInCart)
 /* harmony export */ });
-/* unused harmony export getOrderHistory */
+/* unused harmony exports getCart, getOrderHistory */
 /* harmony import */ var _send_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./send-request */ "./src/utilities/send-request.js");
 
 const BASE_URL = '/api/orders';
@@ -1502,10 +1630,41 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
   margin: 3vmin 0;
   padding: 3vmin;
   overflow-y: scroll;
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAAA;EACI,8BAAA;EACA,kCAAA;EACA,oBAAA;EACA,eAAA;EACA,cAAA;EACA,kBAAA;AACJ","sourcesContent":[".MenuList {\n    background-color: var(--tan-1);\n    border: .1vmin solid var(--tan-3);\n    border-radius: 2vmin;\n    margin: 3vmin 0;\n    padding: 3vmin;\n    overflow-y: scroll;\n    }"],"sourceRoot":""}]);
+}
+
+.nKWST0w0D1OqEOjMNECy {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.nKWST0w0D1OqEOjMNECy .rnWrO3MEn0dmRodfHogh {
+  width: 100px;
+  height: auto;
+  margin-right: 1rem;
+}
+.nKWST0w0D1OqEOjMNECy .PcMrxtzQ3rs49K5pXfCu h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+.nKWST0w0D1OqEOjMNECy .PcMrxtzQ3rs49K5pXfCu p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #888;
+}
+.nKWST0w0D1OqEOjMNECy .PcMrxtzQ3rs49K5pXfCu button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAAA;EACI,8BAAA;EACA,kCAAA;EACA,oBAAA;EACA,eAAA;EACA,cAAA;EACA,kBAAA;AACJ;;AAEA;EACI,aAAA;EACA,mBAAA;EACA,mBAAA;AACJ;AACI;EACE,YAAA;EACA,YAAA;EACA,kBAAA;AACN;AAGM;EACE,SAAA;EACA,eAAA;AADR;AAIM;EACE,SAAA;EACA,iBAAA;EACA,WAAA;AAFR;AAKM;EACE,yBAAA;EACA,YAAA;EACA,YAAA;EACA,oBAAA;EACA,eAAA;EACA,iBAAA;AAHR","sourcesContent":[".MenuList {\n    background-color: var(--tan-1);\n    border: .1vmin solid var(--tan-3);\n    border-radius: 2vmin;\n    margin: 3vmin 0;\n    padding: 3vmin;\n    overflow-y: scroll;\n    }\n\n.Album {\n    display: flex;\n    align-items: center;\n    margin-bottom: 1rem;\n  \n    .AlbumArtwork {\n      width: 100px; \n      height: auto;\n      margin-right: 1rem;\n    }\n  \n    .AlbumDetails {\n      h3 {\n        margin: 0;\n        font-size: 1rem;\n      }\n  \n      p {\n        margin: 0;\n        font-size: 0.8rem;\n        color: #888;\n      }\n  \n      button {\n        background-color: #007bff;\n        color: white;\n        border: none;\n        padding: 0.5rem 1rem;\n        cursor: pointer;\n        font-size: 0.8rem;\n      }\n    }\n  }\n  \n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"MenuList": `eBz5FvD9TgyIgfFi1MdG`
+	"MenuList": `eBz5FvD9TgyIgfFi1MdG`,
+	"Album": `nKWST0w0D1OqEOjMNECy`,
+	"AlbumArtwork": `rnWrO3MEn0dmRodfHogh`,
+	"AlbumDetails": `PcMrxtzQ3rs49K5pXfCu`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

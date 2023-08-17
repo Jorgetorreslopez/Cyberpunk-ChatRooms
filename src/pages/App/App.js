@@ -14,33 +14,33 @@ export default function App() {
 	const [user, setUser] = useState(getUser());
 	const [spotifyToken, setSpotifyToken] = useState(null);
 
-	const SPOTIFY_CLIENT_ID = process.env.SPOTIFYID;
-	const SPOTIFY_CLIENT_ID_SECRET = process.env.SPOTIFYCLIENTSECRET;
+	// const SPOTIFY_CLIENT_ID = process.env.SPOTIFYID;
+	// const SPOTIFY_CLIENT_ID_SECRET = process.env.SPOTIFYCLIENTSECRET;
 
-	useEffect(() => {
-		async function getSpotifyToken() {
-			const response = await fetch('https://accounts.spotify.com/api/token', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					Authorization: `Basic ${btoa(
-						`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_ID_SECRET}`
-					)}`
-				},
-				body: 'grant_type=client_credentials'
-			});
-			if (response.ok) {
-				const data = await response.json();
-				setSpotifyToken(data.access_token);
-			} else {
-				console.error(
-					'Failed to fetch Spotify access token:',
-					response.statusText
-				);
-			}
-		}
-		getSpotifyToken();
-	}, []);
+	// useEffect(() => {
+	// 	async function getSpotifyToken() {
+	// 		const response = await fetch('https://accounts.spotify.com/api/token', {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/x-www-form-urlencoded',
+	// 				Authorization: `Basic ${btoa(
+	// 					`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_ID_SECRET}`
+	// 				)}`
+	// 			},
+	// 			body: 'grant_type=client_credentials'
+	// 		});
+	// 		if (response.ok) {
+	// 			const data = await response.json();
+	// 			setSpotifyToken(data.access_token);
+	// 		} else {
+	// 			console.error(
+	// 				'Failed to fetch Spotify access token:',
+	// 				response.statusText
+	// 			);
+	// 		}
+	// 	}
+	// 	getSpotifyToken();
+	// }, []);
 
 	return (
 		<main className={styles.App}>
@@ -68,6 +68,7 @@ export default function App() {
 									user={user}
 									setUser={setUser}
 									spotifyToken={spotifyToken}
+                  setSpotifyToken={setSpotifyToken}
 								/>
 							}
 						/>

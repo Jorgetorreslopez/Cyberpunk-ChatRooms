@@ -6,3 +6,39 @@
     padding: 3vmin;
     overflow-y: scroll;
     }
+
+.Album {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  
+    .AlbumArtwork {
+      width: 100px; 
+      height: auto;
+      margin-right: 1rem;
+    }
+  
+    .AlbumDetails {
+      h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+  
+      p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #888;
+      }
+  
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-size: 0.8rem;
+      }
+    }
+  }
+  
+  
