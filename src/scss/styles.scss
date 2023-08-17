@@ -4,15 +4,21 @@
 @import "grid";
 
 :root {
-  --white: #FFFFFF;
-  --tan-1: #FBF9F6;
-  --tan-2: #E7E2DD;
-  --tan-3: #E2D9D1;
-  --tan-4: #D3C1AE;
-  --orange: #F67F00;
-  --text-light: #968c84;
-  --text-dark: #615954;
+  // --white: #FFFFFF;
+  // --tan-1: #FBF9F6;
+  // --tan-2: #E7E2DD;
+  // --tan-3: #E2D9D1;
+  // --tan-4: #d47c1e;
+  // --orange: #F67F00;
+  // --text-light: #968c84;
+  // --text-dark: #615954;
+
+  --background-image: url('https://i.imgur.com/1hci6Q2.gif');
+  background-image: var(--background-image);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 
 *, *:before, *:after {
   box-sizing: border-box;
