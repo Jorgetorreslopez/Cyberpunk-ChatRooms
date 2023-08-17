@@ -19,10 +19,25 @@ async function cart (req, res) {
 }
 
 // Add an item to the cart
+// async function addToCart (req, res) {
+//   try {
+//     const cart = await Order.getCart(req.user._id)
+//     await cart.addItemToCart(req.params.id)
+//     res.status(200).json(cart)
+//   } catch (e) {
+//     res.status(400).json({ msg: e.message })
+//   }
+// }
+
 async function addToCart (req, res) {
   try {
     const cart = await Order.getCart(req.user._id)
-    await cart.addItemToCart(req.params.id)
+    const album = req.body.album
+    const albumId = req.body.albumId
+    const albumName = req.body.albumName
+    const artistName = req.body.artist
+
+    await cart.addAlbumToCart(albumId, albumName, artistName)
     res.status(200).json(cart)
   } catch (e) {
     res.status(400).json({ msg: e.message })
@@ -33,7 +48,7 @@ async function addToCart (req, res) {
 async function setItemQtyInCart (req, res) {
   try {
     const cart = await Order.getCart(req.user._id)
-    await cart.setItemQty(req.body.itemId, req.body.newQty)
+    await cart.setItemQty(req.body.albumId, req.body.newQty)
     res.status(200).json(cart)
   } catch (e) {
     res.status(400).json({ msg: e.message })

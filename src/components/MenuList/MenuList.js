@@ -36,7 +36,7 @@ export default function MenuList({
 						<li key={album.id}>
 							<div className={styles.Album}>
 								<img
-                  className={styles.AlbumArtwork}
+									className={styles.AlbumArtwork}
 									src={album.images[0]?.url}
 									alt={`${album.name} Album Cover`}
 								/>

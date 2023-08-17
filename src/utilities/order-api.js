@@ -8,9 +8,9 @@ export function getCart () {
 }
 
 // Add an item to the cart
-export function addItemToCart (itemId) {
+export function addItemToCart () {
   // Just send itemId for best security (no pricing)
-  return sendRequest(`${BASE_URL}/cart/items/${itemId}`, 'POST')
+  return sendRequest(`${BASE_URL}/cart/items`, 'POST')
 }
 
 // Update the item's qty in the cart
@@ -29,4 +29,13 @@ export function checkout () {
 // Return all paid orders for the logged in user
 export function getOrderHistory () {
   return sendRequest(`${BASE_URL}/history`)
+}
+
+export function searchAlbums(query) {
+  return sendRequest(`${BASE_URL}/search/albums`, 'POST', { query });
+}
+
+// Add a Spotify album to the cart
+export function addAlbumToCart(albumId, albumName, artistName) {
+  return sendRequest(`${BASE_URL}/cart/albums`, 'POST', { albumId, albumName, artistName });
 }

@@ -1235,7 +1235,7 @@ function NewOrderPage(_ref) {
 /* harmony export */   checkout: () => (/* binding */ checkout),
 /* harmony export */   setItemQtyInCart: () => (/* binding */ setItemQtyInCart)
 /* harmony export */ });
-/* unused harmony exports getCart, getOrderHistory */
+/* unused harmony exports getCart, getOrderHistory, searchAlbums, addAlbumToCart */
 /* harmony import */ var _send_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./send-request */ "./src/utilities/send-request.js");
 
 const BASE_URL = '/api/orders';
@@ -1246,9 +1246,9 @@ function getCart() {
 }
 
 // Add an item to the cart
-function addItemToCart(itemId) {
+function addItemToCart() {
   // Just send itemId for best security (no pricing)
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/items/").concat(itemId), 'POST');
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/items"), 'POST');
 }
 
 // Update the item's qty in the cart
@@ -1270,6 +1270,20 @@ function checkout() {
 // Return all paid orders for the logged in user
 function getOrderHistory() {
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/history"));
+}
+function searchAlbums(query) {
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/search/albums"), 'POST', {
+    query
+  });
+}
+
+// Add a Spotify album to the cart
+function addAlbumToCart(albumId, albumName, artistName) {
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/albums"), 'POST', {
+    albumId,
+    albumName,
+    artistName
+  });
 }
 
 /***/ }),

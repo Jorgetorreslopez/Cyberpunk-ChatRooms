@@ -62,6 +62,18 @@ orderSchema.methods.addItemToCart = async function (itemId) {
   return cart.save()
 }
 
+orderSchema.methods.addAlbumToCart = async function (albumId, albumName, artistName) {
+  const cart = this
+  const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(albumId))
+  if (lineItem) {
+    lineItem.qty += 1
+  } else {
+    const album = { _id: albumId, name: albumName, artist: [{name: artistName}] }
+    cart.lineItems.push({ item: album })
+  }
+  return cart.save()
+}
+
 // Instance method to set an item's qty in the cart (will add item if does not exist)
 orderSchema.methods.setItemQty = function (itemId, newQty) {
   // this keyword is bound to the cart (order doc)
