@@ -9,7 +9,7 @@ import CategoryList from '../../components/CategoryList/CategoryList'
 import OrderDetail from '../../components/OrderDetail/OrderDetail'
 import UserLogOut from '../../components/UserLogOut/UserLogOut'
 
-export default function NewOrderPage ({ user, setUser }) {
+export default function NewOrderPage ({ user, setUser, spotifyToken }) {
   const [menuItems, setMenuItems] = useState([])
   const [activeCat, setActiveCat] = useState('')
   const [cart, setCart] = useState(null)
@@ -33,6 +33,9 @@ export default function NewOrderPage ({ user, setUser }) {
     }
     getCart()
   }, [])
+
+
+
   // Providing an empty 'dependency array'
   // results in the effect running after
   // the FIRST render only
