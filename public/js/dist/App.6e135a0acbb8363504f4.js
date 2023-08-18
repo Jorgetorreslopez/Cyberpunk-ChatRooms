@@ -221,9 +221,10 @@ function LineItem(_ref) {
     isPaid,
     handleChangeQty
   } = _ref;
+  console.log(lineItem);
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("h3", null, "HIII"), /*#__PURE__*/React.createElement("div", {
     className: "flex-ctr-ctr"
   }, lineItem.item.emoji), /*#__PURE__*/React.createElement("div", {
     className: "flex-ctr-ctr flex-col"
@@ -469,6 +470,7 @@ function OrderDetail(_ref) {
     handleChangeQty,
     handleCheckout
   } = _ref;
+  //console.log(order)
   if (!order) return null;
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
@@ -1192,9 +1194,10 @@ function NewOrderPage(_ref) {
     return _handleChangeQty.apply(this, arguments);
   } /////////////////////////////////////////////////////////////////////////////////end
   function _handleChangeQty() {
-    _handleChangeQty = _asyncToGenerator(function* (itemId, newQty) {
-      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.setItemQtyInCart(itemId, newQty);
+    _handleChangeQty = _asyncToGenerator(function* (albumId, newQty) {
+      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.setItemQtyInCart(albumId, newQty);
       setCart(updatedCart);
+      //console.log(updatedCart);
     });
     return _handleChangeQty.apply(this, arguments);
   }
@@ -1254,9 +1257,9 @@ function addItemToCart() {
 // Update the item's qty in the cart
 // Will add the item to the order if not currently in the cart
 // Sending info via the data payload instead of a long URL
-function setItemQtyInCart(itemId, newQty) {
+function setItemQtyInCart(albumId, newQty) {
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/qty"), 'PUT', {
-    itemId,
+    albumId,
     newQty
   });
 }
@@ -1271,13 +1274,13 @@ function checkout() {
 function getOrderHistory() {
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/history"));
 }
+
+////////////////////////////////////////////////////////////////////////
 function searchAlbums(query) {
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/search/albums"), 'POST', {
     query
   });
 }
-
-// Add a Spotify album to the cart
 function addAlbumToCart(albumId, albumName, artistName) {
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/albums"), 'POST', {
     albumId,

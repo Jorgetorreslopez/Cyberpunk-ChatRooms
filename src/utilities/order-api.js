@@ -16,8 +16,8 @@ export function addItemToCart () {
 // Update the item's qty in the cart
 // Will add the item to the order if not currently in the cart
 // Sending info via the data payload instead of a long URL
-export function setItemQtyInCart (itemId, newQty) {
-  return sendRequest(`${BASE_URL}/cart/qty`, 'PUT', { itemId, newQty })
+export function setItemQtyInCart (albumId, newQty) {
+  return sendRequest(`${BASE_URL}/cart/qty`, 'PUT', { albumId, newQty })
 }
 
 // Updates the order's (cart's) isPaid property to true
@@ -31,11 +31,11 @@ export function getOrderHistory () {
   return sendRequest(`${BASE_URL}/history`)
 }
 
+////////////////////////////////////////////////////////////////////////
 export function searchAlbums(query) {
   return sendRequest(`${BASE_URL}/search/albums`, 'POST', { query });
 }
 
-// Add a Spotify album to the cart
 export function addAlbumToCart(albumId, albumName, artistName) {
   return sendRequest(`${BASE_URL}/cart/albums`, 'POST', { albumId, albumName, artistName });
 }

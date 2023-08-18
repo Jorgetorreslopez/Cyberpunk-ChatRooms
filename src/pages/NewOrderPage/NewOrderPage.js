@@ -190,9 +190,10 @@ export default function NewOrderPage({
 		setCart(updatedCart);
   }
 
-  async function handleChangeQty(itemId, newQty) {
-		const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
+  async function handleChangeQty(albumId, newQty) {
+		const updatedCart = await ordersAPI.setItemQtyInCart(albumId, newQty);
 		setCart(updatedCart);
+		//console.log(updatedCart);
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////end
