@@ -3,7 +3,7 @@ import LineItem from '../LineItem/LineItem'
 
 // Used to display the details of any order, including the cart (unpaid order)
 export default function OrderDetail ({ order, handleChangeQty, handleCheckout }) {
-  //console.log(order)
+  
   if (!order) return null
 
   const lineItems = order.lineItems.map(item =>
@@ -14,7 +14,7 @@ export default function OrderDetail ({ order, handleChangeQty, handleCheckout })
       key={item._id}
     />
   )
-
+console.log(order.lineItems)
   return (
     <div className={styles.OrderDetail}>
       <div className={styles.sectionHeading}>

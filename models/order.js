@@ -75,14 +75,14 @@ orderSchema.methods.addAlbumToCart = async function (albumId, albumName, artistN
 }
 
 // Instance method to set an item's qty in the cart (will add item if does not exist)
-orderSchema.methods.setItemQty = function (itemId, newQty) {
+orderSchema.methods.setItemQty = function (albumId, newQty) {
   // this keyword is bound to the cart (order doc)
   const cart = this
   // Find the line item in the cart for the menu item
-  const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(itemId))
+  const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(albumId))
   if (lineItem && newQty <= 0) {
     // Calling remove, removes itself from the cart.lineItems array
-    lineItem.remove()
+    lineItem.deleteOne()
   } else if (lineItem) {
     // Set the new qty - positive value is assured thanks to prev if
     lineItem.qty = newQty

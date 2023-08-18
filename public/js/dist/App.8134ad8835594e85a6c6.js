@@ -221,10 +221,10 @@ function LineItem(_ref) {
     isPaid,
     handleChangeQty
   } = _ref;
-  console.log(lineItem);
+  //console.log(lineItem)
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
-  }, /*#__PURE__*/React.createElement("h3", null, "HIII"), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "flex-ctr-ctr"
   }, lineItem.item.emoji), /*#__PURE__*/React.createElement("div", {
     className: "flex-ctr-ctr flex-col"
@@ -470,7 +470,6 @@ function OrderDetail(_ref) {
     handleChangeQty,
     handleCheckout
   } = _ref;
-  //console.log(order)
   if (!order) return null;
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
@@ -478,6 +477,7 @@ function OrderDetail(_ref) {
     handleChangeQty: handleChangeQty,
     key: item._id
   }));
+  console.log(order.lineItems);
   return /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail
   }, /*#__PURE__*/React.createElement("div", {
