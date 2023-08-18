@@ -1,11 +1,15 @@
 import styles from './LineItem.module.scss'
 
-export default function LineItem ({ lineItem, isPaid, handleChangeQty }) {
-  //console.log(lineItem)
+export default function LineItem ({ lineItem, isPaid, handleChangeQty, chosenAlbum }) {
+  console.log(chosenAlbum)
   return (
     <div className={styles.LineItem}>
 
-      <div className='flex-ctr-ctr'>{lineItem.item.emoji}</div>
+<div className='flex-ctr-ctr'>
+        {chosenAlbum && (
+          <img src={chosenAlbum.images[0]?.url} alt={`${chosenAlbum.name} Album Cover`} />
+        )}
+      </div>
       <div className='flex-ctr-ctr flex-col'>
         <span className='align-ctr'>{lineItem.item.name}</span>
         <span>{lineItem.item.price.toFixed(2)}</span>

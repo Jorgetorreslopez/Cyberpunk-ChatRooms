@@ -2,7 +2,7 @@ import styles from './OrderDetail.module.scss'
 import LineItem from '../LineItem/LineItem'
 
 // Used to display the details of any order, including the cart (unpaid order)
-export default function OrderDetail ({ order, handleChangeQty, handleCheckout }) {
+export default function OrderDetail ({ order, handleChangeQty, handleCheckout, chosenAlbum }) {
   
   if (!order) return null
 
@@ -12,6 +12,7 @@ export default function OrderDetail ({ order, handleChangeQty, handleCheckout })
       isPaid={order.isPaid}
       handleChangeQty={handleChangeQty}
       key={item._id}
+      chosenAlbum={chosenAlbum}
     />
   )
 console.log(order.lineItems)
@@ -40,7 +41,7 @@ console.log(order.lineItems)
               <span className={styles.right}>${order.orderTotal.toFixed(2)}</span>
             </section>
             </>
-          : <div className={styles.hungry}>Hungry?</div>}
+          : <div className={styles.hungry}>Don't like music? Try Therapy.</div>}
       </div>
     </div>
   )

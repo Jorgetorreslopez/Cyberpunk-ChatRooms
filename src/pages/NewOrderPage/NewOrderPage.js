@@ -23,6 +23,7 @@ export default function NewOrderPage({
 
 	const [searchInput, setSearchInput] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
+	const [chosenAlbum, setChosenAlbum] = useState(null);
 
 	// useEffect(function () {
 	//   async function getItems () {
@@ -188,6 +189,9 @@ export default function NewOrderPage({
   async function handleAddAlbumToCart(albumId) {
     const updatedCart = await ordersAPI.addItemToCart(albumId);
 		setCart(updatedCart);
+		console.log(updatedCart);
+		const selectedAlbum = searchResults.find((album) => album.id === albumId);
+		setChosenAlbum(selectedAlbum);
   }
 
   async function handleChangeQty(albumId, newQty) {
@@ -221,6 +225,7 @@ export default function NewOrderPage({
 				order={cart}
 				handleChangeQty={handleChangeQty}
 				handleCheckout={handleCheckout}
+				chosenAlbum={chosenAlbum}
 			/>
 		</main>
 	);

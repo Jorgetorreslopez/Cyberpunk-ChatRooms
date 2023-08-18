@@ -216,17 +216,22 @@ const ChatFooter = _ref => {
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 function LineItem(_ref) {
+  var _chosenAlbum$images$;
   let {
     lineItem,
     isPaid,
-    handleChangeQty
+    handleChangeQty,
+    chosenAlbum
   } = _ref;
-  //console.log(lineItem)
+  console.log(chosenAlbum);
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-ctr-ctr"
-  }, lineItem.item.emoji), /*#__PURE__*/React.createElement("div", {
+  }, chosenAlbum && /*#__PURE__*/React.createElement("img", {
+    src: (_chosenAlbum$images$ = chosenAlbum.images[0]) === null || _chosenAlbum$images$ === void 0 ? void 0 : _chosenAlbum$images$.url,
+    alt: "".concat(chosenAlbum.name, " Album Cover")
+  })), /*#__PURE__*/React.createElement("div", {
     className: "flex-ctr-ctr flex-col"
   }, /*#__PURE__*/React.createElement("span", {
     className: "align-ctr"
@@ -468,14 +473,16 @@ function OrderDetail(_ref) {
   let {
     order,
     handleChangeQty,
-    handleCheckout
+    handleCheckout,
+    chosenAlbum
   } = _ref;
   if (!order) return null;
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
     isPaid: order.isPaid,
     handleChangeQty: handleChangeQty,
-    key: item._id
+    key: item._id,
+    chosenAlbum: chosenAlbum
   }));
   console.log(order.lineItems);
   return /*#__PURE__*/React.createElement("div", {
@@ -498,7 +505,7 @@ function OrderDetail(_ref) {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
   }, "$", order.orderTotal.toFixed(2)))) : /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].hungry
-  }, "Hungry?")));
+  }, "Don't like music? Try Therapy.")));
 }
 
 /***/ }),
@@ -1023,6 +1030,7 @@ function NewOrderPage(_ref) {
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
   const [searchInput, setSearchInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [searchResults, setSearchResults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [chosenAlbum, setChosenAlbum] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 
   // useEffect(function () {
   //   async function getItems () {
@@ -1187,6 +1195,9 @@ function NewOrderPage(_ref) {
     _handleAddAlbumToCart = _asyncToGenerator(function* (albumId) {
       const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.addItemToCart(albumId);
       setCart(updatedCart);
+      console.log(updatedCart);
+      const selectedAlbum = searchResults.find(album => album.id === albumId);
+      setChosenAlbum(selectedAlbum);
     });
     return _handleAddAlbumToCart.apply(this, arguments);
   }
@@ -1221,7 +1232,8 @@ function NewOrderPage(_ref) {
   }), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__["default"], {
     order: cart,
     handleChangeQty: handleChangeQty,
-    handleCheckout: handleCheckout
+    handleCheckout: handleCheckout,
+    chosenAlbum: chosenAlbum
   }));
 }
 
@@ -1533,7 +1545,13 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.ZeRW57PNaWpYVsw6JlaC {
 
 .ZeRW57PNaWpYVsw6JlaC button {
   margin: 0;
-}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/LineItem.module.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,aAAA;EACA,gDAAA;EACA,gBAAA;EACA,wBAAA;EACA,8BAAA;EACA,sCAAA;EACA,gBAAA;AACJ;;AAEI;EACA,yCAAA;AACJ;;AAEI;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,aAAA;EACA,yBAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,SAAA;AACJ","sourcesContent":[".LineItem {\n    width: 100%;\n    display: grid;\n    grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;\n    padding: 1vmin 0;\n    color: var(--text-light);\n    background-color: var(--white);\n    border-top: .1vmin solid var(--tan-3);\n    font-size: 1.5vw;\n    }\n    \n    .LineItem:last-child {\n    border-bottom: .1vmin solid var(--tan-3);\n    }\n    \n    .LineItem .qty {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem .extPrice {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem button {\n    margin: 0;\n    }"],"sourceRoot":""}]);
+}
+
+img {
+  width: 100px;
+  height: auto;
+  margin-left: 4rem;
+}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/LineItem.module.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,aAAA;EACA,gDAAA;EACA,gBAAA;EACA,wBAAA;EACA,8BAAA;EACA,sCAAA;EACA,gBAAA;AACJ;;AAEI;EACA,yCAAA;AACJ;;AAEI;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,aAAA;EACA,yBAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,SAAA;AACJ;;AAEI;EACE,YAAA;EACA,YAAA;EACA,iBAAA;AACN","sourcesContent":[".LineItem {\n    width: 100%;\n    display: grid;\n    grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;\n    padding: 1vmin 0;\n    color: var(--text-light);\n    background-color: var(--white);\n    border-top: .1vmin solid var(--tan-3);\n    font-size: 1.5vw;\n    }\n    \n    .LineItem:last-child {\n    border-bottom: .1vmin solid var(--tan-3);\n    }\n    \n    .LineItem .qty {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem .extPrice {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem button {\n    margin: 0;\n    }\n\n    img {\n      width: 100px; \n      height: auto;\n      margin-left: 4rem;\n    }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"LineItem": `ZeRW57PNaWpYVsw6JlaC`,
