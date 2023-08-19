@@ -1,7 +1,15 @@
 import styles from './LineItem.module.scss'
+import { useState } from 'react';
 
-export default function LineItem ({ lineItem, isPaid, handleChangeQty, chosenAlbum }) {
-  console.log(chosenAlbum)
+export default function LineItem ({ albumPrice, setAlbumPrice, lineItem, isPaid, handleChangeQty, chosenAlbum }) {
+  //console.log(chosenAlbum)
+
+  async function generateRandomPrice () {
+    const newPrice = (Math.random() * 10 + 20).toFixed(2);
+    setAlbumPrice(newPrice)
+    console.log(albumPrice)
+  }
+
   return (
     <div className={styles.LineItem}>
 
@@ -11,8 +19,8 @@ export default function LineItem ({ lineItem, isPaid, handleChangeQty, chosenAlb
         )}
       </div>
       <div className='flex-ctr-ctr flex-col'>
-        <span className='align-ctr'>{lineItem.item.name}</span>
-        <span>{lineItem.item.price.toFixed(2)}</span>
+        <span className='align-ctr'>{chosenAlbum.artists[0]?.name}</span>
+        <span className='order-album align-ctr'>{chosenAlbum.name}</span>
       </div>
       <div
         className={styles.qty}
@@ -22,7 +30,9 @@ export default function LineItem ({ lineItem, isPaid, handleChangeQty, chosenAlb
           <button
             className='btn-xs'
             onClick={() => handleChangeQty(lineItem.item._id, lineItem.qty - 1)}
-          />
+            >
+            -
+          </button>
         )}
         <span>{lineItem.qty}</span>
         {!isPaid && (
@@ -34,7 +44,7 @@ export default function LineItem ({ lineItem, isPaid, handleChangeQty, chosenAlb
           </button>
         )}
       </div>
-      <div className={styles.extPrice}>${lineItem.extPrice.toFixed(2)}</div>
+      <div className={styles.extPrice}>${albumPrice}</div>
     </div>
   )
 }

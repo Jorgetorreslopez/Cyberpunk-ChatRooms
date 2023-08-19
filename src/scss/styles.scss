@@ -53,6 +53,10 @@ code {
   text-align: right;
 }
 
+.align-lt {
+  text-align: left;
+}
+
 .smaller {
   font-size: smaller;
 }
@@ -60,7 +64,8 @@ code {
 .flex-ctr-ctr {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
+
 }
 
 .flex-col {
@@ -316,4 +321,9 @@ button[type="submit"] {
   bottom: 50px;
   font-size: 13px;
   font-style: italic;
+}
+
+.order-album {
+  font-size: 16px;
+  margin-left: 20%;
 }

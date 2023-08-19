@@ -213,17 +213,35 @@ const ChatFooter = _ref => {
 /* harmony export */   "default": () => (/* binding */ LineItem)
 /* harmony export */ });
 /* harmony import */ var _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LineItem.module.scss */ "./src/components/LineItem/LineItem.module.scss");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 function LineItem(_ref) {
-  var _chosenAlbum$images$;
+  var _chosenAlbum$images$, _chosenAlbum$artists$;
   let {
+    albumPrice,
+    setAlbumPrice,
     lineItem,
     isPaid,
     handleChangeQty,
     chosenAlbum
   } = _ref;
-  console.log(chosenAlbum);
+  //console.log(chosenAlbum)
+  function generateRandomPrice() {
+    return _generateRandomPrice.apply(this, arguments);
+  }
+  function _generateRandomPrice() {
+    _generateRandomPrice = _asyncToGenerator(function* () {
+      const newPrice = (Math.random() * 10 + 20).toFixed(2);
+      setAlbumPrice(newPrice);
+      console.log(albumPrice);
+    });
+    return _generateRandomPrice.apply(this, arguments);
+  }
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
   }, /*#__PURE__*/React.createElement("div", {
@@ -235,7 +253,9 @@ function LineItem(_ref) {
     className: "flex-ctr-ctr flex-col"
   }, /*#__PURE__*/React.createElement("span", {
     className: "align-ctr"
-  }, lineItem.item.name), /*#__PURE__*/React.createElement("span", null, lineItem.item.price.toFixed(2))), /*#__PURE__*/React.createElement("div", {
+  }, (_chosenAlbum$artists$ = chosenAlbum.artists[0]) === null || _chosenAlbum$artists$ === void 0 ? void 0 : _chosenAlbum$artists$.name), /*#__PURE__*/React.createElement("span", {
+    className: "order-album align-ctr"
+  }, chosenAlbum.name)), /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].qty,
     style: {
       justifyContent: isPaid && 'center'
@@ -243,12 +263,12 @@ function LineItem(_ref) {
   }, !isPaid && /*#__PURE__*/React.createElement("button", {
     className: "btn-xs",
     onClick: () => handleChangeQty(lineItem.item._id, lineItem.qty - 1)
-  }), /*#__PURE__*/React.createElement("span", null, lineItem.qty), !isPaid && /*#__PURE__*/React.createElement("button", {
+  }, "-"), /*#__PURE__*/React.createElement("span", null, lineItem.qty), !isPaid && /*#__PURE__*/React.createElement("button", {
     className: "btn-xs",
     onClick: () => handleChangeQty(lineItem.item._id, lineItem.qty + 1)
   }, "+")), /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].extPrice
-  }, "$", lineItem.extPrice.toFixed(2)));
+  }, "$", albumPrice));
 }
 
 /***/ }),
@@ -464,7 +484,10 @@ function MenuListItem(_ref) {
 /* harmony export */ });
 /* harmony import */ var _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrderDetail.module.scss */ "./src/components/OrderDetail/OrderDetail.module.scss");
 /* harmony import */ var _LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../LineItem/LineItem */ "./src/components/LineItem/LineItem.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 
 
@@ -474,7 +497,9 @@ function OrderDetail(_ref) {
     order,
     handleChangeQty,
     handleCheckout,
-    chosenAlbum
+    chosenAlbum,
+    albumPrice,
+    setAlbumPrice
   } = _ref;
   if (!order) return null;
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -482,9 +507,12 @@ function OrderDetail(_ref) {
     isPaid: order.isPaid,
     handleChangeQty: handleChangeQty,
     key: item._id,
-    chosenAlbum: chosenAlbum
+    chosenAlbum: chosenAlbum,
+    albumPrice: albumPrice,
+    setAlbumPrice: setAlbumPrice
   }));
   console.log(order.lineItems);
+  const totalPrice = order.lineItems.reduce((total, item) => total + item.extPrice, 0);
   return /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail
   }, /*#__PURE__*/React.createElement("div", {
@@ -503,7 +531,7 @@ function OrderDetail(_ref) {
     disabled: !lineItems.length
   }, "CHECKOUT"), /*#__PURE__*/React.createElement("span", null, order.totalQty), /*#__PURE__*/React.createElement("span", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
-  }, "$", order.orderTotal.toFixed(2)))) : /*#__PURE__*/React.createElement("div", {
+  }, "$", totalPrice.toFixed(2)))) : /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].hungry
   }, "Don't like music? Try Therapy.")));
 }
@@ -1031,6 +1059,7 @@ function NewOrderPage(_ref) {
   const [searchInput, setSearchInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [searchResults, setSearchResults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [chosenAlbum, setChosenAlbum] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [albumPrice, setAlbumPrice] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 
   // useEffect(function () {
   //   async function getItems () {
@@ -1163,6 +1192,17 @@ function NewOrderPage(_ref) {
     });
     return _searchAlbums.apply(this, arguments);
   }
+  function generateRandomPrice() {
+    return _generateRandomPrice.apply(this, arguments);
+  }
+  function _generateRandomPrice() {
+    _generateRandomPrice = _asyncToGenerator(function* () {
+      const newPrice = (Math.random() * 10 + 20).toFixed(2);
+      setAlbumPrice(newPrice);
+      console.log(albumPrice);
+    });
+    return _generateRandomPrice.apply(this, arguments);
+  }
   function handleCheckout() {
     return _handleCheckout.apply(this, arguments);
   } /////////////////////////////////////////////////////////////////////////////////start
@@ -1198,6 +1238,7 @@ function NewOrderPage(_ref) {
       console.log(updatedCart);
       const selectedAlbum = searchResults.find(album => album.id === albumId);
       setChosenAlbum(selectedAlbum);
+      generateRandomPrice();
     });
     return _handleAddAlbumToCart.apply(this, arguments);
   }
@@ -1233,7 +1274,9 @@ function NewOrderPage(_ref) {
     order: cart,
     handleChangeQty: handleChangeQty,
     handleCheckout: handleCheckout,
-    chosenAlbum: chosenAlbum
+    chosenAlbum: chosenAlbum,
+    albumPrice: albumPrice,
+    setAlbumPrice: setAlbumPrice
   }));
 }
 
@@ -1551,12 +1594,17 @@ img {
   width: 100px;
   height: auto;
   margin-left: 4rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/LineItem.module.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,aAAA;EACA,gDAAA;EACA,gBAAA;EACA,wBAAA;EACA,8BAAA;EACA,sCAAA;EACA,gBAAA;AACJ;;AAEI;EACA,yCAAA;AACJ;;AAEI;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,aAAA;EACA,yBAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,SAAA;AACJ;;AAEI;EACE,YAAA;EACA,YAAA;EACA,iBAAA;AACN","sourcesContent":[".LineItem {\n    width: 100%;\n    display: grid;\n    grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;\n    padding: 1vmin 0;\n    color: var(--text-light);\n    background-color: var(--white);\n    border-top: .1vmin solid var(--tan-3);\n    font-size: 1.5vw;\n    }\n    \n    .LineItem:last-child {\n    border-bottom: .1vmin solid var(--tan-3);\n    }\n    \n    .LineItem .qty {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem .extPrice {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem button {\n    margin: 0;\n    }\n\n    img {\n      width: 100px; \n      height: auto;\n      margin-left: 4rem;\n    }"],"sourceRoot":""}]);
+}
+
+.ZeRW57PNaWpYVsw6JlaC .g1Sh_jj_VNtrTSSRQ9Hp {
+  font-size: 1rem;
+}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/LineItem.module.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,aAAA;EACA,gDAAA;EACA,gBAAA;EACA,wBAAA;EACA,8BAAA;EACA,sCAAA;EACA,gBAAA;AACJ;;AAEI;EACA,yCAAA;AACJ;;AAEI;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,aAAA;EACA,yBAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,SAAA;AACJ;;AAEI;EACE,YAAA;EACA,YAAA;EACA,iBAAA;AACN;;AAEI;EACE,eAAA;AACN","sourcesContent":[".LineItem {\n    width: 100%;\n    display: grid;\n    grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;\n    padding: 1vmin 0;\n    color: var(--text-light);\n    background-color: var(--white);\n    border-top: .1vmin solid var(--tan-3);\n    font-size: 1.5vw;\n    }\n    \n    .LineItem:last-child {\n    border-bottom: .1vmin solid var(--tan-3);\n    }\n    \n    .LineItem .qty {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem .extPrice {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem button {\n    margin: 0;\n    }\n\n    img {\n      width: 100px; \n      height: auto;\n      margin-left: 4rem;\n    }\n\n    .LineItem .order-album {\n      font-size: 1rem;\n    }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"LineItem": `ZeRW57PNaWpYVsw6JlaC`,
 	"qty": `Z_MQzAiRjTlxboCrh9om`,
-	"extPrice": `iZ6oJDRJlBAjRnxPhUy5`
+	"extPrice": `iZ6oJDRJlBAjRnxPhUy5`,
+	"order-album": `g1Sh_jj_VNtrTSSRQ9Hp`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

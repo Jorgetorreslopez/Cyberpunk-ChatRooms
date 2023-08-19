@@ -24,6 +24,7 @@ export default function NewOrderPage({
 	const [searchInput, setSearchInput] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const [chosenAlbum, setChosenAlbum] = useState(null);
+	const [albumPrice, setAlbumPrice] = useState(null);
 
 	// useEffect(function () {
 	//   async function getItems () {
@@ -169,6 +170,12 @@ export default function NewOrderPage({
 	// 	setCart(updatedCart);
 	// }
 
+	async function generateRandomPrice () {
+		const newPrice = (Math.random() * 10 + 20).toFixed(2);
+		setAlbumPrice(newPrice)
+		console.log(albumPrice)
+	  }
+
 	async function handleCheckout() {
 		await ordersAPI.checkout();
 		navigate('/chat');
@@ -192,6 +199,7 @@ export default function NewOrderPage({
 		console.log(updatedCart);
 		const selectedAlbum = searchResults.find((album) => album.id === albumId);
 		setChosenAlbum(selectedAlbum);
+		generateRandomPrice();
   }
 
   async function handleChangeQty(albumId, newQty) {
@@ -226,6 +234,8 @@ export default function NewOrderPage({
 				handleChangeQty={handleChangeQty}
 				handleCheckout={handleCheckout}
 				chosenAlbum={chosenAlbum}
+				albumPrice={albumPrice}
+				setAlbumPrice={setAlbumPrice}
 			/>
 		</main>
 	);
