@@ -500,7 +500,8 @@ function OrderDetail(_ref) {
 
   //console.log(order.lineItems)
 
-  const totalPrice = order.lineItems.reduce((total, item) => total + (item.extPrice + albumPrice), 0);
+  const orderTotalPrice = order.lineItems.reduce((total, item) => total + (parseFloat(item.extPrice) + parseFloat(albumPrice)), 0);
+  // console.log(orderTotalPrice)
   return /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail
   }, /*#__PURE__*/React.createElement("div", {
@@ -519,7 +520,7 @@ function OrderDetail(_ref) {
     disabled: !lineItems.length
   }, "CHECKOUT"), /*#__PURE__*/React.createElement("span", null, order.totalQty), /*#__PURE__*/React.createElement("span", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
-  }, "$", totalPrice.toFixed(2)))) : /*#__PURE__*/React.createElement("div", {
+  }, "$", orderTotalPrice.toFixed(2)))) : /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].hungry
   }, "Don't like music? Try Therapy.")));
 }
@@ -1222,7 +1223,7 @@ function NewOrderPage(_ref) {
     _handleAddAlbumToCart = _asyncToGenerator(function* (albumId) {
       const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.addItemToCart(albumId);
       setCart(updatedCart);
-      console.log(updatedCart);
+      //console.log(updatedCart);
       const selectedAlbum = searchResults.find(album => album.id === albumId);
       setChosenAlbum(selectedAlbum);
       generateRandomPrice();

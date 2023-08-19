@@ -9,12 +9,11 @@ export default function OrderDetail({
 	handleChangeQty,
 	handleCheckout,
 	chosenAlbum,
-  albumPrice,
-  setAlbumPrice
+	albumPrice,
+	setAlbumPrice
 }) {
 	if (!order) return null;
-  console.log(albumPrice)
-
+	console.log(albumPrice);
 
 	const lineItems = order.lineItems.map((item) => (
 		<LineItem
@@ -23,15 +22,18 @@ export default function OrderDetail({
 			handleChangeQty={handleChangeQty}
 			key={item._id}
 			chosenAlbum={chosenAlbum}
-      albumPrice={albumPrice}
+			albumPrice={albumPrice}
 		/>
 	));
 
 	//console.log(order.lineItems)
 
-  const totalPrice = order.lineItems.reduce((total, item) => total + (item.extPrice + albumPrice), 0);
-
-
+	const orderTotalPrice = order.lineItems.reduce(
+		(total, item) =>
+			total + (parseFloat(item.extPrice) + parseFloat(albumPrice)),
+		0
+	);
+	// console.log(orderTotalPrice)
 	return (
 		<div className={styles.OrderDetail}>
 			<div className={styles.sectionHeading}>
@@ -64,7 +66,7 @@ export default function OrderDetail({
 							)}
 							<span>{order.totalQty}</span>
 							<span className={styles.right}>
-								${totalPrice.toFixed(2)}
+								${orderTotalPrice.toFixed(2)}
 							</span>
 						</section>
 					</>
