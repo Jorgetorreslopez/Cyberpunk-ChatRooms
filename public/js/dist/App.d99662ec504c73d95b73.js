@@ -216,32 +216,18 @@ const ChatFooter = _ref => {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 function LineItem(_ref) {
   var _chosenAlbum$images$, _chosenAlbum$artists$;
   let {
     albumPrice,
-    setAlbumPrice,
     lineItem,
     isPaid,
     handleChangeQty,
     chosenAlbum
   } = _ref;
-  //console.log(chosenAlbum)
-  function generateRandomPrice() {
-    return _generateRandomPrice.apply(this, arguments);
-  }
-  function _generateRandomPrice() {
-    _generateRandomPrice = _asyncToGenerator(function* () {
-      const newPrice = (Math.random() * 10 + 20).toFixed(2);
-      setAlbumPrice(newPrice);
-      console.log(albumPrice);
-    });
-    return _generateRandomPrice.apply(this, arguments);
-  }
+  console.log(albumPrice);
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
   }, /*#__PURE__*/React.createElement("div", {
@@ -502,17 +488,19 @@ function OrderDetail(_ref) {
     setAlbumPrice
   } = _ref;
   if (!order) return null;
+  console.log(albumPrice);
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
     isPaid: order.isPaid,
     handleChangeQty: handleChangeQty,
     key: item._id,
     chosenAlbum: chosenAlbum,
-    albumPrice: albumPrice,
-    setAlbumPrice: setAlbumPrice
+    albumPrice: albumPrice
   }));
-  console.log(order.lineItems);
-  const totalPrice = order.lineItems.reduce((total, item) => total + item.extPrice, 0);
+
+  //console.log(order.lineItems)
+
+  const totalPrice = order.lineItems.reduce((total, item) => total + (item.extPrice + albumPrice), 0);
   return /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail
   }, /*#__PURE__*/React.createElement("div", {
@@ -1199,7 +1187,6 @@ function NewOrderPage(_ref) {
     _generateRandomPrice = _asyncToGenerator(function* () {
       const newPrice = (Math.random() * 10 + 20).toFixed(2);
       setAlbumPrice(newPrice);
-      console.log(albumPrice);
     });
     return _generateRandomPrice.apply(this, arguments);
   }

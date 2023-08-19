@@ -173,7 +173,6 @@ export default function NewOrderPage({
 	async function generateRandomPrice () {
 		const newPrice = (Math.random() * 10 + 20).toFixed(2);
 		setAlbumPrice(newPrice)
-		console.log(albumPrice)
 	  }
 
 	async function handleCheckout() {

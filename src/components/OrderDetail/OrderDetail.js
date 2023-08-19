@@ -13,6 +13,7 @@ export default function OrderDetail({
   setAlbumPrice
 }) {
 	if (!order) return null;
+  console.log(albumPrice)
 
 
 	const lineItems = order.lineItems.map((item) => (
@@ -23,12 +24,12 @@ export default function OrderDetail({
 			key={item._id}
 			chosenAlbum={chosenAlbum}
       albumPrice={albumPrice}
-      setAlbumPrice={setAlbumPrice}
 		/>
 	));
 
-	console.log(order.lineItems)
-  const totalPrice = order.lineItems.reduce((total, item) => total + item.extPrice, 0);
+	//console.log(order.lineItems)
+
+  const totalPrice = order.lineItems.reduce((total, item) => total + (item.extPrice + albumPrice), 0);
 
 
 	return (

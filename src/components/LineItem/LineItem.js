@@ -1,14 +1,9 @@
 import styles from './LineItem.module.scss'
 import { useState } from 'react';
 
-export default function LineItem ({ albumPrice, setAlbumPrice, lineItem, isPaid, handleChangeQty, chosenAlbum }) {
-  //console.log(chosenAlbum)
+export default function LineItem ({ albumPrice, lineItem, isPaid, handleChangeQty, chosenAlbum }) {
+  console.log(albumPrice)
 
-  async function generateRandomPrice () {
-    const newPrice = (Math.random() * 10 + 20).toFixed(2);
-    setAlbumPrice(newPrice)
-    console.log(albumPrice)
-  }
 
   return (
     <div className={styles.LineItem}>
