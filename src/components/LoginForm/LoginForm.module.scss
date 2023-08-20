@@ -1,10 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
 .form-container {
-    width: 100%;
-    max-width: 400px;
+    background-color: #000;
+    padding: 2rem;
+    border: 0.5rem solid #ff00ff; /* Red border */
+    border-radius: 1rem;
+    width: 800px;
+    height: 13rem;
     margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: #ff00ff; /* Red text color */
+    text-shadow: 0 0 10px #ff00ff; /* Red text shadow */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Red box shadow */
+    animation: flickerAnimation 1s infinite; /* Retro flicker animation */
 }
+
+@keyframes flickerAnimation {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+  
+
+.cyberpunk {
+    margin-top: 4vmin;
+    color: palevioletred;
+    font-family: 'Press Start 2P', cursive;
+    animation: blinkAnimation 1s infinite;
+    font-size: 3vmin;
+  }
+  
+  @keyframes blinkAnimation {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+  
+  

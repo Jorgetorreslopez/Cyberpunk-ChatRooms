@@ -13,7 +13,7 @@ export default function OrderDetail({
 	setAlbumPrice
 }) {
 	if (!order) return null;
-	console.log(albumPrice);
+	console.log(chosenAlbum);
 
 	const lineItems = order.lineItems.map((item) => (
 		<LineItem

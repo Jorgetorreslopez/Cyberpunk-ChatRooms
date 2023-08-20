@@ -195,9 +195,10 @@ export default function NewOrderPage({
   async function handleAddAlbumToCart(albumId) {
     const updatedCart = await ordersAPI.addItemToCart(albumId);
 		setCart(updatedCart);
-		//console.log(updatedCart);
+		console.log(updatedCart);
 		const selectedAlbum = searchResults.find((album) => album.id === albumId);
 		setChosenAlbum(selectedAlbum);
+		console.log(selectedAlbum);
 		generateRandomPrice();
   }
 

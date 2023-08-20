@@ -227,7 +227,7 @@ function LineItem(_ref) {
     handleChangeQty,
     chosenAlbum
   } = _ref;
-  console.log(albumPrice);
+  console.log(chosenAlbum);
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
   }, /*#__PURE__*/React.createElement("div", {
@@ -336,6 +336,7 @@ function LoginForm(_ref) {
     onChange: handleChange,
     required: true
   }), /*#__PURE__*/React.createElement("button", {
+    className: _LoginForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"]['cyberpunk'],
     type: "submit"
   }, "LOG IN"))), /*#__PURE__*/React.createElement("p", {
     className: "error-message"
@@ -359,7 +360,7 @@ function LoginForm(_ref) {
 function Logo() {
   return /*#__PURE__*/React.createElement("div", {
     className: _Logo_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].Logo
-  }, /*#__PURE__*/React.createElement("div", null, "The"), /*#__PURE__*/React.createElement("div", null, "LoFi"), /*#__PURE__*/React.createElement("div", null, "Desk"));
+  });
 }
 
 /***/ }),
@@ -488,7 +489,7 @@ function OrderDetail(_ref) {
     setAlbumPrice
   } = _ref;
   if (!order) return null;
-  console.log(albumPrice);
+  console.log(chosenAlbum);
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
     isPaid: order.isPaid,
@@ -538,7 +539,8 @@ function OrderDetail(_ref) {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
+/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
+/* harmony import */ var _SignUpForm_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SignUpForm.module.scss */ "./src/components/SignUpForm/SignUpForm.module.scss");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -547,6 +549,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 
 
 class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
@@ -577,7 +580,7 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
           // The promise returned by the signUp service method
           // will resolve to the user object included in the
           // payload of the JSON Web Token (JWT)
-          const user = yield (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_1__.signUp)(formData);
+          const user = yield (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_2__.signUp)(formData);
           // Baby step
           _this.props.setUser(user);
         } catch (_unused) {
@@ -598,7 +601,7 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   render() {
     const disable = this.state.password !== this.state.confirm;
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      className: "form-container"
+      className: _SignUpForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"]['form-container']
     }, /*#__PURE__*/React.createElement("form", {
       autoComplete: "off",
       onSubmit: this.handleSubmit
@@ -627,6 +630,7 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       onChange: this.handleChange,
       required: true
     }), /*#__PURE__*/React.createElement("button", {
+      className: _SignUpForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"]['cyberpunk'],
       type: "submit",
       disabled: disable
     }, "SIGN UP"))), /*#__PURE__*/React.createElement("p", {
@@ -671,7 +675,7 @@ const SpotifyPlayback = _ref => {
       });
     };
   }, [accessToken]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "here is playback controls");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "What Is said here stays,");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SpotifyPlayback);
 
@@ -1223,9 +1227,10 @@ function NewOrderPage(_ref) {
     _handleAddAlbumToCart = _asyncToGenerator(function* (albumId) {
       const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.addItemToCart(albumId);
       setCart(updatedCart);
-      //console.log(updatedCart);
+      console.log(updatedCart);
       const selectedAlbum = searchResults.find(album => album.id === albumId);
       setChosenAlbum(selectedAlbum);
+      console.log(selectedAlbum);
       generateRandomPrice();
     });
     return _handleAddAlbumToCart.apply(this, arguments);
@@ -1616,20 +1621,56 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.R7bwe71MX7h3F_WYpeAF {
-  width: 100%;
-  max-width: 400px;
+  background-color: #000;
+  padding: 2rem;
+  border: 0.5rem solid #ff00ff; /* Red border */
+  border-radius: 1rem;
+  width: 800px;
+  height: 13rem;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}`, "",{"version":3,"sources":["webpack://./src/components/LoginForm/LoginForm.module.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,gBAAA;EACA,cAAA;EACA,aAAA;EACA,sBAAA;EACA,kBAAA;EACA,sBAAA;EACA,uCAAA;AACJ","sourcesContent":[".form-container {\n    width: 100%;\n    max-width: 400px;\n    margin: 0 auto;\n    padding: 20px;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n    background-color: #fff;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);\n}"],"sourceRoot":""}]);
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.5rem;
+  color: #ff00ff; /* Red text color */
+  text-shadow: 0 0 10px #ff00ff; /* Red text shadow */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Red box shadow */
+  animation: diQzJ_jHtALkLpH9rS0s 1s infinite; /* Retro flicker animation */
+}
+
+@keyframes diQzJ_jHtALkLpH9rS0s {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+.MdDHeYdNy7ZawuHu_OwL {
+  margin-top: 4vmin;
+  color: palevioletred;
+  font-family: "Press Start 2P", cursive;
+  animation: LGPtQZ4OZNpLGU4Hj6Y0 1s infinite;
+  font-size: 3vmin;
+}
+
+@keyframes LGPtQZ4OZNpLGU4Hj6Y0 {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}`, "",{"version":3,"sources":["webpack://./src/components/LoginForm/LoginForm.module.scss"],"names":[],"mappings":"AAGA;EACI,sBAAA;EACA,aAAA;EACA,4BAAA,EAAA,eAAA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,cAAA;EACA,mBAAA;EACA,kBAAA;EACA,sCAAA;EACA,iBAAA;EACA,cAAA,EAAA,mBAAA;EACA,6BAAA,EAAA,oBAAA;EACA,yCAAA,EAAA,mBAAA;EACA,2CAAA,EAAA,4BAAA;AADJ;;AAIA;EACI;IACI,UAAA;EADN;EAGE;IACI,YAAA;EADN;AACF;AAKA;EACI,iBAAA;EACA,oBAAA;EACA,sCAAA;EACA,2CAAA;EACA,gBAAA;AAHJ;;AAME;EACE;IACI,UAAA;EAHN;EAKE;IACI,YAAA;EAHN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n\n.form-container {\n    background-color: #000;\n    padding: 2rem;\n    border: 0.5rem solid #ff00ff; /* Red border */\n    border-radius: 1rem;\n    width: 800px;\n    height: 13rem;\n    margin: 0 auto;\n    margin-bottom: 40px;\n    text-align: center;\n    font-family: 'Press Start 2P', cursive;\n    font-size: 1.5rem;\n    color: #ff00ff; /* Red text color */\n    text-shadow: 0 0 10px #ff00ff; /* Red text shadow */\n    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Red box shadow */\n    animation: flickerAnimation 1s infinite; /* Retro flicker animation */\n}\n\n@keyframes flickerAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.8;\n    }\n}\n  \n\n.cyberpunk {\n    margin-top: 4vmin;\n    color: palevioletred;\n    font-family: 'Press Start 2P', cursive;\n    animation: blinkAnimation 1s infinite;\n    font-size: 3vmin;\n  }\n  \n  @keyframes blinkAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.5;\n    }\n}\n  \n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"form-container": `R7bwe71MX7h3F_WYpeAF`
+	"form-container": `R7bwe71MX7h3F_WYpeAF`,
+	"flickerAnimation": `diQzJ_jHtALkLpH9rS0s`,
+	"cyberpunk": `MdDHeYdNy7ZawuHu_OwL`,
+	"blinkAnimation": `LGPtQZ4OZNpLGU4Hj6Y0`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1653,23 +1694,37 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.EDeinQzfS2N2rVW_Z1GP {
-  height: 12vmin;
-  width: 12vmin;
+  height: 19vmin;
+  width: 20vmin;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  background-color: var(--orange);
-  color: var(--tan-1);
+  background-image: url("https://i.imgur.com/rq9Mvac.gif");
+  background-size: cover;
+  font-family: "Press Start 2P", sans-serif;
   font-size: 2.7vmin;
-  border: 0.6vmin solid var(--tan-2);
-}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACI,cAAA;EACA,aAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,kBAAA;EACA,+BAAA;EACA,mBAAA;EACA,kBAAA;EACA,kCAAA;AACJ","sourcesContent":[".Logo {\n    height: 12vmin;\n    width: 12vmin;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    border-radius: 50%;\n    background-color: var(--orange);\n    color: var(--tan-1);\n    font-size: 2.7vmin;\n    border: .6vmin solid var(--tan-2);\n    }"],"sourceRoot":""}]);
+  border: 0.6vmin solid #ff00ff;
+  animation: NdNKVc2womiY6ltmkOPy 2s infinite alternate;
+}
+
+@keyframes NdNKVc2womiY6ltmkOPy {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAGA;EACI,cAAA;EACA,aAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,wDAAA;EACA,sBAAA;EACA,yCAAA;EACA,kBAAA;EACA,6BAAA;EACA,qDAAA;AADJ;;AAIA;EACI;IACI,mBAAA;IACA,YAAA;EADN;EAGE;IACI,qBAAA;IACA,UAAA;EADN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n\n.Logo {\n    height: 19vmin;\n    width: 20vmin;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    background-image: url('https://i.imgur.com/rq9Mvac.gif'); \n    background-size: cover;\n    font-family: 'Press Start 2P', sans-serif;\n    font-size: 2.7vmin;\n    border: 0.6vmin solid #ff00ff;\n    animation: pulseAnimation 2s infinite alternate;\n}\n\n@keyframes pulseAnimation {\n    0% {\n        transform: scale(1);\n        opacity: 0.8;\n    }\n    100% {\n        transform: scale(1.1);\n        opacity: 1;\n    }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"Logo": `EDeinQzfS2N2rVW_Z1GP`
+	"Logo": `EDeinQzfS2N2rVW_Z1GP`,
+	"pulseAnimation": `NdNKVc2womiY6ltmkOPy`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1695,7 +1750,6 @@ ___CSS_LOADER_EXPORT___.locals = {
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
-  background-color: var(--tan-1);
   border: 0.1vmin solid var(--tan-3);
   border-radius: 2vmin;
   margin: 3vmin 0;
@@ -1729,7 +1783,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 0.8rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAAA;EACI,8BAAA;EACA,kCAAA;EACA,oBAAA;EACA,eAAA;EACA,cAAA;EACA,kBAAA;AACJ;;AAEA;EACI,aAAA;EACA,mBAAA;EACA,mBAAA;AACJ;AACI;EACE,YAAA;EACA,YAAA;EACA,kBAAA;AACN;AAGM;EACE,SAAA;EACA,eAAA;AADR;AAIM;EACE,SAAA;EACA,iBAAA;EACA,WAAA;AAFR;AAKM;EACE,yBAAA;EACA,YAAA;EACA,YAAA;EACA,oBAAA;EACA,eAAA;EACA,iBAAA;AAHR","sourcesContent":[".MenuList {\n    background-color: var(--tan-1);\n    border: .1vmin solid var(--tan-3);\n    border-radius: 2vmin;\n    margin: 3vmin 0;\n    padding: 3vmin;\n    overflow-y: scroll;\n    }\n\n.Album {\n    display: flex;\n    align-items: center;\n    margin-bottom: 1rem;\n  \n    .AlbumArtwork {\n      width: 100px; \n      height: auto;\n      margin-right: 1rem;\n    }\n  \n    .AlbumDetails {\n      h3 {\n        margin: 0;\n        font-size: 1rem;\n      }\n  \n      p {\n        margin: 0;\n        font-size: 0.8rem;\n        color: #888;\n      }\n  \n      button {\n        background-color: #007bff;\n        color: white;\n        border: none;\n        padding: 0.5rem 1rem;\n        cursor: pointer;\n        font-size: 0.8rem;\n      }\n    }\n  }\n  \n  "],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAAA;EACI,kCAAA;EACA,oBAAA;EACA,eAAA;EACA,cAAA;EACA,kBAAA;AACJ;;AAEA;EACI,aAAA;EACA,mBAAA;EACA,mBAAA;AACJ;AACI;EACE,YAAA;EACA,YAAA;EACA,kBAAA;AACN;AAGM;EACE,SAAA;EACA,eAAA;AADR;AAIM;EACE,SAAA;EACA,iBAAA;EACA,WAAA;AAFR;AAKM;EACE,yBAAA;EACA,YAAA;EACA,YAAA;EACA,oBAAA;EACA,eAAA;EACA,iBAAA;AAHR","sourcesContent":[".MenuList {\n    border: .1vmin solid var(--tan-3);\n    border-radius: 2vmin;\n    margin: 3vmin 0;\n    padding: 3vmin;\n    overflow-y: scroll;\n    }\n\n.Album {\n    display: flex;\n    align-items: center;\n    margin-bottom: 1rem;\n  \n    .AlbumArtwork {\n      width: 100px; \n      height: auto;\n      margin-right: 1rem;\n    }\n  \n    .AlbumDetails {\n      h3 {\n        margin: 0;\n        font-size: 1rem;\n      }\n  \n      p {\n        margin: 0;\n        font-size: 0.8rem;\n        color: #888;\n      }\n  \n      button {\n        background-color: #007bff;\n        color: white;\n        border: none;\n        padding: 0.5rem 1rem;\n        cursor: pointer;\n        font-size: 0.8rem;\n      }\n    }\n  }\n  \n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuList": `eBz5FvD9TgyIgfFi1MdG`,
@@ -1890,6 +1944,79 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/SignUpForm/SignUpForm.module.scss":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/SignUpForm/SignUpForm.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.KZB1FmPM2HSb6cQYM8ki {
+  background-color: #000;
+  padding: 2rem;
+  border: 0.5rem solid #ff00ff; /* Red border */
+  border-radius: 1rem;
+  width: 800px;
+  height: 19rem;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.5rem;
+  color: #ff00ff; /* Red text color */
+  text-shadow: 0 0 10px #ff00ff; /* Red text shadow */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Red box shadow */
+  animation: JdPp63nv2QLnGx7tWwSQ 1s infinite; /* Retro flicker animation */
+}
+
+@keyframes JdPp63nv2QLnGx7tWwSQ {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+.czIdtRfxt2ZJdHAwnzuV {
+  margin-top: 4vmin;
+  color: palevioletred;
+  font-family: "Press Start 2P", cursive;
+  animation: RDqiY0wllARISbwmGdkA 1s infinite;
+  font-size: 3vmin;
+}
+
+@keyframes RDqiY0wllARISbwmGdkA {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}`, "",{"version":3,"sources":["webpack://./src/components/SignUpForm/SignUpForm.module.scss"],"names":[],"mappings":"AAGA;EACI,sBAAA;EACA,aAAA;EACA,4BAAA,EAAA,eAAA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,cAAA;EACA,mBAAA;EACA,kBAAA;EACA,sCAAA;EACA,iBAAA;EACA,cAAA,EAAA,mBAAA;EACA,6BAAA,EAAA,oBAAA;EACA,yCAAA,EAAA,mBAAA;EACA,2CAAA,EAAA,4BAAA;AADJ;;AAIA;EACI;IACI,UAAA;EADN;EAGE;IACI,YAAA;EADN;AACF;AAKA;EACI,iBAAA;EACA,oBAAA;EACA,sCAAA;EACA,2CAAA;EACA,gBAAA;AAHJ;;AAME;EACE;IACI,UAAA;EAHN;EAKE;IACI,YAAA;EAHN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n\n.form-container {\n    background-color: #000;\n    padding: 2rem;\n    border: 0.5rem solid #ff00ff; /* Red border */\n    border-radius: 1rem;\n    width: 800px;\n    height: 19rem;\n    margin: 0 auto;\n    margin-bottom: 40px;\n    text-align: center;\n    font-family: 'Press Start 2P', cursive;\n    font-size: 1.5rem;\n    color: #ff00ff; /* Red text color */\n    text-shadow: 0 0 10px #ff00ff; /* Red text shadow */\n    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Red box shadow */\n    animation: flickerAnimation 1s infinite; /* Retro flicker animation */\n}\n\n@keyframes flickerAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.8;\n    }\n}\n  \n\n.cyberpunk {\n    margin-top: 4vmin;\n    color: palevioletred;\n    font-family: 'Press Start 2P', cursive;\n    animation: blinkAnimation 1s infinite;\n    font-size: 3vmin;\n  }\n  \n  @keyframes blinkAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.5;\n    }\n}"],"sourceRoot":""}]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"form-container": `KZB1FmPM2HSb6cQYM8ki`,
+	"flickerAnimation": `JdPp63nv2QLnGx7tWwSQ`,
+	"cyberpunk": `czIdtRfxt2ZJdHAwnzuV`,
+	"blinkAnimation": `RDqiY0wllARISbwmGdkA`
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/UserLogOut/UserLogOut.module.scss":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/UserLogOut/UserLogOut.module.scss ***!
@@ -1974,25 +2101,37 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.RygkJgZmBHTETlLP3C3i {
   height: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: var(--white);
   border-radius: 2vmin;
 }
 
+@keyframes hPLnE5LEow06jQtX4g_y {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
 .RygkJgZmBHTETlLP3C3i h3 {
   margin-top: 4vmin;
   text-align: center;
-  color: var(--text-light);
+  color: palevioletred;
   cursor: pointer;
-}`, "",{"version":3,"sources":["webpack://./src/pages/AuthPage/AuthPage.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,8BAAA;EACA,oBAAA;AACJ;;AAEE;EACE,iBAAA;EACA,kBAAA;EACA,wBAAA;EACA,eAAA;AACJ","sourcesContent":[".AuthPage {\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    background-color: var(--white);\n    border-radius: 2vmin;\n  }\n  \n  .AuthPage h3 {\n    margin-top: 4vmin;\n    text-align: center;\n    color: var(--text-light);\n    cursor: pointer;\n  }"],"sourceRoot":""}]);
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 3vmin;
+  animation: hPLnE5LEow06jQtX4g_y 1s infinite;
+}`, "",{"version":3,"sources":["webpack://./src/pages/AuthPage/AuthPage.module.scss"],"names":[],"mappings":"AAEA;EACI,YAAA;EACA,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,oBAAA;AAAJ;;AAGE;EACE;IACI,UAAA;EAAN;EAEE;IACI,YAAA;EAAN;AACF;AAGA;EACI,iBAAA;EACA,kBAAA;EACA,oBAAA;EACA,eAAA;EACA,yCAAA;EACA,gBAAA;EACA,2CAAA;AADJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.AuthPage {\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    border-radius: 2vmin;\n  }\n  \n  @keyframes blinkAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.5;\n    }\n}\n\n.AuthPage h3 {\n    margin-top: 4vmin;\n    text-align: center;\n    color: palevioletred;\n    cursor: pointer;\n    font-family: 'Press Start 2P', sans-serif;\n    font-size: 3vmin;\n    animation: blinkAnimation 1s infinite;\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"AuthPage": `RygkJgZmBHTETlLP3C3i`
+	"AuthPage": `RygkJgZmBHTETlLP3C3i`,
+	"blinkAnimation": `hPLnE5LEow06jQtX4g_y`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2064,7 +2203,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
   display: grid;
   grid-template-columns: 1.6fr 3.5fr 3fr;
   grid-template-rows: 1fr;
-  background-color: var(--white);
+  background-color: rgb(255, 255, 255);
   border-radius: 2vmin;
 }
 
@@ -2074,7 +2213,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
   justify-content: space-between;
   align-items: center;
   margin: 3vmin 2vmin;
-}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,aAAA;EACA,sCAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,mBAAA;EACA,mBAAA;AACF","sourcesContent":[".NewOrderPage {\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1.6fr 3.5fr 3fr;\n  grid-template-rows: 1fr;\n  background-color: var(--white);\n  border-radius: 2vmin;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: center;\n  margin: 3vmin 2vmin;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,aAAA;EACA,sCAAA;EACA,uBAAA;EACA,oCAAA;EACA,oBAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,mBAAA;EACA,mBAAA;AACF","sourcesContent":[".NewOrderPage {\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1.6fr 3.5fr 3fr;\n  grid-template-rows: 1fr;\n  background-color: rgba(255, 255, 255, 20);;\n  border-radius: 2vmin;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: center;\n  margin: 3vmin 2vmin;\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"NewOrderPage": `RZqTJBeYN7RXwcHgPFys`
@@ -2451,6 +2590,59 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./src/components/SignUpForm/SignUpForm.module.scss":
+/*!**********************************************************!*\
+  !*** ./src/components/SignUpForm/SignUpForm.module.scss ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_SignUpForm_module_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../../../node_modules/sass-loader/dist/cjs.js!../../../node_modules/postcss-loader/dist/cjs.js!./SignUpForm.module.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/SignUpForm/SignUpForm.module.scss");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_SignUpForm_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_SignUpForm_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_SignUpForm_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_SignUpForm_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),

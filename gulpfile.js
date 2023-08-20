@@ -43,28 +43,28 @@ gulp.task('default', (cb) => {
 	 env: { NODE_ENV: 'development' }
   })
   // SERVE  FRONT END WITH PROXY TO BACKEND
-  browserSync.init({
-	 proxy: {
-		 target: 'http://localhost:8000',
-		 ws: true
-	 },
-	 serveStatic: ['./public']
-  })
+  // browserSync.init({
+	//  proxy: {
+	// 	 target: 'http://localhost:8000',
+	// 	 ws: true
+	//  },
+	//  serveStatic: ['./public']
+  // })
   // SET UP WATCJERS TO LISTEN TO CHANGES IN FILES
   gulp.watch('./src/scss/**/*', gulp.task('styles'))
   gulp.watch('./src/components/**/*', gulp.task('webpack'))
   gulp.watch('./src/**/*.js', gulp.task('webpack'))
   gulp.watch('./src/*', gulp.task('webpack'))
   // LISTEN FOR WHEN TO RELOAD PAGES
-  gulp
-    .watch([
-      './public/**/*',
-      './public/*',
-      './public/js/**/.#*js',
-      './public/css/**/.#*css',
-      './src/**/*'
-    ])
-    .on('change', reload)
+  // gulp
+  //   .watch([
+  //     './public/**/*',
+  //     './public/*',
+  //     './public/js/**/.#*js',
+  //     './public/css/**/.#*css',
+  //     './src/**/*'
+  //   ])
+  //   .on('change', reload)
   cb()
 })
 
@@ -83,7 +83,7 @@ gulp.task('styles', (cb) => {
       })
     )
     .pipe(gulp.dest('./public/css'))
-    .pipe(browserSync.stream())
+    // .pipe(browserSync.stream())
   cb()
 })
 

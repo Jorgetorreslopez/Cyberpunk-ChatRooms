@@ -24,9 +24,9 @@ const logger = require('morgan')
 
 /* Middleware */
 app.use(express.json())
-if (process.env.NODE_ENV !== 'development') {
-  app.use(express.static('public'))
-}
+
+app.use(express.static('public'))
+
 
 app.use((req, res, next) => {
   res.locals.data = {}

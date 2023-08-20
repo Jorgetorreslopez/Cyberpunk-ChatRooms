@@ -1,15 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .AuthPage {
     height: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--white);
     border-radius: 2vmin;
   }
   
-  .AuthPage h3 {
+  @keyframes blinkAnimation {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.AuthPage h3 {
     margin-top: 4vmin;
     text-align: center;
-    color: var(--text-light);
+    color: palevioletred;
     cursor: pointer;
-  }
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 3vmin;
+    animation: blinkAnimation 1s infinite;
+}

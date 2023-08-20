@@ -2,7 +2,7 @@ import styles from './LineItem.module.scss'
 import { useState } from 'react';
 
 export default function LineItem ({ albumPrice, lineItem, isPaid, handleChangeQty, chosenAlbum }) {
-  console.log(albumPrice)
+  console.log(chosenAlbum)
 
 
   return (
