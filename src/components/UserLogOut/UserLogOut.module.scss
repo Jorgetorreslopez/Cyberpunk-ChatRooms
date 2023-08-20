@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .UserLogOut {
     font-size: 1.5vmin;
-    color: var(--text-light);
+    color: #ff00ff;
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
     }
     
     .UserLogOut .email {
       font-size: smaller;
+      font-family: 'Press Start 2P', cursive;
     }

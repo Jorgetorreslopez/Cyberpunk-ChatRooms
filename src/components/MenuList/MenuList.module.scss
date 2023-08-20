@@ -1,15 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .MenuList {
-    border: .1vmin solid var(--tan-3);
+    border: .1vmin solid;
     border-radius: 2vmin;
     margin: 3vmin 0;
     padding: 3vmin;
-    overflow-y: scroll;
     }
+
+.Search{
+  font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: rgb(220, 102, 169);
+}   
 
 .Album {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    color: palevioletred;
   
     .AlbumArtwork {
       width: 100px; 
@@ -21,6 +29,8 @@
       h3 {
         margin: 0;
         font-size: 1rem;
+        font-family: 'Press Start 2P', sans-serif
+
       }
   
       p {
@@ -30,7 +40,7 @@
       }
   
       button {
-        background-color: #007bff;
+        background-color: palevioletred;
         color: white;
         border: none;
         padding: 0.5rem 1rem;

@@ -1626,7 +1626,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.c
 ___CSS_LOADER_EXPORT___.push([module.id, `.R7bwe71MX7h3F_WYpeAF {
   background-color: #000;
   padding: 2rem;
-  border: 0.5rem solid #ff00ff; /* Red border */
+  border: 0.5rem solid #ff00ff;
   border-radius: 1rem;
   width: 800px;
   height: 13rem;
@@ -1635,10 +1635,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.R7bwe71MX7h3F_WYpeAF {
   text-align: center;
   font-family: "Press Start 2P", cursive;
   font-size: 1.5rem;
-  color: #ff00ff; /* Red text color */
-  text-shadow: 0 0 10px #ff00ff; /* Red text shadow */
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Red box shadow */
-  animation: diQzJ_jHtALkLpH9rS0s 1s infinite; /* Retro flicker animation */
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  animation: diQzJ_jHtALkLpH9rS0s 1s infinite;
 }
 
 @keyframes diQzJ_jHtALkLpH9rS0s {
@@ -1664,7 +1664,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.R7bwe71MX7h3F_WYpeAF {
   50% {
     opacity: 0.5;
   }
-}`, "",{"version":3,"sources":["webpack://./src/components/LoginForm/LoginForm.module.scss"],"names":[],"mappings":"AAGA;EACI,sBAAA;EACA,aAAA;EACA,4BAAA,EAAA,eAAA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,cAAA;EACA,mBAAA;EACA,kBAAA;EACA,sCAAA;EACA,iBAAA;EACA,cAAA,EAAA,mBAAA;EACA,6BAAA,EAAA,oBAAA;EACA,yCAAA,EAAA,mBAAA;EACA,2CAAA,EAAA,4BAAA;AADJ;;AAIA;EACI;IACI,UAAA;EADN;EAGE;IACI,YAAA;EADN;AACF;AAKA;EACI,iBAAA;EACA,oBAAA;EACA,sCAAA;EACA,2CAAA;EACA,gBAAA;AAHJ;;AAME;EACE;IACI,UAAA;EAHN;EAKE;IACI,YAAA;EAHN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n\n.form-container {\n    background-color: #000;\n    padding: 2rem;\n    border: 0.5rem solid #ff00ff; /* Red border */\n    border-radius: 1rem;\n    width: 800px;\n    height: 13rem;\n    margin: 0 auto;\n    margin-bottom: 40px;\n    text-align: center;\n    font-family: 'Press Start 2P', cursive;\n    font-size: 1.5rem;\n    color: #ff00ff; /* Red text color */\n    text-shadow: 0 0 10px #ff00ff; /* Red text shadow */\n    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Red box shadow */\n    animation: flickerAnimation 1s infinite; /* Retro flicker animation */\n}\n\n@keyframes flickerAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.8;\n    }\n}\n  \n\n.cyberpunk {\n    margin-top: 4vmin;\n    color: palevioletred;\n    font-family: 'Press Start 2P', cursive;\n    animation: blinkAnimation 1s infinite;\n    font-size: 3vmin;\n  }\n  \n  @keyframes blinkAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.5;\n    }\n}\n  \n  "],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/LoginForm/LoginForm.module.scss"],"names":[],"mappings":"AAGA;EACI,sBAAA;EACA,aAAA;EACA,4BAAA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,cAAA;EACA,mBAAA;EACA,kBAAA;EACA,sCAAA;EACA,iBAAA;EACA,cAAA;EACA,6BAAA;EACA,yCAAA;EACA,2CAAA;AADJ;;AAIA;EACI;IACI,UAAA;EADN;EAGE;IACI,YAAA;EADN;AACF;AAKA;EACI,iBAAA;EACA,oBAAA;EACA,sCAAA;EACA,2CAAA;EACA,gBAAA;AAHJ;;AAME;EACE;IACI,UAAA;EAHN;EAKE;IACI,YAAA;EAHN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n\n.form-container {\n    background-color: #000;\n    padding: 2rem;\n    border: 0.5rem solid #ff00ff;\n    border-radius: 1rem;\n    width: 800px;\n    height: 13rem;\n    margin: 0 auto;\n    margin-bottom: 40px;\n    text-align: center;\n    font-family: 'Press Start 2P', cursive;\n    font-size: 1.5rem;\n    color: #ff00ff;\n    text-shadow: 0 0 10px #ff00ff;\n    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); \n    animation: flickerAnimation 1s infinite; \n}\n\n@keyframes flickerAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.8;\n    }\n}\n  \n\n.cyberpunk {\n    margin-top: 4vmin;\n    color: palevioletred;\n    font-family: 'Press Start 2P', cursive;\n    animation: blinkAnimation 1s infinite;\n    font-size: 3vmin;\n  }\n  \n  @keyframes blinkAnimation {\n    0%, 100% {\n        opacity: 1;\n    }\n    50% {\n        opacity: 0.5;\n    }\n}\n  \n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"form-container": `R7bwe71MX7h3F_WYpeAF`,
@@ -1748,19 +1748,26 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
-  border: 0.1vmin solid var(--tan-3);
+  border: 0.1vmin solid;
   border-radius: 2vmin;
   margin: 3vmin 0;
   padding: 3vmin;
-  overflow-y: scroll;
+}
+
+.Nl7mvVAIdJYZXn7q79Dn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.5rem;
+  color: rgb(220, 102, 169);
 }
 
 .nKWST0w0D1OqEOjMNECy {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  color: palevioletred;
 }
 .nKWST0w0D1OqEOjMNECy .rnWrO3MEn0dmRodfHogh {
   width: 100px;
@@ -1770,6 +1777,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
 .nKWST0w0D1OqEOjMNECy .PcMrxtzQ3rs49K5pXfCu h3 {
   margin: 0;
   font-size: 1rem;
+  font-family: "Press Start 2P", sans-serif;
 }
 .nKWST0w0D1OqEOjMNECy .PcMrxtzQ3rs49K5pXfCu p {
   margin: 0;
@@ -1777,16 +1785,17 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
   color: #888;
 }
 .nKWST0w0D1OqEOjMNECy .PcMrxtzQ3rs49K5pXfCu button {
-  background-color: #007bff;
+  background-color: palevioletred;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 0.8rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAAA;EACI,kCAAA;EACA,oBAAA;EACA,eAAA;EACA,cAAA;EACA,kBAAA;AACJ;;AAEA;EACI,aAAA;EACA,mBAAA;EACA,mBAAA;AACJ;AACI;EACE,YAAA;EACA,YAAA;EACA,kBAAA;AACN;AAGM;EACE,SAAA;EACA,eAAA;AADR;AAIM;EACE,SAAA;EACA,iBAAA;EACA,WAAA;AAFR;AAKM;EACE,yBAAA;EACA,YAAA;EACA,YAAA;EACA,oBAAA;EACA,eAAA;EACA,iBAAA;AAHR","sourcesContent":[".MenuList {\n    border: .1vmin solid var(--tan-3);\n    border-radius: 2vmin;\n    margin: 3vmin 0;\n    padding: 3vmin;\n    overflow-y: scroll;\n    }\n\n.Album {\n    display: flex;\n    align-items: center;\n    margin-bottom: 1rem;\n  \n    .AlbumArtwork {\n      width: 100px; \n      height: auto;\n      margin-right: 1rem;\n    }\n  \n    .AlbumDetails {\n      h3 {\n        margin: 0;\n        font-size: 1rem;\n      }\n  \n      p {\n        margin: 0;\n        font-size: 0.8rem;\n        color: #888;\n      }\n  \n      button {\n        background-color: #007bff;\n        color: white;\n        border: none;\n        padding: 0.5rem 1rem;\n        cursor: pointer;\n        font-size: 0.8rem;\n      }\n    }\n  }\n  \n  "],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAEA;EACI,qBAAA;EACA,oBAAA;EACA,eAAA;EACA,cAAA;AAAJ;;AAGA;EACE,sCAAA;EACE,iBAAA;EACA,yBAAA;AAAJ;;AAGA;EACI,aAAA;EACA,mBAAA;EACA,mBAAA;EACA,oBAAA;AAAJ;AAEI;EACE,YAAA;EACA,YAAA;EACA,kBAAA;AAAN;AAIM;EACE,SAAA;EACA,eAAA;EACA,yCAAA;AAFR;AAMM;EACE,SAAA;EACA,iBAAA;EACA,WAAA;AAJR;AAOM;EACE,+BAAA;EACA,YAAA;EACA,YAAA;EACA,oBAAA;EACA,eAAA;EACA,iBAAA;AALR","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.MenuList {\n    border: .1vmin solid;\n    border-radius: 2vmin;\n    margin: 3vmin 0;\n    padding: 3vmin;\n    }\n\n.Search{\n  font-family: 'Press Start 2P', cursive;\n    font-size: 1.5rem;\n    color: rgb(220, 102, 169);\n}   \n\n.Album {\n    display: flex;\n    align-items: center;\n    margin-bottom: 1rem;\n    color: palevioletred;\n  \n    .AlbumArtwork {\n      width: 100px; \n      height: auto;\n      margin-right: 1rem;\n    }\n  \n    .AlbumDetails {\n      h3 {\n        margin: 0;\n        font-size: 1rem;\n        font-family: 'Press Start 2P', sans-serif\n\n      }\n  \n      p {\n        margin: 0;\n        font-size: 0.8rem;\n        color: #888;\n      }\n  \n      button {\n        background-color: palevioletred;\n        color: white;\n        border: none;\n        padding: 0.5rem 1rem;\n        cursor: pointer;\n        font-size: 0.8rem;\n      }\n    }\n  }\n  \n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuList": `eBz5FvD9TgyIgfFi1MdG`,
+	"Search": `Nl7mvVAIdJYZXn7q79Dn`,
 	"Album": `nKWST0w0D1OqEOjMNECy`,
 	"AlbumArtwork": `rnWrO3MEn0dmRodfHogh`,
 	"AlbumDetails": `PcMrxtzQ3rs49K5pXfCu`
@@ -1813,6 +1822,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.X4tFBfG4MKknHvd01CKE {
   width: 100%;
@@ -1823,9 +1833,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.X4tFBfG4MKknHvd01CKE {
   padding: 2vmin;
   color: var(--text-light);
   background-color: var(--white);
-  border: 0.1vmin solid var(--tan-3);
+  border: 0.5rem solid #ff00ff;
   border-radius: 1vmin;
   font-size: 4vmin;
+  font-family: "Press Start 2P", sans-serif;
 }
 
 .X4tFBfG4MKknHvd01CKE .GqkE12RHPdZZg1360W4p {
@@ -1852,7 +1863,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.X4tFBfG4MKknHvd01CKE {
   font-size: 2vw;
   text-align: center;
   color: var(--text-light);
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuListItem/MenuListItem.module.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,oBAAA;EACA,cAAA;EACA,wBAAA;EACA,8BAAA;EACA,kCAAA;EACA,oBAAA;EACA,gBAAA;AACJ;;AAEE;EACE,WAAA;EACA,UAAA;EACA,cAAA;EACA,8BAAA;EACA,kCAAA;EACA,oBAAA;AACJ;;AAEE;EACE,aAAA;EACA,sBAAA;AACJ;;AAEE;EACE,gBAAA;EACA,kBAAA;EACA,wBAAA;AACJ;;AAEE;EACE,cAAA;EACA,kBAAA;EACA,wBAAA;AACJ","sourcesContent":[".MenuListItem {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 3vmin;\n    padding: 2vmin;\n    color: var(--text-light);\n    background-color: var(--white);\n    border: .1vmin solid var(--tan-3);\n    border-radius: 1vmin;\n    font-size: 4vmin;\n  }\n  \n  .MenuListItem .emoji {\n    height: 8vw;\n    width: 8vw;\n    font-size: 4vw;\n    background-color: var(--tan-1);\n    border: .1vmin solid var(--tan-3);\n    border-radius: 1vmin;\n  }\n  \n  .MenuListItem .buy {\n    display: flex;\n    flex-direction: column;\n  }\n  \n  .MenuListItem .buy span {\n    font-size: 1.7vw;\n    text-align: center;\n    color: var(--text-light);\n  }\n  \n  .MenuListItem .name {\n    font-size: 2vw;\n    text-align: center;\n    color: var(--text-light);\n  }"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuListItem/MenuListItem.module.scss"],"names":[],"mappings":"AAEA;EACI,WAAA;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,oBAAA;EACA,cAAA;EACA,wBAAA;EACA,8BAAA;EACA,4BAAA;EACA,oBAAA;EACA,gBAAA;EACA,yCAAA;AAAJ;;AAGE;EACE,WAAA;EACA,UAAA;EACA,cAAA;EACA,8BAAA;EACA,kCAAA;EACA,oBAAA;AAAJ;;AAGE;EACE,aAAA;EACA,sBAAA;AAAJ;;AAGE;EACE,gBAAA;EACA,kBAAA;EACA,wBAAA;AAAJ;;AAGE;EACE,cAAA;EACA,kBAAA;EACA,wBAAA;AAAJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.MenuListItem {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 3vmin;\n    padding: 2vmin;\n    color: var(--text-light);\n    background-color: var(--white);\n    border: 0.5rem solid #ff00ff;\n    border-radius: 1vmin;\n    font-size: 4vmin;\n    font-family: 'Press Start 2P', sans-serif;\n  }\n  \n  .MenuListItem .emoji {\n    height: 8vw;\n    width: 8vw;\n    font-size: 4vw;\n    background-color: var(--tan-1);\n    border: .1vmin solid var(--tan-3);\n    border-radius: 1vmin;\n  }\n  \n  .MenuListItem .buy {\n    display: flex;\n    flex-direction: column;\n  }\n  \n  .MenuListItem .buy span {\n    font-size: 1.7vw;\n    text-align: center;\n    color: var(--text-light);\n  }\n  \n  .MenuListItem .name {\n    font-size: 2vw;\n    text-align: center;\n    color: var(--text-light);\n  }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuListItem": `X4tFBfG4MKknHvd01CKE`,
@@ -2034,16 +2045,19 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.x80Y_LltA5PliUAZlphe {
   font-size: 1.5vmin;
-  color: var(--text-light);
+  color: #ff00ff;
   text-align: center;
+  font-family: "Press Start 2P", cursive;
 }
 
 .x80Y_LltA5PliUAZlphe .qHiYGQB1ZEMvrGOQoBrO {
   font-size: smaller;
-}`, "",{"version":3,"sources":["webpack://./src/components/UserLogOut/UserLogOut.module.scss"],"names":[],"mappings":"AAAA;EACI,kBAAA;EACA,wBAAA;EACA,kBAAA;AACJ;;AAEI;EACE,kBAAA;AACN","sourcesContent":[".UserLogOut {\n    font-size: 1.5vmin;\n    color: var(--text-light);\n    text-align: center;\n    }\n    \n    .UserLogOut .email {\n      font-size: smaller;\n    }"],"sourceRoot":""}]);
+  font-family: "Press Start 2P", cursive;
+}`, "",{"version":3,"sources":["webpack://./src/components/UserLogOut/UserLogOut.module.scss"],"names":[],"mappings":"AAEA;EACI,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,sCAAA;AAAJ;;AAGI;EACE,kBAAA;EACA,sCAAA;AAAN","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.UserLogOut {\n    font-size: 1.5vmin;\n    color: #ff00ff;\n    text-align: center;\n    font-family: 'Press Start 2P', cursive;\n    }\n    \n    .UserLogOut .email {\n      font-size: smaller;\n      font-family: 'Press Start 2P', cursive;\n    }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"UserLogOut": `x80Y_LltA5PliUAZlphe`,
@@ -2203,8 +2217,9 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
   display: grid;
   grid-template-columns: 1.6fr 3.5fr 3fr;
   grid-template-rows: 1fr;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(3, 3, 3, 0.5);
   border-radius: 2vmin;
+  border: 0.2rem solid #ff00ff;
 }
 
 .RZqTJBeYN7RXwcHgPFys aside {
@@ -2213,7 +2228,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
   justify-content: space-between;
   align-items: center;
   margin: 3vmin 2vmin;
-}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,aAAA;EACA,sCAAA;EACA,uBAAA;EACA,oCAAA;EACA,oBAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,mBAAA;EACA,mBAAA;AACF","sourcesContent":[".NewOrderPage {\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1.6fr 3.5fr 3fr;\n  grid-template-rows: 1fr;\n  background-color: rgba(255, 255, 255, 20);;\n  border-radius: 2vmin;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: center;\n  margin: 3vmin 2vmin;\n}"],"sourceRoot":""}]);
+}
+
+.RZqTJBeYN7RXwcHgPFys aside > * {
+  margin-bottom: 1rem;
+}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,aAAA;EACA,sCAAA;EACA,uBAAA;EACA,oCAAA;EACA,oBAAA;EACA,4BAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,mBAAA;EACA,mBAAA;AACF;;AAEA;EACE,mBAAA;AACF","sourcesContent":[".NewOrderPage {\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1.6fr 3.5fr 3fr;\n  grid-template-rows: 1fr;\n  background-color: rgba(3, 3, 3, 0.5);\n  border-radius: 2vmin;\n  border: 0.2rem solid #ff00ff;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: center;\n  margin: 3vmin 2vmin;\n}\n\n.NewOrderPage aside > * {\n  margin-bottom: 1rem;\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"NewOrderPage": `RZqTJBeYN7RXwcHgPFys`

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .MenuListItem {
     width: 100%;
     display: flex;
@@ -7,9 +9,10 @@
     padding: 2vmin;
     color: var(--text-light);
     background-color: var(--white);
-    border: .1vmin solid var(--tan-3);
+    border: 0.5rem solid #ff00ff;
     border-radius: 1vmin;
     font-size: 4vmin;
+    font-family: 'Press Start 2P', sans-serif;
   }
   
   .MenuListItem .emoji {
