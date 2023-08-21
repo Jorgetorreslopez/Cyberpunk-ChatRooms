@@ -24,7 +24,6 @@ const SpotifyPlayback = ({ accessToken, trackUri }) => {
   return (
     <div>
       {/* Render your playback controls and UI here */}
-      What Is said here stays, 
     </div>
   )
 }

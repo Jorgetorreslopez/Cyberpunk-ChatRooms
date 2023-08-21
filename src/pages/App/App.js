@@ -68,7 +68,7 @@ export default function App() {
 									user={user}
 									setUser={setUser}
 									spotifyToken={spotifyToken}
-                  setSpotifyToken={setSpotifyToken}
+									setSpotifyToken={setSpotifyToken}
 								/>
 							}
 						/>

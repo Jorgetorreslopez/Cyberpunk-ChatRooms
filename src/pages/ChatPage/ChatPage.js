@@ -17,7 +17,6 @@ const ChatPage = ({ socket, user, setUser, username, room }) => {
 
   return (
     <div className='chat'>
-      <Logo />
       <ChatBar socket={socket} user={user} setUser={setUser} set />
       <div className='chat__main'>
         <ChatBody messageList={messagelist} setMessageList={setMessageList} socket={socket} lastMessageRef={lastMessageRef} />

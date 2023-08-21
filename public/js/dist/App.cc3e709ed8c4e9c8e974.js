@@ -115,7 +115,7 @@ const ChatBody = _ref => {
   }, [socket, setMessageList]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
     className: "chat__mainHeader"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "LoFi Chat"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "What Is said here stays"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "leaveChat__btn",
     onClick: handleLeaveChat
   }, "LEAVE CHAT")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -238,10 +238,10 @@ function LineItem(_ref) {
   })), /*#__PURE__*/React.createElement("div", {
     className: "flex-ctr-ctr flex-col"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "align-ctr"
-  }, (_chosenAlbum$artists$ = chosenAlbum.artists[0]) === null || _chosenAlbum$artists$ === void 0 ? void 0 : _chosenAlbum$artists$.name), /*#__PURE__*/React.createElement("span", {
-    className: "order-album align-ctr"
-  }, chosenAlbum.name)), /*#__PURE__*/React.createElement("div", {
+    className: "align-rtAlbum"
+  }, chosenAlbum.name), /*#__PURE__*/React.createElement("span", {
+    className: "align-rtArtist"
+  }, (_chosenAlbum$artists$ = chosenAlbum.artists[0]) === null || _chosenAlbum$artists$ === void 0 ? void 0 : _chosenAlbum$artists$.name)), /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].qty,
     style: {
       justifyContent: isPaid && 'center'
@@ -249,10 +249,7 @@ function LineItem(_ref) {
   }, !isPaid && /*#__PURE__*/React.createElement("button", {
     className: "btn-xs",
     onClick: () => handleChangeQty(lineItem.item._id, lineItem.qty - 1)
-  }, "-"), /*#__PURE__*/React.createElement("span", null, lineItem.qty), !isPaid && /*#__PURE__*/React.createElement("button", {
-    className: "btn-xs",
-    onClick: () => handleChangeQty(lineItem.item._id, lineItem.qty + 1)
-  }, "+")), /*#__PURE__*/React.createElement("div", {
+  }, "X")), /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].extPrice
   }, "$", albumPrice));
 }
@@ -519,7 +516,7 @@ function OrderDetail(_ref) {
     className: "btn-sm",
     onClick: handleCheckout,
     disabled: !lineItems.length
-  }, "CHECKOUT"), /*#__PURE__*/React.createElement("span", null, order.totalQty), /*#__PURE__*/React.createElement("span", {
+  }, "CHECKOUT"), /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
   }, "$", orderTotalPrice.toFixed(2)))) : /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].hungry
@@ -675,7 +672,7 @@ const SpotifyPlayback = _ref => {
       });
     };
   }, [accessToken]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "What Is said here stays,");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SpotifyPlayback);
 
@@ -907,7 +904,7 @@ const ChatPage = _ref => {
   }, [messagelist]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "chat"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatBar_ChatBar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ChatBar_ChatBar__WEBPACK_IMPORTED_MODULE_1__["default"], {
     socket: socket,
     user: user,
     setUser: setUser,
@@ -1225,13 +1222,18 @@ function NewOrderPage(_ref) {
   }
   function _handleAddAlbumToCart() {
     _handleAddAlbumToCart = _asyncToGenerator(function* (albumId) {
-      const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.addItemToCart(albumId);
-      setCart(updatedCart);
-      console.log(updatedCart);
-      const selectedAlbum = searchResults.find(album => album.id === albumId);
-      setChosenAlbum(selectedAlbum);
-      console.log(selectedAlbum);
-      generateRandomPrice();
+      const isAlbumInCart = cart && cart.items.some(item => item.album.id === albumId);
+      if (!isAlbumInCart) {
+        const updatedCart = yield _utilities_order_api__WEBPACK_IMPORTED_MODULE_8__.addItemToCart(albumId);
+        setCart(updatedCart);
+        console.log(updatedCart);
+        const selectedAlbum = searchResults.find(album => album.id === albumId);
+        setChosenAlbum(selectedAlbum);
+        console.log(selectedAlbum);
+        generateRandomPrice();
+      } else {
+        console.log('Album is already in the cart');
+      }
     });
     return _handleAddAlbumToCart.apply(this, arguments);
   }
@@ -1549,16 +1551,16 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.ZeRW57PNaWpYVsw6JlaC {
   width: 100%;
   display: grid;
   grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;
   padding: 1vmin 0;
-  color: var(--text-light);
-  background-color: var(--white);
   border-top: 0.1vmin solid var(--tan-3);
-  font-size: 1.5vw;
+  font-size: 1rem;
+  font-family: "Press Start 2P", cursive;
 }
 
 .ZeRW57PNaWpYVsw6JlaC:last-child {
@@ -1577,6 +1579,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.ZeRW57PNaWpYVsw6JlaC {
   justify-content: flex-end;
   align-items: center;
   font-size: 1.3vw;
+  color: palevioletred;
 }
 
 .ZeRW57PNaWpYVsw6JlaC button {
@@ -1591,13 +1594,19 @@ img {
 
 .ZeRW57PNaWpYVsw6JlaC .g1Sh_jj_VNtrTSSRQ9Hp {
   font-size: 1rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/LineItem.module.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,aAAA;EACA,gDAAA;EACA,gBAAA;EACA,wBAAA;EACA,8BAAA;EACA,sCAAA;EACA,gBAAA;AACJ;;AAEI;EACA,yCAAA;AACJ;;AAEI;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,aAAA;EACA,yBAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEI;EACA,SAAA;AACJ;;AAEI;EACE,YAAA;EACA,YAAA;EACA,iBAAA;AACN;;AAEI;EACE,eAAA;AACN","sourcesContent":[".LineItem {\n    width: 100%;\n    display: grid;\n    grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;\n    padding: 1vmin 0;\n    color: var(--text-light);\n    background-color: var(--white);\n    border-top: .1vmin solid var(--tan-3);\n    font-size: 1.5vw;\n    }\n    \n    .LineItem:last-child {\n    border-bottom: .1vmin solid var(--tan-3);\n    }\n    \n    .LineItem .qty {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem .extPrice {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem button {\n    margin: 0;\n    }\n\n    img {\n      width: 100px; \n      height: auto;\n      margin-left: 4rem;\n    }\n\n    .LineItem .order-album {\n      font-size: 1rem;\n    }"],"sourceRoot":""}]);
+  color: palevioletred;
+}
+
+.ZeRW57PNaWpYVsw6JlaC .KLMF833ZzmfLChU9Ffwz {
+  color: #888;
+}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/LineItem.module.scss"],"names":[],"mappings":"AAEA;EACI,WAAA;EACA,aAAA;EACA,gDAAA;EACA,gBAAA;EACA,sCAAA;EACA,eAAA;EACA,sCAAA;AAAJ;;AAGI;EACA,yCAAA;AAAJ;;AAGI;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;AAAJ;;AAGI;EACA,aAAA;EACA,yBAAA;EACA,mBAAA;EACA,gBAAA;EACA,oBAAA;AAAJ;;AAGI;EACA,SAAA;AAAJ;;AAGI;EACE,YAAA;EACA,YAAA;EACA,iBAAA;AAAN;;AAGI;EACE,eAAA;EACA,oBAAA;AAAN;;AAGI;EACE,WAAA;AAAN","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.LineItem {\n    width: 100%;\n    display: grid;\n    grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;\n    padding: 1vmin 0;\n    border-top: .1vmin solid var(--tan-3);\n    font-size: 1rem;\n    font-family: 'Press Start 2P', cursive;\n    }\n    \n    .LineItem:last-child {\n    border-bottom: .1vmin solid var(--tan-3);\n    }\n    \n    .LineItem .qty {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 1.3vw;\n    }\n    \n    .LineItem .extPrice {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n    font-size: 1.3vw;\n    color: palevioletred;\n    }\n    \n    .LineItem button {\n    margin: 0;\n    }\n\n    img {\n      width: 100px; \n      height: auto;\n      margin-left: 4rem;\n    }\n\n    .LineItem .order-album {\n      font-size: 1rem;\n      color: palevioletred;\n    }\n\n    .LineItem .artist {\n      color: #888;\n    }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"LineItem": `ZeRW57PNaWpYVsw6JlaC`,
 	"qty": `Z_MQzAiRjTlxboCrh9om`,
 	"extPrice": `iZ6oJDRJlBAjRnxPhUy5`,
-	"order-album": `g1Sh_jj_VNtrTSSRQ9Hp`
+	"order-album": `g1Sh_jj_VNtrTSSRQ9Hp`,
+	"artist": `KLMF833ZzmfLChU9Ffwz`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1751,10 +1760,11 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
-  border: 0.1vmin solid;
   border-radius: 2vmin;
   margin: 3vmin 0;
   padding: 3vmin;
+  max-height: 845px;
+  overflow-y: auto;
 }
 
 .Nl7mvVAIdJYZXn7q79Dn {
@@ -1791,7 +1801,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 0.8rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAEA;EACI,qBAAA;EACA,oBAAA;EACA,eAAA;EACA,cAAA;AAAJ;;AAGA;EACE,sCAAA;EACE,iBAAA;EACA,yBAAA;AAAJ;;AAGA;EACI,aAAA;EACA,mBAAA;EACA,mBAAA;EACA,oBAAA;AAAJ;AAEI;EACE,YAAA;EACA,YAAA;EACA,kBAAA;AAAN;AAIM;EACE,SAAA;EACA,eAAA;EACA,yCAAA;AAFR;AAMM;EACE,SAAA;EACA,iBAAA;EACA,WAAA;AAJR;AAOM;EACE,+BAAA;EACA,YAAA;EACA,YAAA;EACA,oBAAA;EACA,eAAA;EACA,iBAAA;AALR","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.MenuList {\n    border: .1vmin solid;\n    border-radius: 2vmin;\n    margin: 3vmin 0;\n    padding: 3vmin;\n    }\n\n.Search{\n  font-family: 'Press Start 2P', cursive;\n    font-size: 1.5rem;\n    color: rgb(220, 102, 169);\n}   \n\n.Album {\n    display: flex;\n    align-items: center;\n    margin-bottom: 1rem;\n    color: palevioletred;\n  \n    .AlbumArtwork {\n      width: 100px; \n      height: auto;\n      margin-right: 1rem;\n    }\n  \n    .AlbumDetails {\n      h3 {\n        margin: 0;\n        font-size: 1rem;\n        font-family: 'Press Start 2P', sans-serif\n\n      }\n  \n      p {\n        margin: 0;\n        font-size: 0.8rem;\n        color: #888;\n      }\n  \n      button {\n        background-color: palevioletred;\n        color: white;\n        border: none;\n        padding: 0.5rem 1rem;\n        cursor: pointer;\n        font-size: 0.8rem;\n      }\n    }\n  }\n  \n  "],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAEA;EACI,oBAAA;EACA,eAAA;EACA,cAAA;EACA,iBAAA;EACA,gBAAA;AAAJ;;AAGA;EACE,sCAAA;EACE,iBAAA;EACA,yBAAA;AAAJ;;AAGA;EACI,aAAA;EACA,mBAAA;EACA,mBAAA;EACA,oBAAA;AAAJ;AAEI;EACE,YAAA;EACA,YAAA;EACA,kBAAA;AAAN;AAIM;EACE,SAAA;EACA,eAAA;EACA,yCAAA;AAFR;AAMM;EACE,SAAA;EACA,iBAAA;EACA,WAAA;AAJR;AAOM;EACE,+BAAA;EACA,YAAA;EACA,YAAA;EACA,oBAAA;EACA,eAAA;EACA,iBAAA;AALR","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.MenuList {\n    border-radius: 2vmin;\n    margin: 3vmin 0;\n    padding: 3vmin;\n    max-height: 845px;\n    overflow-y: auto;\n    }\n\n.Search{\n  font-family: 'Press Start 2P', cursive;\n    font-size: 1.5rem;\n    color: rgb(220, 102, 169);\n}   \n\n.Album {\n    display: flex;\n    align-items: center;\n    margin-bottom: 1rem;\n    color: palevioletred;\n  \n    .AlbumArtwork {\n      width: 100px; \n      height: auto;\n      margin-right: 1rem;\n    }\n  \n    .AlbumDetails {\n      h3 {\n        margin: 0;\n        font-size: 1rem;\n        font-family: 'Press Start 2P', sans-serif\n\n      }\n  \n      p {\n        margin: 0;\n        font-size: 0.8rem;\n        color: #888;\n      }\n  \n      button {\n        background-color: palevioletred;\n        color: white;\n        border: none;\n        padding: 0.5rem 1rem;\n        cursor: pointer;\n        font-size: 0.8rem;\n      }\n    }\n  }\n  \n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuList": `eBz5FvD9TgyIgfFi1MdG`,
@@ -1893,6 +1903,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.cPR75kdAXDGVxib0PszB {
   flex-direction: column;
@@ -1900,11 +1911,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.cPR75kdAXDGVxib0PszB {
   align-items: center;
   padding: 3vmin;
   font-size: 2vmin;
-  color: var(--text-light);
+  font-family: "Press Start 2P", cursive;
 }
 
 .cPR75kdAXDGVxib0PszB .ap70fWT3eETsAtLlRQKl {
   width: 100%;
+  color: rgb(195, 74, 142);
 }
 
 .cPR75kdAXDGVxib0PszB .vVkqXbRqxMYDCnUttflb {
@@ -1934,13 +1946,15 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.cPR75kdAXDGVxib0PszB {
 .cPR75kdAXDGVxib0PszB .V5OAbv7QFHo6WglNx0m0 span.GtULiQQdndLNSQN4Yc97 {
   display: flex;
   justify-content: flex-end;
+  color: rgb(195, 74, 142);
 }
 
 .cPR75kdAXDGVxib0PszB .dyrUhYTujwEUiMzpjxWX {
   position: absolute;
   top: 50vh;
   font-size: 2vmin;
-}`, "",{"version":3,"sources":["webpack://./src/components/OrderDetail/OrderDetail.module.scss"],"names":[],"mappings":"AAAA;EACI,sBAAA;EACA,2BAAA;EACA,mBAAA;EACA,cAAA;EACA,gBAAA;EACA,wBAAA;AACJ;;AAEE;EACE,WAAA;AACJ;;AAEE;EACE,iBAAA;EACA,2BAAA;EACA,4BAAA;EACA,WAAA;AACJ;;AAEE;EACE,WAAA;EACA,aAAA;EACA,4CAAA;EACA,gBAAA;EACA,wBAAA;EACA,sCAAA;AACJ;;AAEE;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,gBAAA;EACA,uBAAA;AACJ;;AAEE;EACE,aAAA;EACA,yBAAA;AACJ;;AAEE;EACE,kBAAA;EACA,SAAA;EACA,gBAAA;AACJ","sourcesContent":[".OrderDetail {\n    flex-direction: column;\n    justify-content: flex-start;\n    align-items: center;\n    padding: 3vmin;\n    font-size: 2vmin;\n    color: var(--text-light);\n  }\n  \n  .OrderDetail .sectionHeading {\n    width: 100%\n  }\n  \n  .OrderDetail .lineItemContainer {\n    margin-top: 3vmin;\n    justify-content: flex-start;\n    height: calc(100vh - 18vmin);\n    width: 100%;\n  }\n  \n  .OrderDetail .total {\n    width: 100%;\n    display: grid;\n    grid-template-columns: 18.35vw 5.75vw 5.25vw;\n    padding: 1vmin 0;\n    color: var(--text-light);\n    border-top: .1vmin solid var(--tan-3);\n  }\n  \n  .OrderDetail .total span {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    font-size: 1.5vw;\n    color: var(--text-dark);\n  }\n  \n  .OrderDetail .total span.right {\n    display: flex;\n    justify-content: flex-end;\n  }\n  \n  .OrderDetail .hungry {\n    position: absolute;\n    top: 50vh;\n    font-size: 2vmin;\n  }"],"sourceRoot":""}]);
+  color: rgb(195, 74, 142);
+}`, "",{"version":3,"sources":["webpack://./src/components/OrderDetail/OrderDetail.module.scss"],"names":[],"mappings":"AAEA;EACI,sBAAA;EACA,2BAAA;EACA,mBAAA;EACA,cAAA;EACA,gBAAA;EACA,sCAAA;AAAJ;;AAGE;EACE,WAAA;EACA,wBAAA;AAAJ;;AAGE;EACE,iBAAA;EACA,2BAAA;EACA,4BAAA;EACA,WAAA;AAAJ;;AAGE;EACE,WAAA;EACA,aAAA;EACA,4CAAA;EACA,gBAAA;EACA,wBAAA;EACA,sCAAA;AAAJ;;AAGE;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,gBAAA;EACA,uBAAA;AAAJ;;AAGE;EACE,aAAA;EACA,yBAAA;EACA,wBAAA;AAAJ;;AAGE;EACE,kBAAA;EACA,SAAA;EACA,gBAAA;EACA,wBAAA;AAAJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.OrderDetail {\n    flex-direction: column;\n    justify-content: flex-start;\n    align-items: center;\n    padding: 3vmin;\n    font-size: 2vmin;\n    font-family: 'Press Start 2P', cursive;\n  }\n  \n  .OrderDetail .sectionHeading {\n    width: 100%;\n    color: rgb(195, 74, 142);\n  }\n  \n  .OrderDetail .lineItemContainer {\n    margin-top: 3vmin;\n    justify-content: flex-start;\n    height: calc(100vh - 18vmin);\n    width: 100%;\n  }\n  \n  .OrderDetail .total {\n    width: 100%;\n    display: grid;\n    grid-template-columns: 18.35vw 5.75vw 5.25vw;\n    padding: 1vmin 0;\n    color: var(--text-light);\n    border-top: .1vmin solid var(--tan-3);\n  }\n  \n  .OrderDetail .total span {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    font-size: 1.5vw;\n    color: var(--text-dark);\n  }\n  \n  .OrderDetail .total span.right {\n    display: flex;\n    justify-content: flex-end;\n    color: rgb(195, 74, 142);\n  }\n  \n  .OrderDetail .hungry {\n    position: absolute;\n    top: 50vh;\n    font-size: 2vmin;\n    color: rgb(195, 74, 142);\n  }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"OrderDetail": `cPR75kdAXDGVxib0PszB`,
@@ -2049,15 +2063,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.c
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.x80Y_LltA5PliUAZlphe {
   font-size: 1.5vmin;
-  color: #ff00ff;
+  color: palevioletred;
   text-align: center;
   font-family: "Press Start 2P", cursive;
+  background-color: rgba(3, 3, 3, 0.5);
 }
 
 .x80Y_LltA5PliUAZlphe .qHiYGQB1ZEMvrGOQoBrO {
   font-size: smaller;
   font-family: "Press Start 2P", cursive;
-}`, "",{"version":3,"sources":["webpack://./src/components/UserLogOut/UserLogOut.module.scss"],"names":[],"mappings":"AAEA;EACI,kBAAA;EACA,cAAA;EACA,kBAAA;EACA,sCAAA;AAAJ;;AAGI;EACE,kBAAA;EACA,sCAAA;AAAN","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.UserLogOut {\n    font-size: 1.5vmin;\n    color: #ff00ff;\n    text-align: center;\n    font-family: 'Press Start 2P', cursive;\n    }\n    \n    .UserLogOut .email {\n      font-size: smaller;\n      font-family: 'Press Start 2P', cursive;\n    }"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/UserLogOut/UserLogOut.module.scss"],"names":[],"mappings":"AAEA;EACI,kBAAA;EACA,oBAAA;EACA,kBAAA;EACA,sCAAA;EACA,oCAAA;AAAJ;;AAGI;EACE,kBAAA;EACA,sCAAA;AAAN","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.UserLogOut {\n    font-size: 1.5vmin;\n    color: palevioletred;\n    text-align: center;\n    font-family: 'Press Start 2P', cursive;\n    background-color: rgba(3, 3, 3, 0.5);\n    }\n    \n    .UserLogOut .email {\n      font-size: smaller;\n      font-family: 'Press Start 2P', cursive;\n    }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"UserLogOut": `x80Y_LltA5PliUAZlphe`,
@@ -2169,22 +2184,32 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.wFmRiL0i_Ht4Xcl0Omvg {
   height: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: var(--white);
+  background-color: rgba(3, 3, 3, 0.5);
   border-radius: 2vmin;
+  border: 0.2rem solid #ff00ff;
+  font-family: "Press Start 2P", sans-serif;
+  margin-top: 6vh;
 }
 
 .wFmRiL0i_Ht4Xcl0Omvg h3 {
   margin-top: 4vmin;
   text-align: center;
-  color: var(--text-light);
+  color: rgb(220, 102, 169);
   cursor: pointer;
-}`, "",{"version":3,"sources":["webpack://./src/pages/ChatSetupPage/ChatSetupPage.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,8BAAA;EACA,oBAAA;AACJ;;AAEE;EACE,iBAAA;EACA,kBAAA;EACA,wBAAA;EACA,eAAA;AACJ","sourcesContent":[".SetupPage {\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    background-color: var(--white);\n    border-radius: 2vmin;\n  }\n  \n  .SetupPage h3 {\n    margin-top: 4vmin;\n    text-align: center;\n    color: var(--text-light);\n    cursor: pointer;\n  }"],"sourceRoot":""}]);
+}
+
+.wFmRiL0i_Ht4Xcl0Omvg h1 {
+  text-align: center;
+  color: rgb(220, 102, 169);
+  cursor: pointer;
+}`, "",{"version":3,"sources":["webpack://./src/pages/ChatSetupPage/ChatSetupPage.module.scss"],"names":[],"mappings":"AAEA;EACI,YAAA;EACA,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,oCAAA;EACF,oBAAA;EACA,4BAAA;EACA,yCAAA;EACA,eAAA;AAAF;;AAGE;EACE,iBAAA;EACA,kBAAA;EACA,yBAAA;EACA,eAAA;AAAJ;;AAGE;EACE,kBAAA;EACA,yBAAA;EACA,eAAA;AAAJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');\n\n.SetupPage {\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    background-color: rgba(3, 3, 3, 0.5);\n  border-radius: 2vmin;\n  border: 0.2rem solid #ff00ff;\n  font-family: 'Press Start 2P', sans-serif;\n  margin-top: 6vh;\n  }\n  \n  .SetupPage h3 {\n    margin-top: 4vmin;\n    text-align: center;\n    color: rgb(220, 102, 169);\n    cursor: pointer;\n  }\n\n  .SetupPage h1 {\n    text-align: center;\n    color: rgb(220, 102, 169);\n    cursor: pointer;\n  }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"SetupPage": `wFmRiL0i_Ht4Xcl0Omvg`

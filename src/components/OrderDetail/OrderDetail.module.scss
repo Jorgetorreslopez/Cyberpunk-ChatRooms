@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .OrderDetail {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding: 3vmin;
     font-size: 2vmin;
-    color: var(--text-light);
+    font-family: 'Press Start 2P', cursive;
   }
   
   .OrderDetail .sectionHeading {
-    width: 100%
+    width: 100%;
+    color: rgb(195, 74, 142);
   }
   
   .OrderDetail .lineItemContainer {
@@ -38,10 +41,12 @@
   .OrderDetail .total span.right {
     display: flex;
     justify-content: flex-end;
+    color: rgb(195, 74, 142);
   }
   
   .OrderDetail .hungry {
     position: absolute;
     top: 50vh;
     font-size: 2vmin;
+    color: rgb(195, 74, 142);
   }

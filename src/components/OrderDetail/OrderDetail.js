@@ -64,7 +64,7 @@ export default function OrderDetail({
 									CHECKOUT
 								</button>
 							)}
-							<span>{order.totalQty}</span>
+							<span></span>
 							<span className={styles.right}>
 								${orderTotalPrice.toFixed(2)}
 							</span>

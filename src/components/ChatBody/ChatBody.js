@@ -26,7 +26,7 @@ const ChatBody = ({ messageList, setMessageList, socket, lastMessageRef }) => {
   return (
     <>
       <header className='chat__mainHeader'>
-        <p>LoFi Chat</p>
+        <p>What Is said here stays</p>
         <button className='leaveChat__btn' onClick={handleLeaveChat}>
           LEAVE CHAT
         </button>

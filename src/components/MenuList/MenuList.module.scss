@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .MenuList {
-    border: .1vmin solid;
     border-radius: 2vmin;
     margin: 3vmin 0;
     padding: 3vmin;
+    max-height: 845px;
+    overflow-y: auto;
     }
 
 .Search{

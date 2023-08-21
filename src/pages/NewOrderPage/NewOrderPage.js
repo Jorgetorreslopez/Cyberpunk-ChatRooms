@@ -193,14 +193,21 @@ export default function NewOrderPage({
 	}
 
   async function handleAddAlbumToCart(albumId) {
+  const isAlbumInCart = cart && cart.items.some((item) => item.album.id === albumId);
+  
+  if (!isAlbumInCart) {
     const updatedCart = await ordersAPI.addItemToCart(albumId);
-		setCart(updatedCart);
-		console.log(updatedCart);
-		const selectedAlbum = searchResults.find((album) => album.id === albumId);
-		setChosenAlbum(selectedAlbum);
-		console.log(selectedAlbum);
-		generateRandomPrice();
+    setCart(updatedCart);
+    console.log(updatedCart);
+    const selectedAlbum = searchResults.find((album) => album.id === albumId);
+    setChosenAlbum(selectedAlbum);
+    console.log(selectedAlbum);
+    generateRandomPrice();
+  } else {
+    console.log('Album is already in the cart');
   }
+}
+
 
   async function handleChangeQty(albumId, newQty) {
 		const updatedCart = await ordersAPI.setItemQtyInCart(albumId, newQty);

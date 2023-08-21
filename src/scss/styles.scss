@@ -53,6 +53,16 @@ code {
   text-align: right;
 }
 
+.align-rtArtist {
+  text-align: right;
+  color: #888;
+}
+
+.align-rtAlbum {
+  text-align: right;
+  color: palevioletred;
+}
+
 .align-lt {
   text-align: left;
 }
@@ -74,10 +84,6 @@ code {
 
 .flex-j-end {
   justify-content: flex-end;
-}
-
-.scroll-y {
-  overflow-y: scroll;
 }
 
 .section-heading {
@@ -136,7 +142,7 @@ button, a.button {
   margin: 1vmin;
   padding: 1vmin;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: rgb(220, 102, 169);
   font-size: 2vmin;
   font-weight: bold;
   text-decoration: none;
@@ -167,13 +173,12 @@ button[type="submit"] {
   margin: 1vmin 0 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Press Start 2P', sans-serif;
 }
 .home__container {
   width: 100%;
@@ -183,6 +188,7 @@ button[type="submit"] {
   justify-content: center;
   align-items: center;
 }
+
 .home__container > * {
   margin-bottom: 10px;
 }
@@ -198,24 +204,26 @@ button[type="submit"] {
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #607eaa;
-  color: #f9f5eb;
+  background-color: rgba(3, 3, 3, 0.5);
+  color: #ff00ff;
   outline: none;
   border: none;
   border-radius: 5px;
 }
 .chat {
   width: 100%;
-  height: 100vh;
+  height: 75vh;
   display: flex;
   align-items: center;
+  border: 0.2rem solid #ff00ff;
 }
 .chat__sidebar {
   height: 100%;
-  background-color: #f9f5eb;
+  background-color: rgba(3, 3, 3, 0.5);
   flex: 0.2;
   padding: 20px;
-  border-right: 1px solid #fdfdfd;
+  border-right: 1px solid #ff00ff;
+  color: rgb(220, 102, 169);
 }
 .chat__main {
   height: 100%;
@@ -223,6 +231,7 @@ button[type="submit"] {
 }
 .chat__header {
   margin: 30px 0 20px 0;
+  color: rgb(220, 102, 169);
 }
 .chat__users > * {
   margin-bottom: 10px;
@@ -241,21 +250,23 @@ button[type="submit"] {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #f9f5eb;
+  background-color: rgba(3, 3, 3, 0.5);
+  color: rgb(220, 102, 169);
+  border-bottom: 0.1rem solid #494848;
 }
 .leaveChat__btn {
   padding: 10px;
   width: 150px;
   border: none;
   outline: none;
-  background-color: #d1512d;
+  color: rgb(220, 102, 169);
   cursor: pointer;
-  color: #eae3d2;
+  background-color: rgba(3, 3, 3, 0.5);
 }
 .message__container {
   width: 100%;
-  height: 80vh;
-  background-color: #fff;
+  height: 47vh;
+  background-color: rgba(3, 3, 3, 0.5);
   padding: 20px;
   overflow-y: scroll;
 }
@@ -265,8 +276,8 @@ button[type="submit"] {
 }
 .chat__footer {
   padding: 10px;
-  background-color: #f9f5eb;
-  height: 10vh;
+  background-color: rgba(3, 3, 3, 0.5);
+  height: 8vh;
 }
 .form {
   width: 100%;
@@ -285,7 +296,7 @@ button[type="submit"] {
 }
 .sendBtn {
   width: 150px;
-  background-color: green;
+  background-color: rgb(220, 102, 169);
   padding: 10px;
   border: none;
   outline: none;
@@ -312,6 +323,8 @@ button[type="submit"] {
 }
 .message__chats > p {
   font-size: 13px;
+  color: #607eaa;
+  padding-bottom: 1%;
 }
 .sender__name {
   text-align: right;

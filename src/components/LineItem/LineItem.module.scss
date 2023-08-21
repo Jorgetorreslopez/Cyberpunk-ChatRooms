@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .LineItem {
     width: 100%;
     display: grid;
     grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;
     padding: 1vmin 0;
-    color: var(--text-light);
-    background-color: var(--white);
     border-top: .1vmin solid var(--tan-3);
-    font-size: 1.5vw;
+    font-size: 1rem;
+    font-family: 'Press Start 2P', cursive;
     }
     
     .LineItem:last-child {
@@ -25,6 +26,7 @@
     justify-content: flex-end;
     align-items: center;
     font-size: 1.3vw;
+    color: palevioletred;
     }
     
     .LineItem button {
@@ -39,4 +41,9 @@
 
     .LineItem .order-album {
       font-size: 1rem;
+      color: palevioletred;
+    }
+
+    .LineItem .artist {
+      color: #888;
     }
